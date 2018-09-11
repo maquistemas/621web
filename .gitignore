@@ -1,0 +1,16 @@
+.classpath
+.gradle
+.project
+.settings
+*.iml
+*.ipr
+*.iws
+build
+/bin/
+.DS_Store
+.idea
+out
+logs
+/e-plataformaunica-internet/nbproject/private/
+/nbproject/private/
+/nbproject/

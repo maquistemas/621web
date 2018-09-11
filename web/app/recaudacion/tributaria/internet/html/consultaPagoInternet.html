@@ -1,0 +1,526 @@
+<div style="padding: 20px !important; margin-top:0px;" >
+    <div class="alert alert-warning text-center ng-ocultar" role="alert" style="text-align:left;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+        <strong>"Sr. Contribuyente,</strong> esta consulta mostrar&aacute; informaci&oacute;n desde el xx/xx/xxxx.<br> Para consultas de fechas anteriores deber&aacute; ingresar a: <a href="https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm" target="_blank">https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm</a>"
+        <br>
+        Observaciones:
+        <ul>
+            <li>El asterisco(*) se&ntilde;ala a los formularios pagados con cheque que fue rechazado.</li>
+            <li>Considera declaraciones efectuadas en todos los medios de pago ( Aplicaciones en PC, Formularios Virtuales, PDT).</li>
+            <li>De existir alguna omisi&oacute;n o de no estar de acuerdo con la informaci&oacute;n detallada en la consulta, deber&aacute; comunicarse con los Centros de Atenci&oacute;n o las Areas de Servicios al Contribuyente de su dependencia.</li>
+        </ul>
+    </div>
+
+    <h4 class="nombre-f" style="margin:0">Consulta de Constancia de Pago
+        <span class="glyphicon glyphicon-question-sign puntero" data-toggle="modal" data-target="#modal-deayuda"></span>
+    </h4>
+    <br>
+    <div class="ng-ocultar">
+    <label>Criterios de b&uacute;squeda</label>
+    <select class="form-control input-sm" ng-model="consultaBean.criterio" ng-change="seleccionarCriterio()" style="display:inline-block;width: 155px;margin-left:10px" id="criterios">
+        <option value="G">General</option>
+        <option value="E">Espec&iacute;fico</option>
+    </select>
+    <hr style="margin-top:10px">
+
+    <!-- CRITERIOS DE BUSQUEDA GENERAL -->
+    <form id="general" ng-show="isGeneral">
+        <div class="row">
+            <div class="col-sm-4">
+                <label>N&uacute;mero de formulario</label><br>
+                <select id="numFormulario" class="form-control" multiple="multiple" >
+                <!-- ng-model="consultaBean.numerosFormularios"
+                   <option ng-repeat="parametriaFormulario in parametroDetallePlataformaEntity" value="{{ parametriaFormulario.codFor }}">{{ parametriaFormulario.codFor != 'All' ? parametriaFormulario.codFor : ''}} {{ parametriaFormulario.codFor != 'All' ? '-' : ''}} {{parametriaFormulario.desFor}}</option>
+                -->
+                    </select>
+            </div>
+            <div class="col-sm-4">
+                <label>Rango de Fecha de presentaci&oacute;n</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="input-group">
+                            <input name="idFecIni" ng-blur="validarFechaVigenciaFechaPI()" ng-model="consultaBean.rangoDeFechaPresentacionInicio"  type="text" placeholder="dd/mm/aaaa" class="form-control input-md " uib-datepicker-popup="{{formato}}" show-button-bar="false" is-open="popup1.opened" datepicker-options="dateOptions"/>
+                            <span class="input-group-btn">
+     					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+   					</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="input-group">
+                            <input name="idFecFin" ng-blur="validarFechaFinal()" ng-model="consultaBean.rangoDeFechaPresentacionFin"  type="text" placeholder="dd/mm/aaaa" class="form-control input-md" uib-datepicker-popup="{{formato}}" show-button-bar="false" is-open="popup2.opened" datepicker-options="dateOptions2"/>
+                            <span class="input-group-btn">
+	       				<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+	     			</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label>Rango Per&iacute;odo tributario</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select ng-change="validarAnual()" style="width: 60%;" class="combo-rango input-sm form-control" id="periodo_tributario_1" ng-model="consultaBean.rangoPeriodoTributarioInicioMes">
+                                <option value="00" ng-selected="true">MES</option>
+                                <option value="01" >ENERO</option>
+                                <option value="02" >FEBRERO</option>
+                                <option value="03" >MARZO</option>
+                                <option value="04" >ABRIL</option>
+                                <option value="05" >MAYO</option>
+                                <option value="06" >JUNIO</option>
+                                <option value="07" >JULIO</option>
+                                <option value="08" >AGOSTO</option>
+                                <option value="09" >SETIEMBRE</option>
+                                <option value="10" >OCTUBRE</option>
+                                <option value="11" >NOVIEMBRE</option>
+                                <option value="12" >DICIEMBRE</option>
+                                <option value="13" >ANUAL</option>
+                            </select>
+                            <select ng-change="validarAnual()" style="width: 40%;" class="combo-rango input-sm form-control border-select" ng-model="consultaBean.rangoPeriodoTributarioInicioAnio" ng-options="anio for anio in anios">
+                            </select>
+                            <span  class="help-block">Inicio</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select ng-disabled="perMFAFHabilitado" style="width: 60%;" class="combo-rango input-sm form-control" id="periodo_tributario_2" ng-model="consultaBean.rangoPeriodoTributarioFinMes">
+                                <option value="00" ng-selected="true">MES</option>
+                                <option value="01" >ENERO</option>
+                                <option value="02" >FEBRERO</option>
+                                <option value="03" >MARZO</option>
+                                <option value="04" >ABRIL</option>
+                                <option value="05" >MAYO</option>
+                                <option value="06" >JUNIO</option>
+                                <option value="07" >JULIO</option>
+                                <option value="08" >AGOSTO</option>
+                                <option value="09" >SETIEMBRE</option>
+                                <option value="10" >OCTUBRE</option>
+                                <option value="11" >NOVIEMBRE</option>
+                                <option value="12" >DICIEMBRE</option>
+                                <option value="13" disabled="disabled" >ANUAL</option>
+                            </select>
+                            <select ng-disabled="perMFAFHabilitado" style="width: 40%;" class="combo-rango input-sm form-control border-select" ng-model="consultaBean.rangoPeriodoTributarioFinAnio" ng-options="anio for anio in anios">
+                            </select>
+                            <span  class="help-block">Fin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label style="opacity:0">oculto</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary btn-block btn-sm" ng-click="buscarConstancia()"><span class="glyphicon glyphicon-search"></span>Buscar</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block btn-sm" ng-click="limpiar()"><span class="glyphicon glyphicon-refresh"></span>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- CRITERIOS DE BUSQUEDA ESPECIFICO -->
+    <form id="especifica" ng-show="isEspecifica">
+        <div class="row">
+            <div class="col-sm-4">
+                <label>N&uacute;mero de formulario</label>
+                <select id="country_v1-query" multiple="multiple" class="form-control" ng-model="consultaBean.numeroFormulario">
+                     <option ng-if="parametriaFormulario.codFor !='Todos'" ng-repeat="parametriaFormulario in parametroDetallePlataformaEntity" value="{{ parametriaFormulario.codFor }}">{{ parametriaFormulario.codFor }}-{{parametriaFormulario.desFor}}</option>
+                </select>
+
+            </div>
+            <div class="col-sm-4">
+                <label>N&uacute;mero de orden</label>
+                <input type="text" class="form-control input-sm m-b-md" maxlength="19" placeholder="Escribir" ng-model="consultaBean.numeroOrden" ng-disabled="numOrdenEnabled" ng-blur="validarExcluyeNumOrden()">
+            </div>
+            <div class="col-sm-4">
+                <label>N&uacute;mero de operaci&oacute;n bancaria</label>
+                <input type="text" class="form-control input-sm m-b-md" maxlength="25" placeholder="Escribir" ng-model="consultaBean.numeroOperacionBancaria" ng-disabled="numOperaEnabled" ng-blur="validarExcluyeNumOpera()">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <label style="opacity:0">oculto</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button id="buscar-resultado2" class="btn btn-primary btn-block btn-sm" ng-click="buscarConstanciaEspecifica()"><span class="glyphicon glyphicon-search"></span>Buscar</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block btn-sm" ng-click="limpiar()"><span class="glyphicon glyphicon-refresh"></span>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <br>
+    <div id="sin-resultados" ng-show="validaGeneral">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;" >
+            "<strong>Sr. Contribuyente,</strong> la consulta s&oacute;lo mostrar&aacute; informaci&oacute;n de un a&ntilde;o, por favor modifique <span id="tipoRango"> </span>"
+        </div>
+    </div>
+    <div id="sin-resultados" ng-show="sinResultado">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;">
+            "<strong>Sr. Contribuyente,</strong> no existe formulario con la informaci&oacute;n ingresada"
+        </div>
+    </div>
+    <div id="sin-resultados" ng-show="resultadoExceso">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;">
+            "<strong>Sr. Contribuyente, </strong>la relaci&oacute;n de sus constancias de presentaci&oacute;n y/o pago es mayor a 300 por lo que el resultado de su consulta se encuentra contenida en el archivo: Consulta de Constancia de Pago. Por favor realizar la exportaci&oacute;n con los siguientes botones:"
+        </div>
+    </div>
+    <br>
+
+
+
+
+
+
+    <ul class="nav navbar-nav navbar-right" ng-show="resultadoOpcion">
+        <li>
+            <div class="btn-group">
+                <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="generarReportePdf()"  data-toggle="tooltip" data-placement="bottom" title="Exportar a PDF"><span class="glyphicon glyphicon-save-file"></span>PDF</button>
+                <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="generarReporteExcel()"  data-toggle="tooltip" data-placement="bottom" title="Exportar a EXCEL"><span class="glyphicon glyphicon-save-file"></span>EXCEL</button>
+                <button ng-disabled="imprimirHabilitado" class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="listaResultado"><span class="glyphicon glyphicon-print"></span>Imprimir</button>
+                <button ng-disabled="correoHabilitado" class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" title="Enviar a Correo" ng-click="enviarCorreo()" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+            </div>
+        </li>
+    </ul>
+</div> <!-- Ocultar Print-->
+    <div id="listaResultado">
+        <div class="clearfix"></div>
+        <br>
+        <div ng-show="resumenGeneral">
+            <fieldset class="linea-caja" style="margin:0;" >
+                <legend style="    color: #337AB7;">Detalle de Constancia de Pagos:</legend>
+                <div>
+                <strong>RUC:</strong> {{resultadoConsulta.ruc}}
+                </div>
+                <div>
+                <strong>Nombre o raz&oacute;n social:</strong> {{resultadoConsulta.razonSocial}}
+                </div>
+                <div><strong>Fecha de consulta:</strong>{{fechaActual}}
+                </div>
+                <div ng-show="mostrarPresentacion">
+                
+                <strong>Fecha</strong><br>
+                <strong>Desde:</strong> {{fechaPresentacionInicio}} <strong>Hasta:</strong> {{fechaPresentacionFin}}
+                </div>
+                <div ng-show="mostrarPeriodo">                
+                <strong>Per&iacute;odo</strong><br>
+                <strong>Desde:</strong> {{periodoTributarioInicio}} <strong>Hasta:</strong> {{periodoTributarioFin}}
+                </div>
+                <div>
+                <strong>Formulario:</strong> {{formulario}}
+                </div>
+            </fieldset>
+        </div>
+        <fieldset class="linea-caja" style="margin:0;" ng-show="resumenEspecifica">
+            <legend style="    color: #337AB7;">Detalle de Constancia de Pagos:</legend>
+            <strong>RUC:</strong> {{resultadoConsulta.ruc}}
+            <br/>
+            <strong>Nombre o raz&oacute;n social:</strong> {{resultadoConsulta.razonSocial}}
+            <br/>
+            <div class="pull-left"><strong>Fecha de consulta:</strong>{{fechaActual}}</div>
+            <br>
+            <strong>N&uacute;mero de orden:</strong> {{resultadoConsulta.numOrd}}
+            <br>
+            <strong>N&uacute;mero de operaci&oacute;n bancaria:</strong> {{resultadoConsulta.numOpebco}}
+            <br>
+            <strong>Formulario:</strong> {{formulario}}
+        </fieldset>
+        <br>
+
+        <div class="panel panel-default" ng-show="resultado">
+            <div class="table-responsive">
+                <table class="table" style="font-size: 13px;">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Per&iacute;odo</th>
+                        <th>Nro Formulario</th>
+                        <th>Descripci&oacute;n</th>
+                        <th>Nro Orden</th>
+                        <th>Fecha de presentaci&oacute;n</th>
+                        <th>Banco</th>
+                        <th>Importe Pagado</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="constancia in constancias | startFrom: currentPage*pageSize | limitTo: pageSize" ng-init="rowIndex=$index" ng-click="jsAddClassRow(rowIndex, rowIndex)"
+                        ng-class="rowIndex==selectedGroup && rowIndex==selectedRow?'Seleccionado':''">
+                        <td>{{$index+1+currentPage*pageSize}}</td>
+                        <td>{{constancia.strPerTri}}</td>
+                        <td>{{constancia.parametriaFormulario.codFor}}</td>
+                        <td>{{constancia.parametriaFormulario.desFor}}</td>
+                        <td>{{constancia.numOrd}}</td>
+                        <td>{{constancia.strFecPres}}</td>
+                        <td>{{constancia.nomEntFin}}</td>
+                        <td style="width: 140px;" class="text-right">{{formatearPago(constancia.mtoPag)}}</td>
+                        <td>
+              	<span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Constancia" style="margin: 0">
+                   <a ng-if="constancia.parametriaFormulario.codFor!=1662" href="javascript:void(0)" ng-click="mostrarConstancia(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                   </a>
+                   <a ng-if="constancia.parametriaFormulario.codFor==1662" href="javascript:void(0)" ng-click="mostrarConstanciaBoleta(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                   </a>
+                </span>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- botones de paginacion -->
+        <div class='btn-group pull-right ng-ocultar' ng-show="resultado">
+        <!-- <button type='button' class='btn btn-default' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+        -->
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == (page.no - 1)' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+         <!--   <button type='button' class='btn btn-default' ng-disabled='currentPage >= constancias.length/pageSize - 1' , ng-click='currentPage = currentPage + 1'>&raquo;</button>
+        -->
+       <!-- <pagination num-pages="noOfPages()" current-page="currentPage" class="pagination-small"></pagination>
+       -->
+        </div>
+        <br>
+</div>
+<script>
+    $("#numFormulario").select2({
+        closeOnSelect:false
+    });
+    $("#country_v1-query").select2({
+            maximumSelectionSize: 1,
+            formatSelectionTooBig: function (limit) {
+                return 'Sólo puede seleccionar un formulario';
+            },
+            placeholder: "Escribir"
+
+        });
+
+</script>
+
+<script type="text/ng-template" id="modalEMailPagoInternet.html">
+    <div class="modal-body">
+        <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;">
+            "<strong>Sr. Contribuyente,</strong> al presionar el bot&oacute;n Enviar se enviar&aacute; al correo electr&oacute;nico la Constancia de presentaci&oacute;n, el Reporte del formulario y archivos anexos de corresponder."
+        </div>
+
+        <form class="form-horizontal" name="frmEmail" novalidate>
+            <div role="alert">
+            <!--
+      			<span class="error row" ng-show="frmEmail.input.$error.required">
+					<div class="alert alert-warning">
+						<span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+						<strong>Sr. Contribuyente</strong> ingrese un correo por favor
+					</div>
+				</span>
+            -->
+                 <span class="error" ng-show="isEmailError">
+        			<div class="alert alert-danger">
+						<span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+						<strong>Sr. Contribuyente</strong> el correo proporcionado no es una cuenta v&aacute;lida
+					</div>
+				</span>
+            </div>
+            <section>
+                <input ng-keyup="validarCorreo()" type="text" name="input"  class="form-control add" ng-model="correo" placeholder="Escribir correo"  required>
+<!-- ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/" email -->
+
+            </section>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="closeModal()">Cancelar</button>
+        <button type="button" class="btn btn-primary" title="Enviar a Correo" ng-click="enviarDatosAdjuntos()" id="enviar-correo-1">Enviar</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="modalConstanciaPagoInternet.html">
+    
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="exportarConstancia()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="constancia" ><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" id="constancia" ng-click="printDetalleConstancia('constancia')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                <button type="button" class="btn btn-primary btn-sm aire-next"  ng-click="enviarCorreoCompuesto()" title="Enviar a Correo" data-toggle="modal" data-target="#enviarCorreoCompuesto"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+            </div>
+        </div> 
+    <div id="constancia">
+        <div class="modal-body">
+            <fieldset class="linea-caja" style="margin:10;">
+                <legend style="color: #0063AE;">Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                <strong>N&uacute;mero de Formulario:</strong>{{formulario.parametriaFormulario.codFor}}<br>
+                <strong>N&uacute;mero de Orden:</strong>{{formulario.numOrd}}<br>
+                <strong>Fecha:</strong> {{formulario.strFecPres}}<br>
+            </fieldset>
+            <fieldset class="linea-caja" style="margin:10;">
+                <legend style="color: #0063AE;">Datos de la Declaraci&oacute;n:</legend>
+                <strong>RUC:</strong> {{formulario.numRuc}}
+                <br>
+                <strong>Nombre o Raz&oacute;n Social:</strong> {{formulario.strNumRuc}}
+                <br>
+                <strong>Per&iacute;odo:</strong> {{formulario.perTri}}
+                <br>
+                <strong>Semana:</strong> {{formulario.semFor}}
+                <br>
+                <strong>Tipo de Declaraci&oacute;n:</strong> {{formulario.codIndrec}}
+                <br>
+                <div ng-show="formulario.form0601 == true">
+                     <strong>N&uacute;mero de Trabajadores:</strong>{{formulario.trabajadores}}
+                     <br>
+                     <strong>N&uacute;mero de Pensionistas:</strong>{{formulario.pensionistas}}   
+                     <br>
+                     <strong>Personal Cuarta Categor&iacute;a:</strong>{{formulario.personalCuarta}}
+                     <br>
+                     <strong>Personal Modalidad Formativa:</strong> {{formulario.modalidadForm}}
+                     <br>
+                     <strong>Terceros:</strong>{{formulario.terceros}}
+                     <br>
+                     <strong>Reg&iacute;menes Especiales:</strong>{{formulario.normasEspeciales}}
+                </div>
+            </fieldset>
+            <fieldset class="linea-caja" style="margin:10;">
+                <legend style="color: #0063AE;">Detalle de Tributos:</legend>
+                <div class="table-responsive">
+                    <table class="table table-striped" ng-init="tributos.total = {}">
+                        <THEAD>
+                        <tr>
+                            <th>Tributos</th>
+                            <th>Total Deuda</th>
+                            <th>Monto Pago</th>
+                        </tr>
+                        </THEAD>
+                        <tbody>
+                        <tr ng-repeat="tributo in tributos">
+                            <td>{{tributo.codTri}} - {{tributo.descCodTri}}</td>
+                            <td ng-init="tributos.total.totalTotDeu = tributos.total.totalTotDeu + tributo.mtoTotDeu">{{formatearPago(tributo.mtoTotDeu)}}</td>
+                            <td ng-init="tributos.total.totalPagTot = tributos.total.totalPagTot + tributo.mtoPagtot">{{formatearPago(tributo.mtoPagtot)}}</td>
+                        </tr>
+                        <tr ng-if="tributos.length>0">
+                            <td>Total a pagar</td>
+                            <td>{{formatearPago(tributos.total.totalTotDeu)}}</td>
+                            <td>{{formatearPago(tributos.total.totalPagTot)}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+            <fieldset class="linea-caja" style="margin:10;">
+                <legend style="color: #0063AE;">Detalle de Pago:</legend>
+                <strong>Banco:</strong> {{formulario.nomEntFin}}<br>
+                <strong>N&uacute;mero de Operaci&oacute;n:</strong> {{formulario.numOpebco}}<br>
+                <strong>Medio de Pago:</strong> {{formulario.descMedpag}} <br>
+                <strong>Fecha de Pago:</strong> {{formulario.strfecPago}} <br>
+                <div ng-show="mostrarRectificatoria">
+                        <strong>
+                        Sr. Contribuyente para su declaraci&oacute;n jurada rectificatoria, de acuerdo al art&iacute;culo 88 del C&oacute;digo Tributario, si disminuye deuda o aumenta saldo a favor, quedar&aacute; pendiente de veredicto
+                        </strong>    
+                </div>
+            </fieldset>
+            <fieldset class="linea-caja" style="margin:10;" ng-show="tributoDeuda">
+                <br>
+                <strong>Usted no ha realizado el pago de la deuda, recuerde que deber&aacute; cancelar el saldo deudor de la declaraci&oacute;n presentada consignando los siguientes datos:
+                </strong>
+                <br>
+                <div class="table-responsive" style="margin-top: 25px;">
+                    <table class="table table-striped">
+                        <THEAD>
+                        <tr>
+                            <th>Periodo</th>
+                            <th>Tributos</th>
+                            <th>Deuda</th>
+                        </tr>
+                        </THEAD>
+                        <tbody>
+                        <tr ng-if="tributo.mtoResPag > 0" ng-repeat="tributo in tributos">
+                            <td>{{tributo.perTri}}</td>
+                            <td>{{tributo.codTri}} - {{tributo.descCodTri}}</td>
+                            <td>{{formatearPago(tributo.mtoResPag)}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+            <div class="text-center">
+                <strong>{{formulario.plataforma}}</strong>    
+            </div>
+        </div>
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="modalBoletaInternet.html">
+        
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                            <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="exportarConstancia()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                            <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="modalBoleta" ><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                            <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="printDetalleConstancia('modalBoleta')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                            <button type="button" title="Enviar a Correo" class="btn btn-primary btn-sm aire-next"  ng-click="enviarCorreoCompuesto()" data-toggle="modal" data-target="#enviarCorreoCompuesto"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                        </div>
+                    </div>
+        <div id="modalBoleta">
+                    <div class="modal-body">
+                        <fieldset class="linea-caja" style="margin:10;">
+                            <legend>Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                            <strong>Número de Formulario:</strong> <span>{{formulario.parametriaFormulario.codFor}}</span>
+                            <br>
+                            <strong>N&uacute;mero de Orden:</strong> <span>{{formulario.numOrd}}</span>
+                            <br>
+                        </fieldset>
+                        <fieldset class="linea-caja" style="margin:10;">
+                            <legend>Datos Generales:</legend>
+                            <strong>RUC:</strong> <span>{{formulario.numRuc}}</span>
+                            <br>
+                            <strong>Nombre o Razón Social:</strong> <span>{{formulario.strNumRuc}}</span>
+                            <br>
+                            <strong>Per&iacute;odo:</strong> <span>{{formulario.strPerTri}}</span>
+                            <br>
+                            <strong>Tributo:</strong> <span>{{boleta.tributo}}</span>
+                            <br>
+                            <strong>C&oacute;digo de Declaraci&oacute;n Jurada Asociada:</strong> <span>{{boleta.codFor}}</span>
+                            <br>
+                            <strong>N&uacute;mero de Orden de la Declaraci&oacute;n Jurada Asociada:</strong> <span>{{formulario.numOrdOri}}</span>
+                            <br>
+                            <strong>Importe Pagado: </strong> <span>{{formatearPago(formulario.mtoPag)}}</span>
+                            <br>
+                        </fieldset>
+
+                        <fieldset class="linea-caja" style="margin:10px;">
+                            <legend>Detalle de Pago:</legend>
+                            <strong>N&uacute;mero de Operaci&oacute;n SUNAT:</strong> <span>{{formulario.numeroOperacionSunat}}</span>
+                            <br>
+                            <strong>Medio de Pago:</strong> <span>{{formulario.descMedpag}}</span>
+                            <br>
+                            <strong>Banco:</strong> <span>{{formulario.nomEntFin}}</span>
+                            <br>
+                            <strong>N&uacute;mero de Operaci&oacute;n:</strong> <span>{{formulario.numOpebco}}</span>
+                            <br> 
+                            <strong>Fecha de Pago:</strong> <span>{{formulario.strfecPago}}</span>
+                            <br>
+                        </fieldset>
+                        <div class="text-center">
+                            <strong>{{formulario.plataforma}}</strong>    
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+        </div>
+    </script>

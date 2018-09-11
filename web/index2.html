@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+
+</head>
+<body>
+<script >
+
+
+    var urlParams;
+    (window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+            urlParams[decode(match[1])] = decode(match[2]);
+    })();
+
+
+    var token = urlParams["token"];
+    console.log("Token generado: " + token);
+    sessionStorage.setItem('token', "");
+    sessionStorage.setItem('token_SUNAT', "");
+    sessionStorage.setItem('token_SUNAT', token);
+    console.log("Se ejecuto con exito el Gestor de Sesiones.");
+    location.href="index_oauth.html";
+
+
+</script>
+</body>
+
+</html>

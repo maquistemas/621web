@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalle de Declaración y pagos</title>
+    <link href="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/tourtip/1.0.7/css/tinytools.tourtip.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/jquery-typeahead/2.8.0/css/jquery.typeahead.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/easy-autocomplete/1.3.3/css/easy-autocomplete.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/easy-autocomplete/1.3.3/css/easy-autocomplete.themes.min.css" rel="stylesheet">
+
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/carousel.css" rel="stylesheet">
+    <link href="../css/reglas.css" rel="stylesheet">
+    <!-- 681 - 601 -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/ie-emulation-modes-warning.js"></script>
+</head>
+<body>
+
+<div id="modalIdiomas" class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <h15>Elige el idioma</h15>
+                <select id="cboLanguage" class="language span3"  style="position:center" >
+                    <option value="es">Español</option>
+                    <option value="en">Ingles</option>
+                    <option value="de">Aleman</option>
+                    <option value="bn">Bengali</option>
+                    <option value="he">Hebreo</option>
+                    <option value="fi">Finland&eacute;s</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="ru">Ruso</option>
+                    <option value="ta">Tamil</option>
+                </select>
+                <button id="trAceptarIdioma" onClick="Aceptar()">Aceptar</button>
+                <button id="trCancelarModal" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div class="modal-header">
+                    <div class="Btns" style="border: 0;background-color:white;color: black; margin-right:10px; margin-left:20px;">
+                        <a class="btn btn-primary btn-sm aire-next" id="exportarConstanciaMasiva" href="#"><span class="glyphicon glyphicon-save-file"></span>Guardar</a>
+                        <a class="btn btn-primary btn-sm aire-next" id="imprirmirConstanciaMasiva" data-form="imprimirConstanciaFormMasiva" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                        <a class="btn btn-primary btn-sm aire-next" id="enviarCorreoConstanciaMasiva" href="#"><span class="glyphicon glyphicon-envelope"></span>Enviar</a>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="    margin-right: 40px;"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="carousel-inner imprimirConstanciaFormMasiva">
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Primer Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#" id="exportarDetalleResumenTransacciones"><span class="glyphicon glyphicon-save-file"></span>Guardar</a>
+                    <a class="btn btn-primary btn-sm aire-next" id="imprirmirConstanciaD" data-form="imprimirConstanciaDForm" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#" id="enviarCorreoConstancia"><span class="glyphicon glyphicon-envelope"></span>Enviar</a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body imprimirConstanciaDForm" id="divConstanciaDetalleMasiva">
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                    <strong>Número de Formulario:</strong> <span class="constancia-identificaciontransaccion-numeroformulario"></span>
+                    <br>
+                    <strong>N&uacute;mero de Orden:</strong> <span class="constancia-identificaciontransaccion-numeroorden"></span>
+                    <br>
+                    <strong>Fecha de presentaci&oacute;n:</strong> <span class="constancia-identificaciontransaccion-fecha"></span>
+                    <br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Datos de la Declaraci&oacute;n:</legend>
+                    <strong>RUC:</strong> <span class="constancia-datosdeclaracion-ruc"></span>
+                    <br>
+                    <strong>Nombre o Razón Social:</strong> <span class="constancia-datosdeclaracion-razonsocial"></span>
+                    <br>
+                    <strong>Período:</strong> <span class="constancia-datosdeclaracion-periodo"></span>
+                    <br>
+                    <strong>Semana:</strong> <span class="constancia-datosdeclaracion-semana"></span>
+                    <br>
+                    <strong>Tipo de Declaración:</strong> <span class="constancia-datosdeclaracion-tipodeclaracion"></span>
+                    <br>
+                    <strong><span class="constancia-datosdeclaracion-igv-justo"></span></strong>
+
+                    <br>
+                    <div id="mostrar601" class="hidden" style="display: none;">
+                    <strong>Número de Trabajadores:</strong> <span class="constancia-datosdeclaracion-numTrabajador"></span>
+                    <br>
+                    <strong>Número de Pensionistas:</strong> <span class="constancia-datosdeclaracion-numPensionista"></span>
+                    <br>
+                    <strong>Personal Cuarta Categoría:</strong> <span class="constancia-datosdeclaracion-num4taCategoria"></span>
+                    <br>
+                    <strong>Personal Modalidad Formativa:</strong> <span class="constancia-datosdeclaracion-numModFormativa"></span>
+                    <br>
+                    <strong>Terceros:</strong> <span class="constancia-datosdeclaracion-numTercero"></span>
+                    <br>
+                    <strong>Regímenes Especiales:</strong> <span class="constancia-datosdeclaracion-numNorEspecial"></span>
+                    <br>
+                    </div>
+                </fieldset>
+                <fieldset id="panelConstanciaDetalleTributo" class="linea-caja panelConstanciaDetalleTributo" style="margin:10px;">
+                    <legend>Detalle de Tributos:</legend>
+                    <div class="table-responsive">
+                        <table id="tblConstanciaDetalleTributo" class="table table-striped tblConstanciaDetalleTributo">
+                            <THEAD>
+                            <tr>
+                                <th>Tributos</th>
+                                <th>Total Deuda</th>
+                                <th>Monto Pago</th>
+                            </tr>
+                            </THEAD>
+                            <tbody></tbody>
+                        </table>                                          
+                    </div>
+                </fieldset>
+                <fieldset id="fldDetallePagoBanco" class="linea-caja" style="margin:10px;">
+                    <legend>Detalle de Pago:</legend>
+                    <strong>Banco:</strong> <span class="constancia-detallepago-banco"></span>
+                    <br>
+                    <strong>N&uacute;mero de Operaci&oacute;n:</strong> <span class="constancia-datosdeclaracion-numerooperacion"></span>
+                    <br>
+                    <strong>Medio de Pago:</strong> <span class="constancia-datosdeclaracion-formapago"></span>
+                    <br>
+                    <strong>Fecha de Pago:</strong> <span class="constancia-datosdeclaracion-fechapago"></span>
+                    <br>
+                    <div id="mensajeRectificatoria" class="hidden">
+                        <br/>
+                        <strong>
+                            Sr. Contribuyente para su declaraci&oacute;n jurada rectificatoria, de acuerdo al art&iacute;culo 88 del C&oacute;digo Tributario, si disminuye deuda o aumenta saldo a favor, quedar&aacute; pendiente de veredicto
+                        </strong>
+                    </div>
+                    <br/>
+                </fieldset>
+
+                <fieldset id="panelConstanciaTributoPendiente" class="linea-caja" style="margin:10px;">
+                    <br>
+                    <strong>
+                        Usted no ha realizado el pago o ha realizado el pago parcial de la deuda, recuerde que deberá cancelar el saldo deudor de la declaración presentada consignando los siguientes datos:
+                    </strong>
+                    <br>
+                    <div class="table-responsive" style="margin-top: 25px;">
+                        <table id="tblConstanciaTributoPendiente" class="table table-striped">
+                            <THEAD>
+                            <tr>
+                                <th>Período</th>
+                                <th>Tributos</th>
+                                <th>Deuda</th>
+                            </tr>
+                            </THEAD>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Boleta Modal -->
+<div class="modal fade" id="myModal2Boleta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#" id="exportarDetalleResumenTransaccionesBoleta"><span class="glyphicon glyphicon-save-file"></span>Guardar</a>
+                    <a class="btn btn-primary btn-sm aire-next" id="imprirmirConstanciaBoleta" data-form="imprimirConstanciaBForm" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#" id="enviarCorreoConstanciaBoleta"><span class="glyphicon glyphicon-envelope"></span>Enviar</a>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body imprimirConstanciaBForm" id="divConstanciaDetalleBoletaMasiva">
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                    <strong>Número de Formulario:</strong> <span class="constancia-boleta-identificaciontransaccion-numeroformulario"></span>
+                    <br>
+                    <strong>N&uacute;mero de Orden:</strong> <span class="constancia-boleta-identificaciontransaccion-numeroorden"></span>
+                    <br>
+
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Datos Generales:</legend>
+                    <strong>RUC:</strong> <span class="constancia-boleta-datosdeclaracion-ruc"></span>
+                    <br>
+                    <strong>Nombre o Razón Social:</strong> <span class="constancia-boleta-datosdeclaracion-razonsocial"></span>
+                    <br>
+                    <strong>Período:</strong> <span class="constancia-boleta-datosdeclaracion-periodo"></span>
+                    <br>
+                    <strong>Tributo:</strong> <span class="constancia-boleta-datosdeclaracion-tributo"></span>
+                    <br>
+                    <strong>C&oacute;digo de Declaraci&oacute;n Jurada Asociada:</strong> <span class="constancia-boleta-datosdeclaracion-codDeclaracion"></span>
+                    <br>
+                    <strong>N&uacute;mero de Orden de la Declaraci&oacute;n Jurada Asociada:</strong> <span class="constancia-boleta-datosdeclaracion-numeroordenasociado"></span>
+                    <br>
+                    <strong>Importe Pagado: </strong> <span class="constancia-boleta-datosdeclaracion-importepagado"></span>
+                    <br>
+                </fieldset>
+
+                <fieldset id="fldDetallePagoBancoBoleta" class="linea-caja" style="margin:10px;">
+                    <legend>Detalle de Pago:</legend>
+                    <strong>N&uacute;mero de Operaci&oacute;n SUNAT:</strong> <span class="constancia-boleta-detallepago-numerooperacionsunat"></span>
+                    <br>
+                    <strong>Medio de Pago:</strong> <span class="constancia-boleta-detallepago-formapago"></span>
+                    <br>
+                    <strong>Banco:</strong> <span class="constancia-boleta-detallepago-banco"></span>
+                    <br>
+                    <strong>N&uacute;mero de Operaci&oacute;n:</strong> <span class="constancia-boleta-detallepago-numerooperacion"></span>
+                    <br>
+                    <strong>Fecha de Pago:</strong> <span class="constancia-boleta-detallepago-fechapago"></span>
+                    <br>
+                </fieldset>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" name="hdnNumOrdenConstancia" id="hdnNumOrdenConstancia">
+<input type="hidden" name="hdnNumOrdenConstanciaBoleta" id="hdnNumOrdenConstanciaBoleta">
+<!-- Primer Modal 2-->
+<div class="modal fade" id="myModal2-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-save-file"></span>Guardar</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-envelope"></span>Enviar</a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                    <strong>Número de Formulario:</strong> 0621
+                    <br>
+                    <strong>N&uacute;mero de Orden:</strong> 20000223
+                    <br>
+                    <strong>RUC:</strong> 42635712423
+                    <br>
+                    <strong>Nombre o Razón Social:</strong> Complexless
+                    <br>
+                    <strong>Período:</strong> 12/2013
+                    <br>
+                    <strong>Tipo de pago:</strong> Efectivo
+                    <br>
+                    <strong>Tributo:</strong> IGV
+                    <br>
+                    <strong>Importe pagado:</strong> S/. 500.0
+                    <br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Detalle de Pago:</legend>
+                    <strong>Banco:</strong> Scotiabank
+                    <br>
+                    <strong>Número de Operación:</strong> 01234567890
+                    <br>
+                    <strong>Fecha de Pago:</strong> 2014/08/01
+                    <br>
+                    <strong>Fecha de operación bancaria:</strong> 2014/08/01 - 15:22:11
+                    <br>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Segundo modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Panel de Ayuda</h4>
+            </div>
+            <div class="modal-body">
+                Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tercer modal -->
+<div class="modal fade" id="myModal-20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Constancia de boleta de pago</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset class="linea-caja">
+                    <legend></legend>
+                    <div>
+                        <strong>Pago varios:</strong> 42635712423
+                        <br>
+                        <strong>Nº de Orden:</strong> 0851225
+                        <br>
+                        <strong>Nº de Formulario:</strong> 1051
+                        <br>
+                        <strong>Nombre o Razón Social:</strong> Complexless
+                        <br>
+                        <strong>Período:</strong> 10/2015
+                        <br>
+                        <strong>Tipo de pago:</strong> Visa
+                        <br>
+                        <strong>Tributo:</strong> Visa
+                        <br>
+                        <strong>Importe pagado:</strong> S/. 400
+                        <br>
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja">
+                    <legend>Detalle del pago</legend>
+                    <div>
+                        <strong>N&uacute;mero de operaci&oacute;n:</strong> 6890
+                        <br>
+                        <strong>Forma de pago:</strong> Visa
+                        <br>
+                        <strong>Banco:</strong> Scotibank
+                        <br>
+                        <strong>N&uacute;mero de operaci&oacute;n:</strong> 6890
+                        <br>
+                        <strong>Fecha de operaci&oacute;n bancaria:</strong> 30/10/2015
+                        <br>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cuarto modal -->
+<div class="modal fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Seleccionar Período</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group Lista-Pagos">
+                    <li class="list-group-item">
+                        <div class="checkbox">
+                            <!-- <input type="checkbox" id="checkbox" />-->
+                            <label for="checkbox" style="padding-left:0">
+                                02 - 2016
+                            </label>
+                        </div>
+                        <div class="pull-right action-buttons">
+                            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                        </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="checkbox">
+                            <!--  <input type="checkbox" id="checkbox" />-->
+                            <label for="checkbox" style="padding-left:0">
+                                01 - 2016
+                            </label>
+                        </div>
+                        <div class="pull-right action-buttons">
+                            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                        </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="checkbox">
+                            <!--<input type="checkbox" id="checkbox" />-->
+                            <label for="checkbox" style="padding-left:0">
+                                12 - 2015
+                            </label>
+                        </div>
+                        <div class="pull-right action-buttons">
+                            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                        </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="checkbox">
+                            <!--<input type="checkbox" id="checkbox" />-->
+                            <label for="checkbox" style="padding-left:0">
+                                11 - 2015
+                            </label>
+                        </div>
+                        <div class="pull-right action-buttons">
+                            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                        </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="checkbox">
+                            <!--<input type="checkbox" id="checkbox" />-->
+                            <label for="checkbox" style="padding-left:0">
+                                10 - 2015
+                            </label>
+                        </div>
+                        <div class="pull-right action-buttons">
+                            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                        </div>
+
+                    </li>
+                </ul>
+                <a class="btn btn-primary btn-sm btn-block" href="#"><span class="glyphicon glyphicon-file"></span>Recuperar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quinto modal -->
+<div class="modal fade" id="midetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog size-modal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#" id="exportarConstanciaDetalle"><span class="glyphicon glyphicon-save-file"></span>Guardar</a>
+                    <a class="btn btn-primary btn-sm aire-next" id="imprimirDetalle" href="#" data-form="imprimirDetalle0626"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#" id="enviarCorreoDetalleResumenTransacciones"><span class="glyphicon glyphicon-envelope"></span>Enviar</a>
+                </div>
+            </div>
+            <div  class="modal-body imprimirDetalle0626">
+                <!-- PRELIMINAR HTML -->
+                <table class="table table-bordered tablas-font">
+                    <tr>
+                        <td rowspan="4" style="width: 15%;" class="text-center">
+                            <h2><strong>SUNAT</strong></h2>
+                            <h6>DECLARACIÓN PAGO</h6>
+                            <h4><strong><span class="constancia-declaraciondato-codfor"></span></strong></h4>
+                        </td>
+                        <td colspan="4" class="text-center">
+                            <h5><strong><span class="constancia-declaraciondato-descripcionFor"></span></strong></h5>
+                        </td>
+                        <td style="width: 20%;">
+                            <h6>Copia para el Contribuyente (Pag. 1)</h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;">
+                            RUC
+                        </td>
+                        <td colspan="3" >
+                            <strong><span class="constancia-declaraciondato-ruc"></span></strong>
+                        </td>
+                        <td rowspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Razón Social
+                        </td>
+                        <td>
+                            <strong><span class="constancia-declaraciondato-razonsocial"></span></strong>
+                        </td>
+                        <td>Período</td>
+                        <td>
+                            <strong><span class="constancia-declaraciondato-periodo"></span></strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Número de Orden
+                        </td>
+                        <td>
+                            <strong><span class="constancia-declaraciondato-numorden"></span></strong>
+                        </td>
+                        <td>Fecha de Presentación</td>
+                        <td>
+                            <strong><span class="constancia-declaraciondato-fechpres"></span></strong>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <!--    <table id="tblConstanciaDeclaracionPago" class="table table-bordered tablas-font">
+                        <THEAD>
+                        <tr>
+                            <th colspan="4" class="text-left">
+                                <h4><strong>RETENCIONES - PROVEEDORES</strong></h4>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">RUC</th>
+                            <th class="text-center">NOMBRE O RAZON SOCIAL</th>
+                            <th class="text-center">BASE IMPONIBLE</th>
+                            <th class="text-center">RETENCIÓN</th>
+                        </tr>
+                        </THEAD>
+                        <tbody></tbody>
+                    </table> -->
+                <div class="otroFormu">
+                    <br>
+                    <table class="table table-bordered tablas-font">
+                        <tr>
+                            <td colspan="4" class="text-left">
+                                <h4><strong>DETERMINACIÓN DE LA DEUDA TRIBUTARIA</strong></h4>
+                            </td>
+                            <td class="text-center"><span class="constancia-declaraciondato-titulo">RETENCIÓN</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left"><span class="constancia-declaraciondato-titulo2">RETENCIONES</span> EFECTUADAS</td>
+                            <td class="text-center">401</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla401"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">Pagos previos(Efectivo,cheque. o doc.val)</td>
+                            <td class="text-center">402</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla402"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left"><span class="constancia-declaraciondato-titulo">RETENCIÓN</span> A PAGAR</td>
+                            <td class="text-center">403</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla403"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">Interés moratorio</td>
+                            <td class="text-center">404</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla404"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">TOTAL DEUDA TRIBUTARIA</td>
+                            <td class="text-center">405</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla405"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left"><strong>IMPORTE A PAGAR</strong></td>
+                            <td class="text-center">410</td>
+                            <td class="text-right"><strong><span class="constancia-declaracionseccion-casilla410"></span></strong></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">RECTIFICA</td>
+                            <td class="text-center"><span class="constancia-declaracionseccion-casillaretificasi"></span></td>
+                            <td class="text-left">SI</td>
+                            <td class="text-center"><span class="constancia-declaracionseccion-casillaretificano"></span></td>
+                            <td class="text-left">NO</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">FORMA DE PAGO</td>
+                            <td class="text-center"><span class="constancia-declaracionseccion-casillaformapagoefectivo"></span></td>
+                            <td class="text-left">EFECTIVO</td>
+                            <td class="text-center"><span class="constancia-declaracionseccion-casillaformapagocheque"></span></td>
+                            <td class="text-left">CHEQUE</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">NRO. CHEQUE</td>
+                            <td class="text-left">&nbsp;</td>
+                            <td class="text-left">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">CÓDIGO DE BANCO</td>
+                            <td class="text-left">&nbsp;</td>
+                            <td class="text-left">&nbsp;</td>
+                        </tr>
+                    </table>
+                    <br><br>
+                </div>
+                <div class="formu621">
+                    <br>
+                    <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="2" rowspan="2"> <h4><strong>IGV VENTAS</strong></h4> </td>
+                                <td colspan="4" class="text-center"> IGV    CUENTA PROPIA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">BASE</td>
+                                <td colspan="2" class="text-center">TRIBUTO</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="8" class="text-center" style="vertical-align: middle;">G<br>R<br>A<br>V<br>A<br>D<br>A<br>S</td>
+                                <td>Ventas Netas</td>
+                                <td>100</td>
+                                <td class="text-right" id="txt_constancia_100"></td>
+                                <td>101</td>
+                                <td class="text-right" id="txt_constancia_101"></td>
+                            </tr>
+                            <tr>
+                                <td>Descuentos concedidos y/o devoluciones de ventas</td>
+                                <td>102</td>
+                                <td class="text-right" id="txt_constancia_102"></td>
+                                <td>103</td>
+                                <td class="text-right" id="txt_constancia_103"></td>
+                            </tr>
+                            <tr>
+                                <td>Ventas asumidas por el estado</td>
+                                <td>124</td>
+                                <td class="text-right" id="txt_constancia_124"></td>
+                                <td>125</td>
+                                <td class="text-right" id="txt_constancia_125"></td>
+                            </tr>
+                            <tr>
+                                <td>Desc. Concedidos y/o Dev. Ventas (Vta. asumidas por estado)</td>
+                                <td>126</td>
+                                <td class="text-right" id="txt_constancia_126"></td>
+                                <td>128</td>
+                                <td class="text-right" id="txt_constancia_128"></td>
+                            </tr>
+                            <tr>
+                                <td>Ventas de bienes (Ley 27037 inc. 11.1, 11.2, 12.3 y 12.4)</td>
+                                <td>160</td>
+                                <td class="text-right" id="txt_constancia_160"></td>
+                                <td>161</td>
+                                <td class="text-right" id="txt_constancia_161"></td>
+                            </tr>
+                            <tr>
+                                <td>Descuentos y Devoluciones (Ley 27037)</td>
+                                <td>162</td>
+                                <td class="text-right" id="txt_constancia_162"></td>
+                                <td>163</td>
+                                <td class="text-right" id="txt_constancia_163"></td>
+                            </tr>
+                            <tr>
+                                <td>Exportaciones Facturadas en el período</td>
+                                <td>106</td>
+                                <td class="text-right" id="txt_constancia_106"></td>
+                                <td colspan="2" rowspan="5"></td>
+                            </tr>
+                            <tr>
+                                <td>Exportaciones Embarcadas en el período</td>
+                                <td>127</td>
+                                <td class="text-right" id="txt_constancia_127"></td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Ventas no Gravadas (Sin considerar exportaciones)</td>
+                                <td>105</td>
+                                <td class="text-right" id="txt_constancia_105"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Ventas no Gravadas (Sin efecto en ratio)</td>
+                                <td>109</td>
+                                <td class="text-right" id="txt_constancia_109"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Otras ventas (inciso ii), numeral 6.2, - art. 6 del Reglamento</td>
+                                <td>112</td>
+                                <td class="text-right" id="txt_constancia_112"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Total</td>
+                                <td>131</td>
+                                <td class="text-right" id="txt_constancia_131"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="3" rowspan="2"> <h4><strong>IGV COMPRAS</strong></h4> </td>
+                                <td colspan="5" class="text-center"> IGV    CUENTA PROPIA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">BASE</td>
+                                <td colspan="2" class="text-center">TRIBUTO</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" class="text-center" style="vertical-align: middle;">N<br>A<br>C<br>I<br>O<br>N<br>A<br>L<br>E<br>S</td>
+                                <td style="width: 50%;">Destinadas a ventas gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>107</td>
+                                <td class="text-right" id="txt_constancia_107"></td>
+                                <td>108</td>
+                                <td class="text-right" id="txt_constancia_108"></td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas gravadas y no gravadas</td>
+                                <td>Compras Netas</td>
+                                <td>110</td>
+                                <td class="text-right" id="txt_constancia_110"></td>
+                                <td>111</td>
+                                <td class="text-right" id="txt_constancia_111"></td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas no gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>113</td>
+                                <td class="text-right" id="txt_constancia_113"></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" class="text-center" style="vertical-align: middle;">I<br>M<br>P<br>O<br>R<br>T<br>A<br>D<br>A<br>S</td>
+                                <td style="width: 50%;">Destinadas a ventas gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>114</td>
+                                <td class="text-right" id="txt_constancia_114"></td>
+                                <td>115</td>
+                                <td class="text-right" id="txt_constancia_115"></td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas gravadas y no gravadas</td>
+                                <td>Compras Netas</td>
+                                <td>116</td>
+                                <td class="text-right" id="txt_constancia_116"></td>
+                                <td>117</td>
+                                <td class="text-right" id="txt_constancia_117"></td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas no gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>119</td>
+                                <td class="text-right" id="txt_constancia_119"></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>No Gravadas Internas</td>
+                                <td>Compras Netas</td>
+                                <td>120</td>
+                                <td class="text-right" id="txt_constancia_120"></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>No Gravadas Importadas</td>
+                                <td>Compras Netas</td>
+                                <td>122</td>
+                                <td class="text-right" id="txt_constancia_122"></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">Total</td>
+                                <td>178</td>
+                                <td class="text-right" id="txt_constancia_178"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">CREDITO FISCAL ESPECIAL</td>
+                                <td>172</td>
+                                <td class="text-right" id="txt_constancia_172"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">OTROS CREDITOS</td>
+                                <td>169</td>
+                                <td class="text-right" id="txt_constancia_169"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">COEFICIENTE</td>
+                                <td>173</td>
+                                <td class="text-right" id="txt_constancia_173"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <table class="table table-bordered tablas-font">
+                        <tr>
+                            <td colspan="2" rowspan="2"> <h4><strong>IVAP</strong></h4> </td>
+                            <td colspan="4" class="text-center"> IVAP</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center">BASE</td>
+                            <td colspan="2" class="text-center">TRIBUTO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p style="min-width: 325px">Ventas Gravadas</p></td>
+                            <td>340</td>
+                            <td class="text-right" id="txt_constancia_340"></td>
+                            <td>341</td>
+                            <td class="text-right" id="txt_constancia_341"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Otros Cr&eacute;ditos IVAP</td>
+                            <td>182</td>
+                            <td class="text-right" id="txt_constancia_182"></td>
+                        </tr>
+
+
+                    </table>
+                    <br>
+                    <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="2" rowspan="2"> <h4><strong>RENTA</strong></h4> </td>
+                                <td colspan="4" class="text-center">RENTA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">BASE</td>
+                                <td colspan="2" class="text-center">TRIBUTO</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><p style="min-width: 415px">Ingresos Netos</p></td>
+                                <td>301</td>
+                                <td class="text-right" id="txt_constancia_301"></td>
+                                <td>312</td>
+                                <td class="text-right" id="txt_constancia_312"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Coeficiente</td>
+                                <td>380</td>
+                                <td class="text-right" id="txt_constancia_380"></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Porcentaje</td>
+                                <td>315</td>
+                                <td class="text-right" id="txt_constancia_315"></td>
+                                <td colspan="2"></td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <br>
+                    <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="2" rowspan="2"> <h4><strong>DETERMINACION DE LA DEUDA</strong></h4> </td>
+                                <td colspan="6" class="text-center">DETERMINACION DE LA DEUDA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">IGV</td>
+                                <td colspan="2" class="text-center">IVAP</td>
+                                <td colspan="2" class="text-center">RENTA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Impuesto Resultante o Saldo a Favor</td>
+                                <td>140</td>
+                                <td class="text-right" id="txt_constancia_140"></td>
+                                <td>353</td>
+                                <td class="text-right" id="txt_constancia_353"></td>
+                                <td>302</td>
+                                <td class="text-right" id="txt_constancia_302"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo a Favor del Período anterior</td>
+                                <td>145</td>
+                                <td class="text-right" id="txt_constancia_145"></td>
+                                <td>351</td>
+                                <td class="text-right" id="txt_constancia_351"></td>
+                                <td>303</td>
+                                <td class="text-right" id="txt_constancia_303"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tributo a Pagar o Saldo a Favor</td>
+                                <td>184</td>
+                                <td class="text-right" id="txt_constancia_184"></td>
+                                <td>352</td>
+                                <td class="text-right" id="txt_constancia_352"></td>
+                                <td>304</td>
+                                <td class="text-right" id="txt_constancia_304"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Percepciones declaradas en el período</td>
+                                <td>171</td>
+                                <td class="text-right" id="txt_constancia_171"></td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de percepciones de periodos anteriores</td>
+                                <td>168</td>
+                                <td class="text-right" id="txt_constancia_168"></td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de Percepciones no aplicadas </td>
+                                <td>164</td>
+                                <td class="text-right" id="txt_constancia_164"></td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Retenciones  declaradas en el  período</td>
+                                <td>179</td>
+                                <td class="text-right" id="txt_constancia_179"></td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de retenciones de periodos anteriores</td>
+                                <td>176</td>
+                                <td class="text-right" id="txt_constancia_176"></td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de Retenciones no aplicadas</td>
+                                <td>165</td>
+                                <td class="text-right" id="txt_constancia_165"></td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Retenciones de tercera declaradas en el per&iacute;odo</td>
+                                <td colspan="4"></td>
+                                <td>326</td>
+                                <td class="text-right" id="txt_constancia_326"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Retenciones de tercera declaradas en per&iacute;odos anteriores</td>
+                                <td colspan="4"></td>
+                                <td>327</td>
+                                <td class="text-right" id="txt_constancia_327"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Compensaci&oacute;n Saldo a Favor del Exportador</td>
+                                <td colspan="2"></td>
+                                <td>347</td>
+                                <td class="text-right" id="txt_constancia_347"></td>
+                                <td>305</td>
+                                <td class="text-right" id="txt_constancia_305"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Impuesto Temporal a los Activos Netos</td>
+                                <td colspan="4"></td>
+                                <td>328</td>
+                                <td class="text-right" id="txt_constancia_328"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Otros Cr&eacute;ditos permitidos por Ley</td>
+                                <td colspan="4"></td>
+                                <td>306</td>
+                                <td class="text-right" id="txt_constancia_306"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Sub Total</td>
+                                <td colspan="6"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Pagos previos</td>
+                                <td>185</td>
+                                <td class="text-right" id="txt_constancia_185"></td>
+                                <td>342</td>
+                                <td class="text-right" id="txt_constancia_342"></td>
+                                <td>317</td>
+                                <td class="text-right" id="txt_constancia_317"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Inter&eacute;s moratorio</td>
+                                <td>187</td>
+                                <td class="text-right" id="txt_constancia_187"></td>
+                                <td>343</td>
+                                <td class="text-right" id="txt_constancia_343"></td>
+                                <td>319</td>
+                                <td class="text-right" id="txt_constancia_319"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Total deuda tributaria</td>
+                                <td>188</td>
+                                <td class="text-right" id="txt_constancia_188"></td>
+                                <td>344</td>
+                                <td class="text-right" id="txt_constancia_344"></td>
+                                <td>324</td>
+                                <td class="text-right" id="txt_constancia_324"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7"> &iquest;Deseo acorgerme a la pr&oacute;rroga del pago del IGV (IGV Justo)  (Si/No)?</td>
+                                <td class="text-right" id="txt_constancia_391"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- FIN PRELIMINAR HTML -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="navbar-fixed-top pasosDiv" style="padding: 5px 10px;background-color:white;z-index: 1040;">
+    <ul class="Bread-Crumb" id="Bread-Crumb-Pasos">
+        <li>
+            <a id="btnPaso01" href="#" class="btnPaso current"><span class="visible-xs"><small>Paso1</small></span><span id="trSeleccione" class="hidden-xs">Seleccione</span></a>
+        </li>
+        <li>
+            <a id="btnPaso02" class="btnPaso" href="#"><span class="visible-xs"><small>Paso2</small></span><span id="trComplete" class="hidden-xs">Complete</span></a>
+        </li>
+        <li>
+            <a id="btnPaso03" class="btnPaso" href="#"><span class="visible-xs"><small>Paso3</small></span><span id="trPresentePague" class="hidden-xs">Presente/Pague</span></a>
+        </li>
+        <li>
+            <a id="btnPaso04" class="btnPaso" href="#"><span class="visible-xs"><small>Paso4</small></span><span id="trConstancia" class="hidden-xs">Constancia</span></a>
+        </li>
+        <li class="pull-right" style="margin-left: 0">
+            <button type="button" class="btn Btn-ayuda" id="StartTour" style="margin-right: 0;margin-top: 4px;">
+                <span class="glyphicon glyphicon-question-sign" style="margin-right:6px;"></span>
+            </button>
+        </li>
+        <li class="pull-right hidden" id="Añadir-Bandeja" style="margin:0">
+            <div class="Btn-ayuda aOpcionCabecera colRojo">
+                        <span id="muestraTotalaPagar">
+                            <small>Importe Total a pagar</small>
+                            <strong style="color: #444;font-size: 17px;">s/. 0.00</strong>
+                        </span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="Container-Carrito">
+    <div class="Carrito-Contenido">
+        <div id="content" class="divPaso">
+        </div>
+
+        <div id="divPaso04" class="divPaso hidden">
+            <div class="navbar-fixed-top box-float" role="navigation" style="padding: 4px;top:51px;margin-top: -1px;">
+                <ul class="nav navbar-nav" style="float:left">
+                    <p class="titulo-step"><STRONG class="hidden-xs">Paso 4:</STRONG> Constancia agregada y de detalle
+                        de Declaración y/o pago del (de los) formulario(s) presentado(s). </p>
+
+                    <ul class="nav navbar-nav navbar-right"
+                        style="margin-right: 15px;display:inline-block !important;    position: absolute; right: 0; background-color: #F4F4F4; padding-left: 10px;">
+                        <li>
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="tooltip"
+                                        data-placement="bottom" id="guardarResumenTransacciones" title="Guardar PDF">
+                                    <span class="glyphicon glyphicon-save-file"></span>Guardar
+                                </button>
+                                <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="tooltip"
+                                        data-placement="bottom" id="imprimirRT" title="Imprimir constancia" data-form="imprimirRT">
+                                    <span class="glyphicon glyphicon-print"></span>Imprimir
+                                </button>
+                                <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="tooltip"
+                                        data-placement="bottom" id="enviarCorreoResumenTransacciones" title="Enviar Correo"><span
+                                        class="glyphicon glyphicon-envelope"></span>Enviar
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+            <input type="hidden" id="numeroBandeja" value=""/>
+            <ul class="nav nav-pills" role="tablist" style="margin-bottom: 8px">
+                <li id="liConstanciasNPS" class="nav-item hidden"><a class="nav-link" id="tabConstanciasNPS" data-toggle="tab" href="#panelConstanciasNPS" role="tab">Constancia NPS</a></li>
+                <li id="liResumenTransacciones" class="nav-item active"><a class="nav-link" id="tabResumenTransacciones" data-toggle="tab" href="#panelResumenTransacciones" role="tab">Resumen de Transacciones</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="panelConstanciasNPS" class="tab-pane hidden" role="tabpanel">
+                    <h4 class="nombre-f" style="margin:0px">Constancia NPS</h4>
+                    <fieldset class="linea-caja" style="margin:0px;">
+                        <!--<legend>Datos Generales:</legend>-->
+                        <br>
+                        <strong>Número de Pago SUNAT:</strong> <span class="constancianps-numero"></span>
+                        <br>
+                        <strong>Importe a pagar:</strong> <span class="constancianps-importeapagar"></span>
+                        <br>
+                        <strong>Fecha límite de pago:</strong> <span class="constancianps-fechalimite"></span>
+                        <br>
+                    </fieldset>
+                    <br>
+                    <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;">
+                        Pague en cualquier oficina de los bancos Scotiabank, Interbank, Banco de Crédito BCP, BBVA Continental, Nación y BanBif. También está disponible el pago en los Agentes BCP del Banco de Crédito, Agentes MultiRed del Banco de la Nación y Agentes Interbank. Además, en los portales web bancarios del Scotiabank y Banco de Crédito BCP.<br>
+                        <strong>IMPORTANTE:</strong> El presente documento no es una constancia de pago.
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="table-responsive">
+                            <table id="tblConstanciaFormulario" class="table" style="font-size: 13px;">
+                                <thead>
+                                <tr>
+                                    <th>Período</th>
+                                    <th>Tributo</th>
+                                    <th>Tributo Asociado</th>
+                                    <th>Nro. Documento</th>
+                                    <th>Monto de Pago</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tfoot>
+                                <tr style="border-top: 2px solid #DDD;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Documento(s) en Bandeja</td>
+                                    <td><strong><span class="constancianps-cantidadformulario">0</span></strong></td>
+                                    <!--<td class="text-right">
+                                        <span class="detalles-modal pull-right" data-toggle="tooltip" data-placement="left" title="" data-original-title="Constancias">
+                                            <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                                <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                                            </a>
+                                        </span>
+                                    </td>-->
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td><strong><span class="constancianps-montototal">S/.0</span></strong></td>
+
+                                </tr>
+                                </tfoot>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <fieldset class="linea-caja" style="margin:0px;">
+                        <br>
+                        <strong>RUC:</strong> <span class="constancianps-ruc"></span>
+                        <br>
+                        <strong>Nombre o Razón Social:</strong> <span class="constancianps-razonsocial"></span>
+                        <br>
+                    </fieldset>
+                </div>
+                <div id="panelResumenTransacciones" class="tab-pane active" role="tabpanel">
+                    <div id="imprimirResumenTransacciones" class="myPagesClass">
+                        <h4 class="nombre-f" style="margin:0">Resumen de Transacciones</h4>
+                        <br>
+                        <fieldset class="linea-caja" style="margin:10;">
+                            <legend>Datos Generales:</legend>
+                            <strong>RUC:</strong> <span class="constancia-ruc"></span>
+                            <br>
+                            <strong>Nombre o Razón Social:</strong> <span class="constancia-razonsocial"></span>
+                            <br>
+                            <strong>Fecha de presentación:</strong> <span class="constancia-fechapresentacion"></span>
+                            <br>
+                        </fieldset>
+                        <br>
+                        <div class="panel panel-default">
+                            <div class="table-responsive">
+                                <table id="tblConstanciaFormulario1" class="table" style="font-size: 13px;">
+                                    <thead>
+                                    <tr>
+                                        <th>Form</th>
+                                        <th>Descripción</th>
+                                        <th>Nº Orden</th>
+                                        <th>Período</th>
+                                        <th>Tributo</th>
+                                        <th>Nro. Documento</th>
+                                        <th>Monto de pago</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tfoot>
+                                    <tr style="border-top: 2px solid #DDD;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Cantidad de formularios</td>
+                                        <td style="text-align: right"><strong><span class="constancia-cantidadformulario"></span></strong></td>
+                                        <td class="text-right">
+                                                        <span class="detalles-modal pull-right" data-toggle="tooltip"
+                                                              data-placement="left" title=""
+                                                              data-original-title="Todas las Constancias">
+                                                            <a href="#" data-toggle="modal" onclick="comunConstancia.constanciaDetalleMasiva();" data-target=".bs-example-modal-lg">
+                                                                <span style="margin:0"
+                                                                      class="glyphicon glyphicon-duplicate blue"></span>
+                                                            </a>
+                                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Monto pagado</td>
+                                        <td style="text-align: right"><strong><span class="constancia-montopagado"></span></strong></td>
+                                        <td></td>
+                                    </tr>
+                                    </tfoot>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning text-center" role="alert"
+                             style="text-align:left;margin-top:0px;">
+                            <strong>Sr. Contribuyente</strong> las constancias de cada uno de los formularios podrá ser
+                            consultado en la web SUNAT.
+                            <ul id="listaMensajes"></ul>
+                        </div>
+                        <fieldset id="detallePagoResumen" class="linea-caja hidden" style="margin: 0px;">
+                            <legend>Detalle de Pago:</legend>
+                            <strong>Banco:</strong> <span class="constancia-detallepago-descripcionbanco"></span>
+                            <br>
+                            <strong>Número de Operación:</strong> <span
+                                class="constancia-detallepago-numerooperacion"></span>
+                            <br>
+                            <strong>Medio de pago:</strong> <span
+                                class="constancia-detallepago-formapago"></span>
+                            <br>
+                            <strong>Fecha de Pago:</strong> <span class="constancia-detallepago-fechapago"></span>
+                            <br>
+                            <strong>Fecha de Operación:</strong> <span
+                                class="constancia-detallepago-fechaoperacionbancaria"></span>
+                            <br>
+
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div id="panelMensajesAdvertencia" class="hidden">
+                <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;">
+                    <span class="glyphicon glyphicon-alert"></span>&nbsp;&nbsp;<strong>Sr. Contribuyente</strong> a continuación se detalla los mensajes de alerta.
+                    <br>
+                    <ul>
+                        <li><span class="resultado-adv-mensaje1"></span></li>
+                        <li><span class="resultado-adv-mensaje2"></span></li>
+                        <li class="lista-adv-mensaje3"><span class="resultado-adv-mensaje3"></span></li>
+                        <li class="lista-adv-mensaje4"><span class="resultado-adv-mensaje4"></span></li>
+                    </ul>
+                    <br>
+                    <div style="position:relative">
+                        <ul class="list-group Lista-Mensaje-Advertencias"></ul>
+                    </div>
+                </div>
+            </div>
+            <div id="panelMensajesError" class="hidden">
+                <div class="alert alert-danger text-center" role="alert" style="text-align:left;margin-top:0px;">
+                    <span class="glyphicon glyphicon-alert"></span>&nbsp;&nbsp;<strong>Sr. Contribuyente</strong> han
+                    habido PROBLEMAS en la declaración y pago, a continuación se detalla los mensajes de error.
+                    <br>
+                    <ul>
+                        <li><span class="resultado-err-mensaje1"></span></li>
+                        <li><span class="resultado-err-mensaje2"></span></li>
+                        <li class="lista-err-mensaje3"><span class="resultado-err-mensaje3"></span></li>
+                        <li class="lista-err-mensaje4"><span class="resultado-err-mensaje4"></span></li>
+                    </ul>
+                    <br>
+                    <div style="position:relative">
+                        <ul class="list-group Lista-Mensaje-Errores"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/COLUMNA CUERPO span-->
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-save-file"></span>Guardar</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#" ><span class="glyphicon glyphicon-envelope"></span>Enviar</a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Identificación de la Transacción:</legend>
+                    <strong>Número de Orden:</strong> 20000223
+                    <br>
+                    <strong>Fecha:</strong> 12/2013
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Datos de la Declaración:</legend>
+                    <strong>RUC:</strong> 42635712423
+                    <br>
+                    <strong>Nombre o Razón Social:</strong> Complexless
+                    <br>
+                    <strong>Documento</strong> Planilla Electrónica
+                    <br>
+                    <strong>Período:</strong> 12/2013
+                    <br>
+                    <strong>Forma de Pago:</strong> Efectivo
+                    <br>
+                    <strong>Rectificatoria:</strong> No
+                    <br>
+                    <strong>Número de Trabajadores:</strong> 10
+                    <br>
+                    <strong>Número de Pensionistas:</strong> 2
+                    <br>
+                    <strong>P. Serve. Cuarta categoría:</strong> 3
+                    <br>
+                    <strong>P. Serve. Mod. Formativa:</strong> 1
+                    <br>
+                    <strong>Personal Terceros:</strong> 1
+                    <br>
+                    <strong>Regimenes Especial:</strong> 2
+                    <br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Detalle de Tributos:</legend>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Tributos</th>
+                                <th>Total Deuda</th>
+                                <th>Monto Pago</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>IGV-OPER. INT. CTA PROPIA</td>
+                                <td>S/. 5000</td>
+                                <td>S/. 5000</td>
+                            </tr>
+                            <tr>
+                                <td>RENTA-3RA CATEG. - CTA PROPIA</td>
+                                <td>S/. 1200</td>
+                                <td>S/. 1200</td>
+                            </tr>
+                            <tr>
+                                <td>Total a pagar</td>
+                                <td>S/. 6200</td>
+                                <td>S/. 6200</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Detalle de Pago:</legend>
+                    <strong>Banco:</strong> Scotiabank
+                    <br>
+                    <strong>Número de Operación:</strong> 01234567890
+                    <br>
+                    <strong>Fecha de Pago:</strong> 2014/08/01
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2-4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-save-file"></span>Guardar</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-envelope"></span>Enviar</a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Identificación de la Transacción:</legend>
+                    <strong>Número de Orden:</strong> 20000223
+                    <br>
+                    <strong>Fecha:</strong> 12/2013
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Datos de la Declaración:</legend>
+                    <strong>RUC:</strong> 42635712423
+                    <br>
+                    <strong>Nombre o Razón Social:</strong> Complexless
+                    <br>
+                    <strong>Documento</strong> Planilla Electrónica
+                    <br>
+                    <strong>Período:</strong> 12/2013
+                    <br>
+                    <strong>Semana:</strong> 01
+                    <br>
+                    <strong>Forma de Pago:</strong> Efectivo
+                    <br>
+                    <strong>Rectificatoria:</strong> No
+                    <br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Detalle de Tributos:</legend>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Tributos</th>
+                                <th>Total Deuda</th>
+                                <th>Monto Pago</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>IRTA-REGULAR_ARIZ-RTA 1RA CATEG</td>
+                                <td>S/. 1500</td>
+                                <td>S/. 1500</td>
+                            </tr>
+                            <tr>
+                                <td>RTA-REGULAR_ARIZ-RTA DE TRABAJO</td>
+                                <td>S/. 770</td>
+                                <td>S/. 770</td>
+                            </tr>
+                            <tr>
+                                <td>Total a pagar</td>
+                                <td>S/. 2270</td>
+                                <td>S/. 2270</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend>Detalle de Pago:</legend>
+                    <strong>Banco:</strong> Scotiabank
+                    <br>
+                    <strong>Número de Operación:</strong> 01234567890
+                    <br>
+                    <strong>Fecha de Pago:</strong> 2014/08/01
+                </fieldset>
+
+                <div class="alert alert-warning" role="alert">
+                    <strong>Importante,</strong> Ahora usted puede presentar sus solicitudes de devolución de los saldos a favor declarados en este momento. Para tal efecto, haga clic en los siguienten enlaces:
+                    <br>
+                    <ul style="padding-left: 15px;margin: 20px 0px;">
+                        <li>
+                            <a href="https://e-menu.sunat.gob.pe" target="_blank">Solicitud de devolución - Rentas del Capital - Segunda Categoría</a>
+                        </li>
+                        <li>
+                            <a href="https://e-menu.sunat.gob.pe" target="_blank">Solicitud de devolución - Rentas del trabajo</a>
+                        </li>
+                        <li>
+                            <a href="https://e-menu.sunat.gob.pe" target="_blank">Solicitud de devolución - Rentas del Capital - Primera Categoría</a>
+                        </li>
+                    </ul>
+
+                    <strong>Nota:</strong> Le sugerimos que antes de ingresar al módulo de Solicitud de Devolución imprima, guarde una copia y/o envie por correo electrónico su constancia de Presentación del PDT.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErrorSinServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Incovenientes para acceder a SUNAT</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Error. Señor contribuyente disculpe la molestia, en estos momentos no se puede acceder a los servicios de SUNAT, por favor reintentar en 5 minutos.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalFormularioExiste2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Validador de la Bandeja</h4>
+            </div>
+            <div class="modal-body">
+                Sr. Contribuyente, ya existe en la Bandeja de Pagos el formulario PDT con el mismo período tributario, debe efectuar el pago de dicho formulario o eliminarlo de la bandeja.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErrorSinServicioExportar" tabindex="-1" role="dialog" style="z-index:99999" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Incovenientes para acceder a SUNAT</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Error. Señor contribuyente disculpe la molestia, en estos momentos no se puede acceder a los servicios de SUNAT, por favor reintentar en 5 minutos.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalErrorIdCache" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnSalirXErrorIdCache"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Acceso no Autorizado</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Error. Señor contribuyente, su sesión de acceso no es válida. Por favor vuelva a Autenticarse.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnSalirErrorIdCache">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Salir -->
+<div class="modal fade" id="myModal-exit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-danger" style="margin: 0;" role="alert">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+                        </div>
+                        <div class="col-sm-11">
+                            <strong>Sr. Contribuyente</strong> desea salir de la sesion.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >No</button>
+                <button id="btnEliminarBandeja1" data-remove="" type="button" data-dismiss="modal" class="btn btn-danger" onclick="aceptarSalir()">Sí</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Enviar correo -->
+<div class="modal fade" id="myModalEnviarCorreo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;" id="encabezadoCorreoResumenTransaccionesPopup">
+                    "<strong>Sr. Contribuyente,</strong> al presionar el bot&oacute;n Enviar se enviar&aacute; al correo electr&oacute;nico la Constancia de presentaci&oacute;n."
+                </div>
+
+                <form class="form-horizontal" name="formEmail" novalidate>
+                    <input id="hiddenTipoEnvioEmail" type="hidden" >
+                    <div role="alert">
+                                <span class="error row">
+                                    <div class="alert alert-danger hidden" id="divMenCorr1">
+                                        <span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+                                        <strong>Sr. Contribuyente</strong> ingrese un correo por favor.
+                                    </div>
+                                </span>
+                        <span class="error" >
+                                    <div class="alert alert-danger hidden" id="divMenCorr2">
+                                        <span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+                                        <strong>Sr. Contribuyente</strong> el correo proporcionado no es una cuenta v&aacute;lida.
+                                    </div>
+                                </span>
+                        <span class="error" >
+                                    <div class="alert alert-success hidden" id="divMensajeErrorGeneral">
+                                        <span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+                                        <span id="spanMensajeErrorGeneral"></span>
+                                    </div>
+                                </span>
+                    </div>
+                    <section>
+                        <input type="email" id="emailResumenTransacciones" name="emailResumenTransacciones" class="form-control add" placeholder="Escribir correo" required>
+                    </section>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="cancelarCorreoResumenTransaccionesPopup" >Cancelar</button>
+                <button type="button" class="btn btn-primary" id="enviarCorreoResumenTransaccionesPopup">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Mensajes Confirmacion de Presentar/Pagar -->
+<div class="modal fade" id="modalMensajePresentarPagar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span class="titleMensajeGeneral"></span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnPresentarPagar" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnCancelarPresentarPagar" type="button" class="btn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal26" tabindex="-1" style="z-index:99999" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span>Exportando, espere un momento...</span>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal27" tabindex="-1" style="z-index:99999" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span>Enviando Correo, espere un momento...</span>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Mensajes Adicionales -->
+<div class="modal fade" id="modalProrogaIgvJusto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">IGV Justo</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped" style="border: 1px solid white;">
+                    <tr>
+                        <td>Deseo acogerme a la pr&oacute;rroga del pago del IGV (IGV Justo)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="buttonConfirmarSIJusto" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button type="button" id="buttonConfirmarNOJusto" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modales agregados recientemente-->
+<div class="modal fade" id="modalFraccionamientoDeuda0621" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span>Señor contribuyente, desea fraccionar la deuda declarada por IGV?</span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnAceptarFraccionamiento0621" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnCancelarFraccionamiento0621" type="button" class="btn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modales agregados recientemente-->
+<div class="modal fade" id="modalDevolucionPreliminar" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span>¿Sr. Contribuyente, desea solicitar Devolución por los Saldos a Favor que se han generado en esta declaración anual?</span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnAceptarDevolucionPreliminar" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnCancelarDevolucionPreliminar" type="button" class="btn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modales agregados recientemente-->
+<div class="modal fade" id="modalDevolucion" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span>Ahora usted puede presentar su(s) solicitud(es) de devolución del saldo a favor declarado(s) en este momento. Para tal efecto, haga clic en el(los) siguiente(s) enlace(s):</span>
+                <br><br>
+                <div id="devItem"></div>
+                <br>
+                <span><strong>Nota:</strong> Le sugerimos que antes de ingresar al módulo de Solicitud de Devolución, imprima, guarde una copia y/o envíe por correo electrónico su Constancia de Presentación del Formulario.</span>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modales agregados recientemente-->
+<div class="modal fade" id="modalMensajePdt" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <div id="msgPdt"></div>
+            </div>
+            <div class="modal-footer">
+                <!--button id="btnAceptarFraccionamiento0621" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnCancelarFraccionamiento0621" type="button" class="btn" data-dismiss="modal">NO</button-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalFraccionamientoDeuda0704" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span>Señor contribuyente, desea solicitar fraccionamiento por las deudas que se generan en esta declaración jurada anual.</span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnAceptarFraccionamiento0704" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnCancelarFraccionamiento0704" type="button" class="btn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalConfirmacionFraccionamientoAplazamientoDeuda0621" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span>Sr. Contribuyente: ¿Confirma usted su intención de solicitar el Aplazamiento y/o Fraccionamiento de su deuda de IGV?</span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnConfirmarSolicitudFraccionamiento0621" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnCancelarSolicitudFraccionamiento0621" type="button" class="btn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalConfirmacionFraccionamientoAplazamientoDeuda0704" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span>La solicitud de fraccionamiento por esta deuda será evaluada a partir del día siguiente de su vencimiento de la Declaración Jurada de Regularización de Renta, a fin de no calcular intereses al no haber vencido su obligación</span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnConfirmarSolicitudFraccionamiento0704" type="button" class="btn btn-primary" data-dismiss="modal">ACEPTAR</button>
+                <button id="btnCancelarSolicitudFraccionamiento0704" type="button" class="btn" data-dismiss="modal">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalGeneralDeConstancia" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span class="titleMensajeGeneral"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnAceptarModalGeneralConstancia" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery-ui.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/tourtip/1.0.7/js/tinytools.tourtip.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.placeholder.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/easy-autocomplete/1.3.3/js/jquery.easy-autocomplete.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.ajax-retry.js"></script>
+<script src="//jslibs1.sunat.gob.pe/bowser/1.0.0/js/bowser.js"></script>
+<script src="//jslibs1.sunat.gob.pe/moment/2.18.1/js/moment.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/pdf/1.0.0/js/pdf.js"></script>
+<script src="//jslibs1.sunat.gob.pe/knockout/3.4.2/js/knockout.js"></script>
+<script src="//jslibs1.sunat.gob.pe/filesaver/1.0.0/js/FileSaver.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jszip/3.1.3/js/jszip.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.i18n.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/zip/1.0.0/js/zip.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/math/3.8.0/js/math.min.js"></script>
+<script src="../js/apps/comunes/comunLibreria.js"></script>
+<script src="../js/apps/comunes/comunServicios.js"></script>
+<script src="../js/apps/comunes/comunPresentar.js"></script>
+<script src="../js/apps/comunes/comunPasarela.js"></script>
+<script src="../js/apps/comunes/comunConstancia.js"></script>
+<script src="../js/apps/comunes/comunBandeja.js"></script>
+<script src="../js/apps/carrito.js"></script>
+<script src="../js/apps/app.js"></script>
+<script src="../js/apps/util/validar-idioma.js"></script>
+
+</body>
+</html>

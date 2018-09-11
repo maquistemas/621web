@@ -1,0 +1,689 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consulta de Constancia de Pago</title>
+    <link href="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/easy-autocomplete/1.3.3/css/easy-autocomplete.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/magicsuggest/2.1.4/css/magicsuggest-min.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/carousel.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/ie-emulation-modes-warning.js"></script>
+</head>
+<body style="padding: 20px !important;">
+<!-- Primer Modal -->
+<div class="modal fade" id="modal-deayuda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">PDF de Ayuda</h4>
+            </div>
+            <div class="modal-body">
+                Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sgundo Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-save-file"></span>Exportar</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-envelope"></span>Enviar correo</a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                    <strong>Número de Formulario:</strong> 0621<br>
+                    <strong>N&uacute;mero de Orden:</strong> 20000223<br>
+                    <strong>Fecha:</strong> 01/08/2014<br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Datos de la Declaraci&oacute;n:</legend>
+                    <strong>RUC:</strong> 42635712423
+                    <br>
+                    <strong>Nombre o Razón Social:</strong> Complexless
+                    <br>
+                    <strong>Periodo:</strong> 12/2013
+                    <br>
+                    <strong>Semana:</strong> 01
+                    <br>
+                    <strong>Forma de Pago:</strong> Efectivo
+                    <br>
+                    <strong>Rectificatoria:</strong>No
+                    <br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Detalle de Tributos:</legend>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <THEAD>
+                            <tr>
+                                <th>Tributos</th>
+                                <th>Total Deuda</th>
+                                <th>Monto Pago</th>
+                            </tr>
+                            </THEAD>
+                            <tbody>
+                            <tr>
+                                <td>Renta</td>
+                                <td>S/. 2000</td>
+                                <td>S/. 250</td>
+                            </tr>
+                            <tr>
+                                <td>IGV</td>
+                                <td>S/. 1000</td>
+                                <td>S/. 1000</td>
+                            </tr>
+                            <tr>
+                                <td>Total a pagar</td>
+                                <td>S/. 3000</td>
+                                <td>S/. 1250</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Detalle de Pago:</legend>
+                    <strong>Banco:</strong> Scotiabank<br>
+                    <strong>N&uacute;mero de Operaci&oacute;n:</strong> 01234567890<br>
+                    <strong>Fecha de Pago:</strong> 2014/08/01<br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <br>
+                    <strong>
+                        Usted no ha realizado el pago de la deuda, recuerde que deberá cancelar el saldo deudor de la declaración presentada consignando los siguientes datos:
+                    </strong>
+                    <br>
+                    <div class="table-responsive" style="margin-top: 25px;">
+                        <table class="table table-striped">
+                            <THEAD>
+                            <tr>
+                                <th>Período</th>
+                                <th>Tributos</th>
+                                <th>Deuda</th>
+                            </tr>
+                            </THEAD>
+                            <tbody>
+                            <tr>
+                                <td>12/2013</td>
+                                <td>IGV - 1010</td>
+                                <td>S/. 250</td>
+                            </tr>
+                            <tr>
+                                <td>12/2013</td>
+                                <td>Renta - 3001</td>
+                                <td>S/. 250</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tercer modal -->
+<div class="modal fade" id="myModal-20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Constancia de boleta de pago</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset class="linea-caja">
+                    <legend></legend>
+                    <div>
+                        <strong>Pago varios:</strong> 42635712423<br>
+                        <strong>Nº de Orden:</strong> 0851225<br>
+                        <strong>Nº de Formulario:</strong> 1051<br>
+                        <strong>Nombre o Razón Social:</strong> Complexless<br>
+                        <strong>Periodo:</strong> 10/2015<br>
+                        <strong>Tipo de pago:</strong> Visa<br>
+                        <strong>Tributo:</strong> Visa<br>
+                        <strong>Importe pagado:</strong> S/. 400<br>
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja">
+                    <legend>Detalle del pago</legend>
+                    <div>
+                        <strong>N&uacute;mero de operaci&oacute;n:</strong> 6890<br>
+                        <strong>Forma de pago:</strong> Visa<br>
+                        <strong>Banco:</strong> Scotibank<br>
+                        <strong>N&uacute;mero de operaci&oacute;n:</strong> 6890<br>
+                        <strong>Fecha de operaci&oacute;n bancaria:</strong> 30/10/2015<br>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="enviarcorreo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;">
+                    "<strong>Sr. Contribuyente,</strong> al presionar el botón Enviar se enviará al correo electrónico la Constancia de presentación, el Reporte del formulario y archivos anexos de corresponder"
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="enviarcorreo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;">
+                    "<strong>Sr. Contribuyente,</strong> al presionar el botón Enviar se enviará al correo electrónico la Constancia de presentación, el Reporte del formulario y archivos anexos de corresponder."
+                </div>
+                <div class="alert alert-danger hidden" style="margin-top: 0;" role="alert" id="error-correo">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+                        </div>
+                        <div class="col-sm-11">
+                            <strong>Sr. Contribuyente</strong> el correo proporcionado no es una cuenta válida
+                        </div>
+                    </div>
+                </div>
+                <input type="text" class="form-control add" placeholder="Escribir correo">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="enviar-correo-1">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divPaso02retension" class="divPaso">
+    <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+        <strong>"Sr. Contribuyente,</strong> esta consulta mostrará información desde el xx/xx/xxxx.<br> Para consultas de fechas anteriores deberá ingresar a: <a href="https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm" target="_blank">https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm</a>"
+        <br>
+        Observaciones:
+        <ul>
+            <li>El asterisco(*) señala a los formularios pagados con cheque que fue rechazado.</li>
+            <li>Considera declaraciones efectuadas en todos los medios de pago ( Aplicaciones en PC, Formularios Virtuales, PDT).</li>
+            <li>De existir alguna omisión o de no estar de acuerdo con la información detallada en la consulta, deberá comunicarse con los Centros de Atención o las Areas de Servicios al Contribuyente de su dependencia.</li>
+        </ul>
+    </div>
+    <h4 class="nombre-f" style="margin:0">
+        Consulta de Constancia de Pago
+        <span class="glyphicon glyphicon-question-sign puntero" data-toggle="modal" data-target="#modal-deayuda"></span>
+    </h4>
+    <br>
+    <label>Criterios de búsqueda</label>
+    <select class="form-control input-sm" style="display:inline-block;width: 155px;margin-left:10px" id="criterios">
+        <option value="1">General</option>
+        <option value="2">Específica</option>
+        <option value="4">Usuario Sunat</option>
+    </select>
+    <hr style="margin-top:10px">
+    <form id="especifica" class="hidden">
+        <div class="row">
+            <div class="col-sm-4">
+                <label>Número de formulario</label>
+                <input type="text" class="form-control input-sm m-b-md" placeholder="Escribir" id="country_v1-query">
+            </div>
+            <div class="col-sm-4">
+                <label>Número de orden</label>
+                <input type="text" class="form-control input-sm m-b-md" placeholder="Escribir">
+            </div>
+            <div class="col-sm-4">
+                <label>Número de operación bancaria</label>
+                <input type="text" class="form-control input-sm m-b-md" placeholder="Escribir">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label style="opacity:0">oculto</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="#" id="buscar-resultado2" class="btn btn-primary btn-block btn-sm"><span class="glyphicon glyphicon-search"></span>Buscar</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block btn-sm"><span class="glyphicon glyphicon-refresh"></span>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form id="general">
+        <div class="row">
+            <div class="col-sm-4">
+                <label>Número de formulario</label>
+                <div id="magicsuggest" class="input-sm"></div>
+            </div>
+            <div class="col-sm-4">
+                <label>Rango de Fecha de presentación</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-sm m-b-md date-picker2" placeholder="Inicio">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-sm m-b-md date-picker2" placeholder="Fin">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label>Rango Período tributario</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select class="combo-rango input-sm form-control" id="periodo_tributario_1">
+                                <option>MES</option>
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>Anual</option>
+                            </select>
+                            <select class="combo-rango input-sm form-control border-select">
+                                <option>AÑO</option>
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                            </select>
+                            <span class="help-block">Inicio</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select class="combo-rango input-sm form-control" id="periodo_tributario_1">
+                                <option>MES</option>
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>Anual</option>
+                            </select>
+                            <select class="combo-rango input-sm form-control border-select">
+                                <option>AÑO</option>
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                            </select>
+                            <span class="help-block">Fin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label style="opacity:0">oculto</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="#" id="buscar-resultados" class="btn btn-primary btn-block btn-sm"><span class="glyphicon glyphicon-search"></span>Buscar</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block btn-sm"><span class="glyphicon glyphicon-refresh"></span>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form id="usuariosunat" class="hidden">
+        <div class="row">
+            <div class="col-sm-4">
+                <label>Número de formulario</label>
+                <div id="magicsuggest2" class="input-sm"></div>
+            </div>
+            <div class="col-sm-4">
+                <label>RUC</label>
+                <div class="input-group input-group-sm">
+                    <input type="file" name="file" id="pdffile" class="hidden">
+                    <input type="text" id="magicsuggest3" class="form-control input-sm" placeholder="Ingrese la ruta del archivo">
+                    <div class="input-group-btn">
+
+                        <button type="button" class="btn btn-default" onclick="$('#pdffile').click();"><span class="glyphicon glyphicon-download-alt"></span></button>
+                    </div>
+                </div>
+
+                <!-- <div id="magicsuggest3" class="input-sm"></div>-->
+            </div>
+            <div class="col-sm-4">
+                <label>Rango de Fecha de presentación</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-sm m-b-md date-picker2" placeholder="Inicio">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control input-sm m-b-md date-picker2" placeholder="Fin">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <label>Rango Período tributario</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select class="combo-rango input-sm form-control" id="periodo_tributario_1">
+                                <option>MES</option>
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>Anual</option>
+                            </select>
+                            <select class="combo-rango input-sm form-control border-select">
+                                <option>AÑO</option>
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                            </select>
+                            <span class="help-block">Inicio</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select class="combo-rango input-sm form-control" id="periodo_tributario_1">
+                                <option>MES</option>
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>Anual</option>
+                            </select>
+                            <select class="combo-rango input-sm form-control border-select">
+                                <option>AÑO</option>
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                            </select>
+                            <span class="help-block">Fin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label style="opacity:0">oculto</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="#" class="btn btn-primary btn-block btn-sm" id="buscar-resultados3"><span class="glyphicon glyphicon-search"></span>Buscar</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block btn-sm"><span class="glyphicon glyphicon-refresh"></span>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr>
+
+    <div id="sin-resultados" class="hidden">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;">
+            "<strong>Sr. Contribuyente,</strong> no existe formulario con la información ingresada"
+        </div>
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;">
+            "<strong>Sr. Contribuyente,</strong> la consulta sólo mostrara información de un año, por favor modifique (los períodos registrados o las fechas registradas, según el filtro que hubiera utilizado)"
+        </div>
+    </div>
+    <div id="sin-resultados-usuario" class="hidden">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;">
+            "El <strong>RUC</strong> no pertenece a su dependencia"
+        </div>
+    </div>
+
+    <div id="general-especifica">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="tooltip" data-placement="bottom" title="Exportar a PDF"><span class="glyphicon glyphicon-save-file"></span>PDF</button>
+                    <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="tooltip" data-placement="bottom" title="Exportar a EXCELL"><span class="glyphicon glyphicon-save-file"></span>EXCELL</button>
+                    <button class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</button>
+                    <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="modal" data-target="#enviarcorreo2"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <br>
+        <fieldset class="linea-caja" style="margin:0;">
+            <legend style="    color: #337AB7;">Detalle de Constancia de Pagos:</legend>
+            <div class="pull-right"><strong>Fecha:</strong>  01/08/2014</div>
+            <strong>RUC:</strong>  42635712423
+            <br>
+            <strong>Nombre o Razón Social:</strong> Complexless
+            <br>
+            <strong>Fecha</strong><br>
+            <strong>Desde:</strong> 01/08/2014 <strong>Hasta:</strong> 01/09/2014
+            <br>
+            <strong>Formularios:</strong> Todos
+        </fieldset>
+        <br>
+        <div class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table" style="font-size: 13px;">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Periodo</th>
+                        <th>Form</th>
+                        <th>Descrip.</th>
+                        <th>Nº Orden</th>
+                        <th>Fecha pres.</th>
+                        <th>Banco</th>
+                        <th>Monto</th>
+                        <th></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>10-2015</td>
+                        <td>0621</td>
+                        <td>IGV-RENTA Mensual</td>
+                        <td>0876666</td>
+                        <td>15/02/2014</td>
+                        <td>Scotibank</td>
+                        <td>S/. 0.00</td>
+                        <td>
+                                    <span class="detalles-modal" data-toggle="tooltip" data-placement="left" title="Constancia" style="margin: 0">
+                                        <a href="#" data-toggle="modal" data-target="#myModal2">
+                                            <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                                        </a>
+                                    </span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>10-2015</td>
+                        <td>0621</td>
+                        <td>IGV-RENTA Mensual</td>
+                        <td>0876666</td>
+                        <td>15/02/2014</td>
+                        <td>Scotibank</td>
+                        <td>S/. 0.00</td>
+                        <td>
+
+                                    <span class="detalles-modal" data-toggle="tooltip" data-placement="left" title="Constancia" style="margin: 0">
+                                        <a href="#" data-toggle="modal" data-target="#myModal2">
+                                            <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                                        </a>
+                                    </span>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="hidden" id="usuariosunat-tabla">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="tooltip" data-placement="bottom" title="Exportar a PDF"><span class="glyphicon glyphicon-save-file"></span>PDF</button>
+                    <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="tooltip" data-placement="bottom" title="Exportar a EXCELL"><span class="glyphicon glyphicon-save-file"></span>EXCELL</button>
+                    <button class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</button>
+                    <button class="btn btn-primary btn-sm aire-next" href="#" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <br>
+        <fieldset class="linea-caja" style="margin:0;">
+            <legend style="    color: #337AB7;">Detalle de Constancia de Pagos:</legend>
+            <div class="pull-right"><strong>Fecha:</strong>  01/08/2014</div>
+            <strong>RUC:</strong>  Multiple
+            <br>
+            <strong>Nombre o Razón Social:</strong> Multiple
+            <br>
+            <strong>Fecha</strong><br>
+            <strong>Desde:</strong> 01/08/2014 <strong>Hasta:</strong> 01/09/2014
+            <br>
+            <strong>Formularios:</strong> Multiple
+        </fieldset>
+        <br>
+        <div class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table" style="font-size: 13px;">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Depen.</th>
+                        <th>RUC</th>
+                        <th>Razón Social</th>
+                        <th>Periodo</th>
+                        <th>Form</th>
+                        <th>Descrip.</th>
+                        <th>Nº Orden</th>
+                        <th>Fecha pres.</th>
+                        <th>Banco</th>
+                        <th>Monto</th>
+                        <th></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Lima</td>
+                        <td>42635712423 </td>
+                        <td>Complexless</td>
+                        <td>10-2015</td>
+                        <td>0621</td>
+                        <td>IGV-RENTA Mensual</td>
+                        <td>0876666</td>
+                        <td>15/02/2014</td>
+                        <td>Scotibank</td>
+                        <td>S/. 0.00</td>
+
+                        <td>
+                                    <span class="detalles-modal" data-toggle="tooltip" data-placement="left" title="Constancia" style="margin: 0">
+                                        <a href="#" data-toggle="modal" data-target="#myModal2">
+                                            <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                                        </a>
+                                    </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trujillo</td>
+                        <td>20100083362</td>
+                        <td>Cosapi Data</td>
+                        <td>10-2015</td>
+                        <td>0621</td>
+                        <td>IGV-RENTA Mensual</td>
+                        <td>0876666</td>
+                        <td>15/02/2014</td>
+                        <td>Scotibank</td>
+                        <td>S/. 0.00</td>
+                        <td>
+                                    <span class="detalles-modal" data-toggle="tooltip" data-placement="left" title="Constancia" style="margin: 0">
+                                        <a href="#" data-toggle="modal" data-target="#myModal2">
+                                            <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                                        </a>
+                                    </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="sin-resultados-usuario2" class="hidden">
+        <div class="alert alert-warning" role="alert" style="margin-top:0px;">
+            "A continuación se muestran los RUCs que no corresponden a su dependencia:"
+            <ul>
+                <li><strong>42635712423</strong></li>
+                <li><strong>20100083362</strong></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<sscript>
+    <script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.min.js"></script>
+    <script src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.placeholder.min.js"></script>
+    <script src="//jslibs1.sunat.gob.pe/easy-autocomplete/1.3.3/js/jquery.easy-autocomplete.min.js"></script>
+    <script src="//jslibs1.sunat.gob.pe/magicsuggest/2.1.4/js/magicsuggest-min.js"></script>
+</sscript>
+<script src="../js/apps/detallepago.js"></script>
+
+</body>
+</html>

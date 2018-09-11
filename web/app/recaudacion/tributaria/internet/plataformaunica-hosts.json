@@ -1,0 +1,14 @@
+{
+  "tiempoEspera": 1000,
+  "numeroReintentos": 3,
+  "httpStatusCodes": [
+    {"httpStatusCode": 500},
+    {"httpStatusCode": 502},
+    {"httpStatusCode": 503},
+    {"httpStatusCode": 504}
+  ],
+  "hosts": [
+    {"host":"//e-plataformaunica.sunat.gob.pe"},
+    {"host":"//e-plataformaunica.sunat.gob.pe"}
+  ]
+}

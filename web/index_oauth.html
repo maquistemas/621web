@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html ng-app="mainApp" ng-controller="MainCtrl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name="viewport" content="initial-scale = 1.0, user-scalable = no,  width=device-width">
+    <title>SUNAT - Menu SOL</title>
+    <link href="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/select2/3.4.8/css/select2.css" rel="stylesheet"/>
+    <link href="//jslibs1.sunat.gob.pe/select2/3.4.8/css/select2-bootstrap.css" rel="stylesheet"/>
+    <link href="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.3.0/css/datepicker.min.css" rel="stylesheet">
+    <link href="//jslibs1.sunat.gob.pe/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="app/recaudacion/tributaria/internet/css/menu-main.css" rel="stylesheet">
+    <link href="app/recaudacion/tributaria/internet/css/popoverBandejaConten.css" rel="stylesheet"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <style type="text/css">
+        body {
+            padding-top: 114px;
+        }
+    </style>
+    <![endif]-->
+</head>
+<body>
+<script>
+    function postIndex(path, params, method) {
+        method = method || "post";
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+        form.setAttribute("target", "frame");
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+            }
+        }
+        document.body.appendChild(form);
+        form.submit();
+    }
+    function oAuthIndex(idForm) {
+        var token = sessionStorage.getItem('token_SUNAT');
+        var URL_PLATAFORMA_UNICA_LOCAL = 'http://internet.local.pu.sunat.gob.pe';
+        var URL_PLATAFORMA_UNICA_DESA = 'http://internet.desa.pu.sunat.gob.pe';
+        var URL_PLATAFORMA_UNICA_QA = 'http://internet.qa.pu.sunat.gob.pe';
+        var URL_PLATAFORMA_UNICA = "";//URL_PLATAFORMA_UNICA_DESA;
+
+        postIndex(URL_PLATAFORMA_UNICA + '/servletAcceso?plataforma=web&tipoOperacion=5&idFormulario=' + idForm + '&recurso=/plataformaUnica&idCache=' + token, "");
+
+        localStorage.removeItem("Tutorkey");
+    }
+
+    function oAuthIndexExterno(evt) {
+        if (evt.data == "LLAMAR-FORMULARIO0697") {
+            oAuthIndex('0105');
+        }
+    }
+    if (window.addEventListener) {
+        window.addEventListener("message", oAuthIndexExterno, false);
+    }
+    else {
+        window.attachEvent("onmessage", oAuthIndexExterno);
+    }
+</script>
+<!-- Modal -->
+<div class="modal fade" id="myModal-trash" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-danger" style="margin: 0;" role="alert">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+                        </div>
+                        <div class="col-sm-11">
+                            <strong>Sr. Contribuyente</strong> El formulario <span
+                                class="bandeja-codigoformulario-eliminar">0621</span> será eliminado de la Bandeja de
+                            Presentación. ¿Confirma la eliminación?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button id="btnEliminarBandeja" data-remove="" type="button" data-dismiss="modal"
+                        class="btn btn-danger">Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!--Barra superior-->
+    <div class="navbar-header">
+        <button id="btnNavbar" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#divNavPrinicipal">
+            <span class="sr-only">Toggle</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand navLogo" href="#">
+            <img id="imgLogo" src="//img1.sunat.gob.pe/xs/logo.png">
+        </a>
+    </div><!--/.navbar-header -->
+    <div class="container-fluid">
+        <div id="divNavPrinicipal" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left hidden-xs">
+                <li>
+                    <a class="aOpcionCabecera colRojo aOpcionInicioBuzon" style="display: none;">
+                        <span class="glyphicon glyphicon-menu-left"></span>
+                        <span class="glyphicon glyphicon-home"></span>
+                        Ir al inicio
+                    </a>
+                </li>
+            </ul>
+            <ul id="ulMenu01" class="nav navbar-nav navbar-right">
+                <li class="hidden-sm hidden-md hidden-lg text-center">
+                    RUC: -- <br>
+                    --<br>
+                    Usuario: --<br>
+                    <span class="spanFecha">17/02/2016 11:07 AM</span>
+                </li>
+                <!--Home-->
+                <li class="hidden-sm hidden-md hidden-lg">
+                    <a href="javascript:void(0)" class="aOpcionCabecera colRojo aOpcionInicio" style="display: block;">
+                        <span class="glyphicon glyphicon-home"></span> Ir al inicio
+                    </a>
+                </li>
+                <!-- //PLUGIN-BANDEJA::Carrito de Declaraciones -->
+                <li id="Presente_Pague"></li>
+                <!--Buzon-->
+                <li>
+                    <a id="aOpcionBuzon" href="#" class="aOpcionCabecera colRojo">
+                        <span class="glyphicon glyphicon-envelope"></span>&nbsp;<span id="trbzElectronico"> Buzón Electrónico</span>
+                    </a>
+                </li>
+                <!--Favoritos-->
+                <li id="liOpcionFavorito" class="dropdown">
+                    <a id="aOpcionFavorito" href="#" class="aOpcionCabecera colRojo">
+                        <!--data-toggle="dropdown"-->
+                        <span class="glyphicon glyphicon-star"></span>&nbsp;<span id="trfavoritos">Favoritos</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul id="ulOpcionesFavorito" class="dropdown-menu" role="menu">
+                        <li id="liFavoritos" class="dropdown-header"><strong>FAVORITOS</strong></li>
+                        <li class="liFavorito dropdown-header">No hay favoritos.</li>
+                        <li role="separator" class="divider"></li>
+                        <li id="liUltimos" class="dropdown-header"><strong>ÚLTIMOS ACCESOS</strong></li>
+                        <li class="liUltimo"><a href="javascript:void(0)"
+                                                onclick="ejecuta('MenuInternet.htm?action=execute&amp;code=12.1.1.1.1',false,'','#nivel1_12','12.1.1.1.1');return false;"
+                                                class="aUltimo aOpcionNavbar">Declaración y pago con PDT</a></li>
+                        <li class="liUltimo"><a href="javascript:void(0)"
+                                                onclick="ejecuta('MenuInternet.htm?action=execute&amp;code=12.1.1.1.2',false,'','#nivel1_12','12.1.1.1.2');return false;"
+                                                class="aUltimo aOpcionNavbar">PDT 601 Planillas electrónicas</a></li>
+                    </ul>
+                </li>
+                <!--Impresion-->
+                <li class="hidden-sm">
+                    <a id="aOpcionImpresion" href="javascript:framePrint('iframeApplication')"
+                       class="aOpcionCabecera colRojo">
+                        <span class="glyphicon glyphicon-print"></span>&nbsp;<span id="trImprimir">Imprimir</span>
+                    </a>
+                </li>
+                <!--Usuario-->
+                <!--<li class="hidden-lg hidden-md hidden-sm">
+                    <a id="aOpcionUsuario1" href="#" class="aOpcionCabecera colRojo" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>  -- <span class="caret"></span>
+                    </a>
+                </li>-->
+                <!--Salir-->
+                <li class="hidden-lg hidden-md hidden-sm">
+                    <a href="javascript:void(0)" class="aOpcionCabecera colRojo aOpcionSalir">
+                        <span class="glyphicon glyphicon-remove-circle"></span> Salir
+                    </a>
+                </li>
+            </ul><!--/nav navbar-nav navbar-right -->
+        </div><!--/.nav-collapse -->
+    </div>
+    <!--Barra azul-->
+    <div id="divNavAzul" class="navbar-collapse collapse hidden-xs backAzul1 text-small">
+        <span class="glyphicon glyphicon-menu-right Icono-Menu__principal hidden"></span>
+        <p class="navbar-text navbar-left colBlanco">
+            <span class="spanFecha negrita">17/02/2016 11:07 AM</span>
+        </p>
+        <ul id="ulMenu02" class="nav navbar-nav navbar-right">
+            <!--Usuario-->
+            <li id="liOpcionUsuario2" class="">
+                <a id="aOpcionUsuario2" href="#" class="colBlanco negrita">
+                    <span id="tbievenido">Bienvenido, </span>
+                    <span id="nombreUsuario" name="nombreUsuario">--</span>
+                    <span class="caret"></span>
+                    <!--TODO: Truncar-->
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header"><br><strong>--</strong></li>
+                    <li class="dropdown-header"><strong>RUC: --</strong></li>
+                    <li class="dropdown-header"><strong>Usuario: --</strong></li>
+
+                    <li class="text-center"><br>
+                        <button type="button" class="btn btn-primary btnFichaRuc">Ver Ficha Ruc</button>
+                        <br><br></li>
+
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header"><strong>OPERACIONES</strong></li>
+                    <li><a class="aUsuarioDatos aOpcionNavbar" href="javascript:void(0)">Actualizar datos del RUC</a>
+                    </li>
+
+                    <li><a class="aUsuarioAdministrar aOpcionNavbar" href="javascript:void(0)">Administración de
+                        usuarios secundarios</a></li>
+                    <li><a id="aUsuarioClave" class="aOpcionNavbar" href="javascript:void(0)">Cambiar clave</a></li>
+                    <li><a class="aUsuarioPregunta aOpcionNavbar" href="javascript:void(0)">Modificar pregunta y
+                        respuesta segura</a></li>
+                </ul>
+            </li>
+            <!--Domicilio-->
+            <li class="liEstadoDomicilio">
+                <p class="navbar-text navbar-left colBlanco negrita pEstadoDomicilio">
+                    <span id="tdomicilio">Domicilio:</span>
+                    <span id="tHabido" class="spanEstadoDomicilio" title="">Habido</span>
+                </p>
+            </li>
+            <!--Salir-->
+            <li>
+                &nbsp;&nbsp;
+                <button id="tbtnSalir" class="btn navbar-btn colBlanco backCeleste1 sinRadio aOpcionSalir" type="button"
+                        onclick="confirmarSalida()">&nbsp;Salir&nbsp;</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+        </ul><!--/nav navbar-nav navbar-right -->
+    </div><!--/.navbar-collapse -->
+    <div id="divBreadcrumb" class="hidden-sm hidden-md hidden-lg" style="display: block;">
+        <ol class="breadcrumb">
+            <li id="liBreadNivelHome" class="aOpcionInicio" style="display: inline;"><i
+                    class="glyphicon glyphicon-home"></i> Inicio
+            </li>
+            <li id="liBreadNivel4">Declaración y pago con PDT</li>
+        </ol>
+    </div>
+</div><!--/.navbar -->
+<div id="divContainerAplicacion" class="container divContainerIframe" style="display: block;">
+    <div class="row">
+        <div id="divSubMenuIzquierda" class="hidden-xs backPlomo1">
+            <div class="divSubmenuCabecera">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-default colRojo sinBorde" id="Cerrar-Menu__principal">
+                            <span class="glyphicon glyphicon-menu-left"></span><span
+                                id="trCerrarMenu"> Cerrar Menu</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-default colRojo sinBorde aOpcionInicio pull-right">
+                            </span><span class="glyphicon glyphicon-home"></span><span
+                                id="trIrInicio"> Ir al inicio</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav id="menu" style="height: 100%;overflow: scroll;">
+                <ul class="list-group nav" id="ulSubmenu">
+                    <li class="nivel1 liOpcion backPlomo1 opcionPersonas opcionEmpresas opcionHuerfano">
+                        <span id="trMisDeclaracionesPagos" class="spanNivelDescripcion">Mis declaraciones y pagos</span>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo" data-parent="#menu"
+                           class="nivel2 liOpcion opcionPersonas opcionEmpresas" aria-expanded="true">
+                            <span class="glyphicon glyphicon-play spanNivelBullet"></span><span id="trPresentacionPago">Presentación y Pago</span>
+                        </a>
+                    </li>
+                    <div id="demo" class="collapse in" aria-expanded="true">
+                        <li>
+                            <a href="#" class="nivel3 liOpcion opcionPersonas opcionEmpresas" data-toggle="collapse"
+                               data-target="#sub-demo" aria-expanded="true">
+                                <span class="glyphicon glyphicon-play spanNivelBullet"> </span> <span
+                                    id="trDeclPagosTributos">Declaraciones y Pagos Tributos Internos</span>
+                            </a>
+                        </li>
+                        <div id="sub-demo" class="collapse in" aria-expanded="true">
+                            <li>
+                                <a href="#" class="nivel4 liOpcion  opcionPersonas opcionEmpresas subMenu"
+                                   data-toggle="collapse" data-target="#sub-menu-dentro" aria-expanded="true">
+                                    <span class="glyphicon glyphicon-play spanNivelBullet"> </span><span
+                                        id="trDeclPagosTributos">Declaraciones Juradas Determinativas</span>
+                                </a>
+                            </li>
+                            <div id="sub-menu-dentro" class="collapse in" aria-expanded="true">
+                                <!--li ng-repeat="url in urls">
+                                    <a id="trurl" class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu"
+                                       target="frame" href ng-click="setCurrentUrl(url.name)">{{url.label}}</a>
+                                </li!-->
+                                <li>
+                                    <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('0101');"
+                                       target="frame"
+                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                        Buscar Formularios
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('12.10.1.1.1');"
+                                       target="frame"
+                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                        IGV RENTA Mensual
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('12.10.1.1.2');"
+                                       target="frame"
+                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                        Agentes de Retención IGV
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('12.10.1.1.3');"
+                                       target="frame"
+                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                        Agentes de Percepción Hidrocarburos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('12.10.1.1.4');"
+                                       target="frame"
+                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                        Agentes de Percepción Ventas Internas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('12.10.1.1.5');"
+                                       target="frame"
+                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                        PDT
+                                    </a>
+                                </li>
+                                <!--                                <li>
+                                                                    <a id="trIgvRenta" href="gui/carrito.html#f0621.html" target="frame"
+                                                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="Hola">
+                                                                        IGV RENTA Mensual
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a id="trAgentRet" href="gui/carrito.html#f0626.html" target="frame"
+                                                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu">
+                                                                        Agentes de Retención
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a id="tragentPer" href="gui/carrito.html#f0633.html" target="frame"
+                                                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu">
+                                                                        Agentes de Percepción
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a id="trVentInter" href="gui/carrito.html#f0697.html" target="frame"
+                                                                       class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu">
+                                                                        Agentes de Percepción Ventas Internas
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="gui/carrito.html#pdt.html" target="frame"
+                                                                       class="nivel5_ liOpcion  opcionPersonas opcionEmpresas subMenu">
+                                                                        PDT
+                                                                    </a>
+                                                                </li>
+                                -->                            </div>
+                        </div>
+                    </div>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo3" data-parent="#menu"
+                           class="nivel2 liOpcion opcionPersonas opcionEmpresas" aria-expanded="true">
+                            <span class="glyphicon glyphicon-play spanNivelBullet"></span><span id="trConsulta">Consultas</span>
+                        </a>
+                    </li>
+                    <div id="demo3" class="collapse in" aria-expanded="true">
+
+                        <li>
+                            <a href="#" class="nivel3 liOpcion opcionPersonas opcionEmpresas" data-toggle="collapse"
+                               data-target="#sub-demo-2" aria-expanded="true">
+                                <span class="glyphicon glyphicon-play spanNivelBullet"> </span> <span
+                                    id="trDeclTributInternos">Declaraciones y Pagos Tributos Internos</span>
+                            </a>
+                        </li>
+                        <div id="sub-demo-2" class="collapse in" aria-expanded="true">
+                            <li>
+                                <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('12.11.1.1.1');"
+                                   target="frame"
+                                   class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                    Consulta Declaraciones y Pagos
+                                </a>
+                            </li>
+                            <li>
+                                <a id="trPruebaOAuth" href="javascript:void(0);" onClick="oAuthIndex('12.11.1.1.2');"
+                                   target="frame"
+                                   class="nivel5 liOpcion  opcionPersonas opcionEmpresas subMenu" value="">
+                                    Consulta Constancia de Pago
+                                </a>
+                            </li>
+                            <!--li>
+                                <a ng-click="verDeclaraciones()" id="tdpagos" target="frame"
+                                   class="nivel4 liOpcion  opcionPersonas opcionEmpresas subMenu">
+                                    Declaraciones y Pagos
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-click="verConstancia()" id="tconpagos" target="frame"
+                                   class="nivel4 liOpcion  opcionPersonas opcionEmpresas subMenu">
+                                    Constancia de pago
+                                </a>
+                            </li//-->
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+        <div id="iDivApplication" class="embed-responsive embed-responsive-4by3" ng-if="verIframe"
+             style="overflow:scroll;">
+            <script src="app/recaudacion/tributaria/internet/js/apps/util/validar-idioma-index.js"></script>
+
+            <iframe class="Iframe-ui" id="frame" name="frame" ng-src="{{getUrl()}}"></iframe>
+        </div>
+        <div class="embed-responsive embed-responsive-4by3" ng-include src="'gui/consultaDeclaracionInternet.html'"
+             ng-controller="consultaDeclaracionInternetController" ng-if="verDecl" style="overflow:scroll;">
+        </div>
+        <div class="embed-responsive embed-responsive-4by3" ng-include src="'gui/consultaPagoInternet.html'"
+             ng-controller="consultaPagoInternetController" ng-if="verconsulta" style="overflow:scroll;">
+        </div>
+    </div>
+</div>
+<!-- Modal Mensajes en General -->
+<div class="modal fade" id="modalMensajeGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span class="titleMensajeGeneral"></span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnPresentarPagar" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button type="button" class="btn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="token" name="token" value=""/>
+
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/easy-autocomplete/1.3.3/js/jquery.easy-autocomplete.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/moment/2.18.1/js/moment.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/bowser/1.0.0/js/bowser.js"></script>
+
+<!-- Plataforma Unica //-->
+<script src="app/recaudacion/tributaria/internet/js/apps/index.js"></script>
+<!-- //PLUGIN-BANDEJA::Carrito de Declaraciones -->
+<script src="app/recaudacion/tributaria/internet/js/apps/pluginBandeja.js"></script>
+<!-- Plataforma Unica //-->
+<script src="//jslibs1.sunat.gob.pe/angular/1.5.8/js/angular.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/angular/1.5.8/js/angular-animate.js"></script>
+<script src="//jslibs1.sunat.gob.pe/angular/1.5.8/js/angular-route.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/angular/1.5.8/js/angular-locale_es-es.js"></script>
+<script src="//jslibs1.sunat.gob.pe/angular/1.5.8/js/angular-sanitize.js"></script>
+<script src="//jslibs1.sunat.gob.pe/angular/1.5.8/js/angular-resource.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/ui-bootstrap/2.0.2/js/ui-bootstrap.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/ui-bootstrap/2.0.2/js/ui-bootstrap-tpls.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/select2/3.4.8/js/select2.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery-ui.min.js"></script>
+<script src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.ajax-retry.js"></script>
+<script src="//jslibs1.sunat.gob.pe/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+
+<script src="app/recaudacion/tributaria/internet/js/apps/ConsultaPagos/mainPage.js"></script>
+
+<!-- 	DECLARIONES Y PAGOS -->
+<script src="app/recaudacion/tributaria/internet/js/apps/ConsultaPagos/factoryDeclaracionInternet.js"></script>
+<script src="app/recaudacion/tributaria/internet/js/apps/ConsultaPagos/consultaDeclaracionInternet.js"></script>
+
+<!-- 	CONSTANCIA DE PAGO -->
+<script src="app/recaudacion/tributaria/internet/js/apps/ConsultaPagos/factoryPagoInternet.js"></script>
+<script src="app/recaudacion/tributaria/internet/js/apps/ConsultaPagos/consultaPagoInternet.js"></script>
+</body>
+</html>

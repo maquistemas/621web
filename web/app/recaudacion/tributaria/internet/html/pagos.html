@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<!-- Modal -->
+<div class="modal fade" id="npsconstancia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-save-file"></span>Exportar</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-envelope"></span>Enviar correo</a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </button>
+                    Pague en cualquier oficina de los bancos Scotiabank, Interbank, Banco de Crédito BCP, BBVA Continental, Nación y BanBif. También está disponible el pago en los Agentes BCP del Banco de Crédito, Agentes MultiRed del Banco de la Nación y Agentes Interbank. Además, en los portales web bancarios del Scotiabank y Banco de Crédito BCP.<br>
+                    <strong>IMPORTANTE:</strong> El presente documento no es una constancia de pago.
+                </div>
+                <fieldset class="linea-caja">
+                    <br>
+                    <strong>RUC:</strong>  42635712423
+                    <br>
+                    <strong>Nombre o Razón Social:</strong> Complexless
+                </fieldset>
+                <fieldset class="linea-caja">
+                    <br>
+                    <strong>Número de Pago SUNAT:</strong> 32114117
+                    <br>
+                    <strong>Importe a pagar:</strong> S/. 114
+                    <br>
+                    <strong>Fecha límite de pago:</strong> 01/08/2014
+                    <br>
+                </fieldset>
+                <fieldset class="linea-caja">
+                    <br>
+                    <div class="table-responsive">
+                        <table class="table table-striped" style="font-size: 13px;">
+                            <thead>
+                            <tr>
+                                <th>Periodo</th>
+                                <th>Tributo</th>
+                                <th>T. Asociado</th>
+                                <th>Documento</th>
+                                <th>Pago</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>07/2014</td>
+                                <td>5029</td>
+                                <td>-</td>
+                                <td>00000001</td>
+                                <td>S/. 122</td>
+                            </tr>
+                            <tr>
+                                <td>07/2014</td>
+                                <td>5056</td>
+                                <td>-</td>
+                                <td>00000001</td>
+                                <td>S/. 52</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr style="border-top: 2px solid #DDD;">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Docuemnto(s) en Bandeja</td>
+                                <td><strong>1</strong></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td><strong>S/.1740</strong></td>
+                            </tr>
+                            </tfoot>
+
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar-fixed-top box-float" role="navigation" style="padding: 4px;top:50px">
+    <p class="titulo-step">
+        <STRONG class="hidden-xs">Paso 3:</STRONG> Presente, si realizará un pago previamente seleccione el medio a utilizar o genere el Número de Pago SUNAT (NPS).
+    </p>
+</div>
+<div class="alert alert-warning alert-dismissible hidden" role="alert" id="msj-error">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="    margin-right: 25px;"><span aria-hidden="true"><span class="glyphicon glyphicon-ok"></span></span></button>
+    <div>
+            <span class="glyphicon glyphicon-remove" style="background-color: #AB1440;
+    padding: 3px;
+    color: #fff;
+    border-radius: 50%;"></span><h4 style="display:inline-block; padding-left:10px;">Se ha detectado un error</h4>
+        <p>Usted no cuenta con saldo en esta indetidad bancaria, por favor debe seleccionar otra entidad bancaria</p>
+    </div>
+</div>
+<div class="alert alert-warning text-center" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+    "<span class="titleCabeceraFormulario"><strong>Sr. contribuyente,</strong> una vez que confirme el(os) pago(s) con la Entidad Financiera elegida, para las declaraciones juradas que estuviera presentando y pagando en formulario distinto a PDT, se le estará generando automáticamente una boleta de pago por cada tributo pagado</span>"
+</div>
+<form class="form-horizontal" action="" method="post">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12" id="codMedPag11">
+                    <fieldset class="linea-caja">
+                        <legend id="legendBancos" style=""><span class="legend-bancos">Bancos</span></legend>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4 text-center" data-banco="02" style="margin-top:10px;display:none;">
+                                <label>
+                                    <input type="radio" name="banco" />
+                                    <img id="img02" src="">
+                                    <div class="panel Pagos-Bancos_">
+                                        <span data-titulo="02">Horarios de Atención</span>
+                                        <hr>
+                                        <span data-des="02">Las 24 horas, los 7 días de la semana.</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 text-center" data-banco="09" style="margin-top:10px;display:none;">
+                                <label>
+                                    <input type="radio" name="banco" />
+                                    <img id="img09" src="">
+                                    <div class="panel Pagos-Bancos_">
+                                        <span data-titulo="09">Horarios de Atención</span>
+                                        <hr>
+                                        <span data-des="09">Las 24 horas, los 7 días de la semana.</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 text-center" data-banco="03" style="margin-top:10px;display:none;">
+                                <label>
+                                    <input type="radio" name="banco" />
+                                    <img id="img03" src="">
+                                    <div class="panel Pagos-Bancos_">
+                                        <span data-titulo="03">Horarios de Atención</span>
+                                        <hr>
+                                        <span data-des="03">de: 00:30a.m.<br> a: 07:58p.m.<br> los 7 días de la semana.</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 text-center" data-banco="38" style="margin-top:10px;display:none;">
+                                <label>
+                                    <input type="radio" name="banco" />
+                                    <img id="img38" src="">
+                                    <div class="panel Pagos-Bancos_">
+                                        <span data-titulo="38">Horarios de Atención</span>
+                                        <hr>
+                                        <span data-des="38">Las 24 horas, los 7 días<br> de la semana.</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 text-center" data-banco="11" style="margin-top:10px;display:none;">
+                                <label>
+                                    <input type="radio" name="banco" />
+                                    <img id="img11" src="">
+                                    <div class="panel Pagos-Bancos_">
+                                        <span data-titulo="11">Horarios de Atención</span>
+                                        <hr>
+                                        <span data-des="11">Las 24 horas, los 7 días<br> de la semana.</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 text-center" data-banco="07" style="margin-top:10px;display:none;">
+                                <label>
+                                    <input type="radio" name="banco" />
+                                    <img id="img07" src="">
+                                    <div class="panel Pagos-Bancos_">
+                                        <span data-titulo="07">Horarios de Atención</span>
+                                        <hr>
+                                        <span data-des="07">Las 24 horas, los 7 días<br> de la semana.</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <h6 style="margin: 25px -19px -20px; background-color: #F4F4F4; padding: 15px; border-top: 1px solid #DDD;">
+                            <span class="pie-bancos">“Previamente debe haber celebrado un convenio de afiliación con su banco. Para tal efecto contáctese con su banco o sectorista”</span>
+                        </h6>
+                    </fieldset>
+                </div>
+                <div class="col-sm-12" id="codMedPag21">
+                    <fieldset class="linea-caja">
+                        <legend id="legendDetracciones"><span class="legend-detracciones">Cargo en Cuenta Detracciones</span></legend>
+                        <div class="row">
+                            <div class="text-center" data-banco="18" style="display:none;">
+                                <label>
+                                    <input type="radio" name="banco">
+                                    <img id="img18" src="">
+                                </label>
+                            </div>
+                        </div>
+                        <h6 style="margin: 25px -19px -20px; background-color: #F4F4F4; padding: 15px; border-top: 1px solid #DDD;">
+                            <span class="pie-detracciones">“Servicio disponible de 8 am a 8 pm de lunes a sábado”</span>
+                        </h6>
+                    </fieldset>
+                </div>
+                <div class="col-sm-12" id="codMedPag41">
+                    <fieldset class="linea-caja">
+                        <legend id="legendTarjeta"><span class="legend-tarjeta">Tarjeta Cr&eacute;dito o D&eacute;bito</span></legend>
+                        <div class="row">
+                            <div class="text-center" data-banco="67" >
+                                <label>
+                                    <input type="radio" name="banco" id="tarjeta"/>
+                                    <img id="img67" src="">
+                                </label>
+                            </div>
+                        </div>
+                        <h6 style="margin: 25px -19px -20px; background-color: #F4F4F4; padding: 15px; border-top: 1px solid #DDD;">
+                            <span class="pie-tarjeta">“Su tarjeta VISA debe estar afiliada a Verified by Visa”</span>
+                        </h6>
+                    </fieldset>
+                </div>
+                <div class="col-sm-12" id="codMedPag51">
+                    <fieldset class="linea-caja">
+                        <legend id="legendNPS"><span class="legend-nps">NPS (Generación de c&oacute;digo para pago en bancos)</span></legend>
+                        <div class="row">
+                            <div class="text-center" data-banco="00" style="display:none;">
+                                <button id="btn-nps" type="button" class="hidden" data-toggle="modal" data-target="#npsconstancia_DESABILITADO"></button>
+                                <label>
+                                    <input id="click-nps" type="radio" name="banco" />
+                                    <img id="img00" src="">
+                                </label>
+                            </div>
+                        </div>
+                        <h6 style="margin: 25px -19px -20px; background-color: #F4F4F4; padding: 15px; border-top: 1px solid #DDD;text-align: justify;">
+                            <span class="pie-nps">“Este número le permite efectuar el pago en cualquier oficina del Scotiabank, Interbank, Banco de Crédito BCP, BBVA Continental, Nación y BanBif. También puede efectuar el pago en los Agentes BCP del Banco de Crédito, Agentes MultiRed del Banco de la Nación y Agentes Interbank. Además, en los portales web del Scotiabank y Banco de Crédito BCP.”</span>
+                        </h6>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 hidden-xs" style="margin-top: 9px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-shopping-cart"> </span>Importe Total
+                </div>
+                <div class="panel-body">
+                    <dl style="margin-bottom:0" class="text-center">
+                        <dd> <h3 class="title-ui" data-banco="totalpago">S/. 0.00</h3></dd>
+                    </dl>
+                    <button type="button" class="btn btn-block btn-pp" id="btnPagar2">
+                        Presente/Pague
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- BORRAR PRUEBA CALIDAD-->
+        <div class="col-sm-4 hidden-xs pruebaCalidad" style="margin-top: 9px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-shopping-cart"> </span>Pruebas para QA
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-5 hidden-xs">
+                        <div class="form-group">
+                            <label for="sel1">Tipo Trama:</label>
+                            <select class="form-control" id="tipoTrama">
+                                <option value="01">Texto</option>
+                                <option value="02">XML</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 hidden-xs">
+                        <div class="form-group">
+                            <label for="sel1">CASO DE PRUEBA:</label>
+                            <select class="form-control" id="casoPrueba">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 hidden-xs">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="0" id="QAHabilitado">&nbsp;&nbsp;&nbsp;&nbsp;Habilitado para QA</label>
+                            </div>
+                            <input maxlength="10" class="form-control" style="width:300px;" id="QAnumeropago" placeholder="Numero de Pago (10 caracteres)"></input>
+                            <input maxlength="2" class="form-control" style="width:300px;" id="QAentfinanciera"  placeholder="Codigo Entidad Financiera (02,03,09,11)"></input>
+                            <input maxlength="2" class="form-control" style="width:300px;" id="QAtipooperacion" placeholder="Tipo Operacion ( 06)"></input>
+                            <input maxlength="20" class="form-control" style="width:300px;" id="QAnumerooperacionbanco" placeholder="Num Oper Banco (20 carateres)">
+                            <input maxlength="10" class="form-control" style="width:300px;" id="QAfechapago" placeholder="dd/mm/yyyy o YYYYMMDD"></input>
+                            <input maxlength="8" class="form-control" style="width:300px;" id="QAhorapago" placeholder="hh:mm:ss o HHMMSS"></input>
+                            <input maxlength="11" class="form-control" style="width:300px;" id="QAnumeroruc" placeholder="Numero Ruc (11 caracteres)"></input>
+                            <input maxlength="12" class="form-control" style="width:300px;" id="QAimportepagar" placeholder="Importe a Pagar"></input>
+                            <input maxlength="2" class="form-control" style="width:300px;" id="QArespuestabanco" placeholder="Repuesta de Banco (00 - Extorno)"></input>
+                            <input maxlength="2" class="form-control" style="width:300px;" id="QAtiposervicio" placeholder="Tipo de Servicio (01,02,03,04,05)"></input>
+                        </div>
+                      
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--FIN BORRAR PRUEBA CALIDAD-->
+    </div>
+</form>
+ <!-- BORRAR PRUEBA CALIDAD ObtenerNumeroOperacion-->
+ <div class="col-sm-4 hidden-xs pruebaCalidad" >
+  <button id="btnObtenerNumeroOperacion" >ObtenerNumeroOperacion</button>
+  </div>
+   <!--FIN BORRAR PRUEBA CALIDAD-->
+<br>
+<!--PIE DE FORMULARIO-->
+<div class="alert alert-warning text-center" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+    "<span class="titlePieFormulario">Sr. contribuyente, verifique su cuenta antes de pagar.</span>"
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal25" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span>Procesando pago, espere un momento...</span>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Seleccione Medio de Pago -->
+<div class="modal fade" id="modalSeleccioneMedioPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Validador de la Bandeja</h4>
+            </div>
+            <div class="modal-body">
+                !Error, deberá de seleccionar el medio o la entidad financiera para realizar el pago.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReintentarPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Bandeja de Pagos</h4>
+            </div>
+            <div class="modal-body">
+                TRANSACCION NO REALIZADA:<br>
+                <span class="titleMensajeReintentarPago">Sr. Contribuyente por favor de intentar nuevamente el pago.</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErrorSinServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Incovenientes para acceder a SUNAT</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Error. Señor contribuyente disculpe la molestia, en estos momentos no se puede acceder a los servicios de SUNAT, por favor reintentar en 5 minutos.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPresentePague" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" data-show="true">
+    <!--<div class="modal-dialog modal-lg" role="document">-->
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="btnCerrar" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pagos SUNAT</h4><div id="rptaServletVisa"></div>
+            </div>
+            <!--<div id="respuestaServlet" class="modal-body" height="900" width="550">-->
+            <!--  <iframe id="frame" name="frame" src="../gui/fvisa.html" height="280" width="100%" frameBorder="0" ></iframe> -->
+
+            <iframe id="frameVisa" name="frameVisa" height="350" width="100%" frameBorder="0" ></iframe>
+
+            <!--<div id="idResultado"></div>-->
+            <!--</div>-->
+            <!--<div id="botones" class="modal-footer">
+                <button id="btnAceptarPagar2" type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>-->
+            <!--<button id="btnAceptarPagar2" type="button" class="btn btn-primary" >Caso Éxito</button>
+            <button id="btnCancelarPagar2" type="button" class="btn btn-primary" >Caso Error</button>
+        </div>-->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalPresentePagueError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pagos SUNAT</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Error. Señor contribuyente disculpe la molestia, se produjo error en el pago.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Caso Éxito</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Caso Error</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPresentePagueExito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pagos SUNAT</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Exito. Señor contribuyente, se realizo con exito el pago.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Caso Éxito</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Caso Error</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalMensajePagos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span class="titleMensajeGeneral"></span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnconfirmar" type="button" class="btn btn-primary" data-dismiss="modal">ACEPTAR</button>
+                <button id="btnCancelar" type="button" class="btn" data-dismiss="modal">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.ajax-retry.min.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/bowser/1.0.0/js/bowser.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/moment/2.18.1/js/moment.min.js"></script>
+<script src="../js/apps/comunes/comunLibreria.js"></script>
+<script src="../js/apps/comunes/comunServicios.js"></script>
+<script src="../js/apps/comunes/comunPresentar.js"></script>
+<script src="../js/apps/comunes/comunPasarela.js"></script>
+<script src="../js/apps/comunes/comunConstancia.js"></script>
+<script src="../js/apps/comunes/comunBandeja.js"></script>
+<script src="../js/apps/pagos.js"></script>
+
+</body>
+</html>

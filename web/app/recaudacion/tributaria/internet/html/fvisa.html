@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="../css/fvisa.css" rel="stylesheet">
+</head>
+<body>
+<!-- Ini div_centro--><br>
+	<div id="formVisa" class="div_centro">
+                    <div id="div_formulario" class="div_formulario">
+                        <div class="div_agrupador">
+                            <div class="div_control">
+                                <table border="0" class="table_control">
+                                    <tbody>
+                                    <tr>
+                                        <td class="td_etiquetas">
+                                            <span id="lblNumTarjeta">Tarjeta de Crédito o Débito</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_control">
+                                            <input name="txtTarjetaTitular" type="text" id="txtTarjetaTitular" class="input_tarjeta border_control" disabled="" maxlength="23">
+                                            <div id="div_valida_tarjeta" style="float:left;vertical-align:middle;margin-top:5px;" class="oculto">
+                                                <span class="glyphicon glyphicon-credit-card"></span>
+                                            </div>
+                                            <!--Ini 09/01/2015-->
+                                            <!--<div id="div_valida_tarjeta" style="float:left;vertical-align:middle;margin-top:5px;" class="oculto">
+                                                <img src="./Formulario de Pago_files/loading.gif">
+                                            </div>
+                                            <Fin 09/01/2015-->
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="div_control">
+                                <table border="0" class="table_control">
+                                    <tbody><tr>
+                                        <td class="td_etiquetas">
+                                            <span id="lblFechaVencimiento">Fecha de Expiración</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_control">
+                                            <select name="cbMes" id="cbMes" class="select_fecha border_control" disabled="">
+                                                <option value="00">Mes</option><!--<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>--></select>
+
+                                            <select name="cbAnho" id="cbAnho" class="select_fecha border_control" disabled="">
+                                                <option value="0000">Año</option><!--<option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option><option value="2038">2038</option><option value="2039">2039</option><option value="2040">2040</option><option value="2041">2041</option><option value="2042">2042</option><option value="2043">2043</option><option value="2044">2044</option><option value="2045">2045</option><option value="2046">2046</option><option value="2047">2047</option><option value="2048">2048</option><option value="2049">2049</option><option value="2050">2050</option><option value="2051">2051</option><option value="2052">2052</option><option value="2053">2053</option><option value="2054">2054</option><option value="2055">2055</option><option value="2056">2056</option><option value="2057">2057</option><option value="2058">2058</option><option value="2059">2059</option><option value="2060">2060</option><option value="2061">2061</option><option value="2062">2062</option><option value="2063">2063</option><option value="2064">2064</option><option value="2065">2065</option>--></select>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="div_agrupador">
+                            <div class="div_control">
+                                <table border="0" class="table_control">
+                                    <tbody><tr>
+                                        <td class="td_etiquetas">
+                                            <span id="lblCodSeguridad">Código de Seguridad</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_control">
+                                            <!--<input name="txtCodSeguridad" type="text" id="txtCodSeguridad" class="input_codseguridad border_control" disabled="" maxlength="3">&nbsp;<a id="lnkHelp" href="http://qas.multimerchantvisanet.com/formularioweb/formulariopago.aspx#" class="link_codseguridad" title="CVV2">-->
+                                            <input name="txtCodSeguridad" type="text" id="txtCodSeguridad" class="input_tarjeta border_control" disabled="" maxlength="23">
+                                            <div id="div_valida_tarjeta" style="float:left;vertical-align:middle;margin-top:5px;" class="oculto">
+                                                <span class="glyphicon glyphicon-credit-card"></span>
+                                            </div>
+                                            <!--
+                                            <img src="./Formulario de Pago_files/help_cvv2.png" class="img_codseguridad" alt="Codigo de Seguridad"></a>-->
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="div_agrupador">
+                            <div class="div_control">
+                                <table border="0" class="table_control">
+                                    <tbody><tr>
+                                        <td class="td_etiquetas">
+                                            <span id="lblNomTitular">Nombre del Titular de la Tarjeta</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_control">
+                                            <input name="txtNomTitular" type="text" id="txtNomTitular" class="input_titular border_control" disabled="" maxlength="23">
+                                            <div id="div_valida_nom_titular" style="float:left;vertical-align:middle;margin-top:5px;" class="oculto">
+                                                <span class="glyphicon glyphicon-user"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="div_control">
+                                <table border="0" class="table_control">
+                                    <tbody><tr>
+                                        <td class="td_etiquetas">
+                                            <span id="lblApeTitular">Apellido del Titular de la Tarjeta</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_control">
+                                            <input name="txtApeTitular" type="text" id="txtApeTitular" class="input_titular border_control" disabled="" maxlength="23">
+                                            <div id="div_valida_ape_titular" style="float:left;vertical-align:middle;margin-top:5px;" class="oculto">
+                                                <span class="glyphicon glyphicon-user"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="divMail" class="div_agrupador">
+                            <div class="div_control">
+                                <table border="0" class="table_control">
+                                    <tbody><tr>
+                                        <td class="td_etiquetas">
+                                            <span id="lblCorreoTitular">Correo Electrónico</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_control">
+                                            <input name="txtCorreoTitular" type="text" id="txtCorreoTitular" class="input_correo border_control" disabled="" maxlength="23">
+                                            <div id="div_valida_ape_titular" style="float:left;vertical-align:middle;margin-top:5px;" class="oculto">
+                                                <span class="glyphicon glyphicon-envelope"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="div_centro">
+                            <div id="div_formulario2" class="div_formulario2 ">-->
+                        
+                    <!--</div>  
+                </div>-->
+
+                </div>
+
+
+
+                <!--
+                <div class="modal-body">
+                    <table class="table table-striped" style="border: 1px solid #DDD;">
+                        <tr>
+                            <td>Señor contribuyente esta seguro de realizar la pago con el importe total.<br></td>
+                        </tr>
+                    </table>
+                </div>-->
+                
+        <br>
+        <br>
+            <div id="btnVisa" class="div_derecha">
+                <button id="btnAceptarPagar2" type="button" class="btn btn-primary" >Caso Éxito</button>
+                <button id="btnCancelarPagar2" type="button" class="btn btn-primary" >Caso Error</button>
+   
+                <input type=hidden id="nombrePillin" name="nombrePillin" value="Danny">
+                   
+                </div>
+    </div>
+                    <!--    <div class="div_agrupador">
+                            <div class="div_control">
+                                <table border="0" class="table_control">
+                                    <tbody><tr>
+                                        <td class="td_etiquetas div_formulario2">
+                                            <div id="divRealizarPago">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>-->
+      
+<div id="respuestaServlet">
+</div>
+
+	<script src="//jslibs1.sunat.gob.pe/bowser/1.0.0/js/bowser.js"></script>
+	<script src="//jslibs1.sunat.gob.pe/moment/2.18.1/js/moment.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1068 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario 0633</title>
+    <meta name="author" content="SUNAT - v1.0.0-01Feb2017">
+    <meta name="locality" content="Lima, Peru" />
+    <link rel="stylesheet" href="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/carousel.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/ie-emulation-modes-warning.js"></script>
+</head>
+<body>
+
+<!-- Primer Modal -->
+<div class="modal fade" id="modal-deayuda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">PDF de Ayuda</h4>
+            </div>
+            <div class="modal-body">
+                Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Primer Modal -->
+<div class="modal fade" id="myModal-40" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="00001">
+                <div class="modal-header text-center">
+                    <button id="cerrar-preliminar" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title" id="myModalLabel">Usted añadió un formulario a la bandeja de pagos. Para continuar seleccione:</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="#" class="btn btn-default btn-block" id="simula-pdf-click">Ver preliminar</a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="#" class="btn btn-default btn-block" id="Otro-Formulario">Otro formulario</a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="#" class="btn btn-primary btn-block" id="Presentar-Pagar">Presentar/Pagar/NPS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden" id="00002">
+                <div class="modal-header">
+                    <button id="cerrar-reporte-preliminar" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                        <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-save-file"></span>Exportar</a>
+                        <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                        <a class="btn btn-primary btn-sm aire-next" href="#"><span class="glyphicon glyphicon-envelope"></span>Enviar correo</a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning text-center" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                        "Este reporte no constituye la Constancia de Declaración y Pago del PDT"
+                    </div>
+                    <!-- PRELIMINAR HTML -->
+                    <table class="table table-bordered tablas-font">
+                        <tr>
+                            <td rowspan="3" style="width: 15%;" class="text-center">
+                                <h2><strong>SUNAT</strong></h2>
+                                <h6>DECLARACIÓN PAGO</h6>
+                                <h4><strong>633</strong></h4>
+                            </td>
+                            <td colspan="4" class="text-center">
+                                <h5><strong>AGENTES DE PERCEPCIONES</strong></h5>
+                                <h6>Período <span class="constancia-declaraciondato-periodo"></span></h6>
+
+                            </td>
+                            <td style="width: 20%;">
+                                <h6>Copia para el contribuyente (Pag. 1)</h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%;">
+                                RUC
+                            </td>
+                            <td colspan="3">
+                                <strong><span class="constancia-declaraciondato-ruc"></span></strong>
+                            </td>
+                            <td rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                RAZÓN SOCIAL
+                            </td>
+                            <td>
+                                <strong><span class="constancia-declaraciondato-razonsocial"></span></strong>
+                            </td>
+                            <!--                            <td>PERIODO</td>
+                                                        <td>
+                                                            <strong><span class="constancia-declaraciondato-periodo"></span></strong>
+                                                        </td>-->
+                        </tr>
+                    </table>
+                    <br>
+                    <div class="watermark">Reporte Preliminar</div>
+
+                    <br>
+                    <table class="table table-bordered tablas-font">
+                        <tr>
+                            <td colspan="4" class="text-left">
+                                <h4><strong>DETERMINACION DE LA DEUDA TRIBUTARIA</strong></h4>
+                            </td>
+                            <td class="text-center">PERCEPCIÓN</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">PERCEPCIONES EFECTUADAS</td>
+                            <td class="text-center">401</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla401"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">Pagos previos(Efectivo,cheque. o doc.val)</td>
+                            <td class="text-center">402</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla402"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">PERCEPCIONES A PAGAR</td>
+                            <td class="text-center">403</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla403"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">Interés moratorio</td>
+                            <td class="text-center">404</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla404"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">TOTAL DEUDA TRIBUTARIA</td>
+                            <td class="text-center">405</td>
+                            <td class="text-right"><span class="constancia-declaracionseccion-casilla405"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left"><strong>IMPORTE A PAGAR</strong></td>
+                            <td class="text-center">410</td>
+                            <td class="text-right"><strong><span class="constancia-declaracionseccion-casilla410"></span></strong></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">RECTIFICA</td>
+                            <td class="text-center"><span class="constancia-declaracionseccion-casillaretificasi"></span></td>
+                            <td class="text-left">SI</td>
+                            <td class="text-left"><span class="constancia-declaracionseccion-casillaretificano"></span></td>
+                            <td class="text-left">NO</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">FORMA DE PAGO</td>
+                            <td class="text-center"><span class="constancia-declaracionseccion-casillaformapagoefectivo"></span></td>
+                            <td class="text-left">EFECTIVO</td>
+                            <td class="text-center"><span class="constancia-declaracionseccion-casillaformapagocheque"></span></td>
+                            <td class="text-left">CHEQUE</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">&nbsp;</td>
+                            <td class="text-left">&nbsp;</td>
+                            <td class="text-left">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-left">&nbsp;</td>
+                            <td class="text-left">&nbsp;</td>
+                            <td class="text-left">&nbsp;</td>
+                        </tr>
+                    </table>
+                    <br><br>
+                    <!-- FIN PRELIMINAR HTML -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal-frecuente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Añadir formulario frecuente</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped" style="border: 1px solid #DDD;" id="tabla-f-favoritos">
+                    <thead>
+                    <tr>
+                        <th>Formulario</th>
+                        <th>Descripción</th>
+                        <th>Nombre formulario</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>formulario 0633</td>
+                        <td>Agentes de Percepción ventas</td>
+                        <td><input id="txtnombreformulario" class="form-control input-sm" type="text" placeholder="Escribir nombre formulario" requerid></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <button type="button" id="grabarFrecuente" class="btn btn-primary" >Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalModificarPeriodoTributario" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modificar Periodo Tributario</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>Señor contribuyente, si modifica el período tributario se borrarán todas las casillas registradas del formulario. ¿Desea continuar? <br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <input id="urlModificarPeriodoTributario" type="hidden" value="">
+                <button id="btnModificarPeriodoTributario" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnNoModificarPeriodoTributario" type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalLimpiarFormulario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Limpiar formulario</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>Sr. Contribuyente, con esta acción se borrarán todas las casillas registradas del formulario. ¿Desea continuar? SI,NO<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="btnLimpiarFormulario" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnNoLimpiarFormulario" type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAlertaFormFrecuente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Añadir Formulario Frecuente</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Error. Señor contribuyente el Formulario ya se encuentra grabado como frecuente.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalPagosPrevios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog tablaPagosPrevios" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="titulo-asistente">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title nombre-f" id="myModalLabel">Pagos previos</h4>
+                </div>
+                <table id="tblPagosPrevios" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Formulario</th>
+                        <th>Nº Orden</th>
+                        <th>Cod. Tribu.</th>
+                        <th>Fecha Pres.</th>
+                        <th>Hora Pres.</th>
+                        <th>Importe Pago</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <br/>
+                <span id="mensajePagoPrevios" class="label label-danger"></span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSalirPagosPrevios" type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <button id="btnGuardarPagosPrevios" type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar-fixed-top box-float" role="navigation" style="padding: 4px;top:50px;z-index: 1000">
+    <p class="titulo-step"><strong>Paso 2:</strong> Complete o revise los datos del formulario seleccionado. Luego agréguelo a la bandeja de Declaración y Pago.</p>
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 5px;margin-top: 2px; position: absolute; right: 0; background-color: #F4F4F4; padding-left: 10px;">
+        <button class="hidden" data-toggle="modal" data-target="#myModal-2" id="Recuperar_boton"></button>
+        <li class="btn-group">
+            <button class="btn btn-primary btn-sm" href="#" data-toggle="tooltip" data-placement="bottom" title="Recuperar Preliminar" id="Recuperar_">
+                <span class="glyphicon glyphicon-calendar"></span>Recuperar
+            </button>
+            <button id="btnImportar" class="btn btn-primary btn-sm" onclick="$('#file').click();" data-toggle="tooltip" data-placement="bottom" title="Importar Archivo" style="margin-left: 0">
+                <span class="glyphicon glyphicon-open"></span>Importar
+            </button>
+            <input type="file" name="" id="file" class="hidden">
+            <button style="margin-right:15px;" class="btn btn-primary btn-sm" href="#" id="Clean-Form" data-toggle="tooltip" data-placement="bottom" title="Limpiar Formulario">
+                <span class="glyphicon glyphicon-refresh"></span>Limpiar
+            </button>
+        </li>
+    </ul>
+</div>
+<div class="alert alert-warning text-center" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+    <strong>Sr. Contribuyente,</strong> luego de llenar el formulario, asegúrese de agregarlo a la <strong>bandeja.</strong>
+</div>
+<div style="position:relative">
+    <h4 class="nombre-f" style="margin:0">
+        Formulario virtual N° 633 – Agentes de Percepción Hidrocarburos.
+        <a style="color:white; cursor:pointer; text-decoration:none;" target="_blank" id="urlArchivoAyuda" href=""><span class="glyphicon glyphicon-question-sign puntero"></span></a>
+    </h4>
+    <div class="btn btn-favorito" id="titFormularioFrecuente" data-toggle="tooltip" data-placement="left" title="Formulario frecuente">
+        <a href="#" id="linkFormularioFrecuente" class="glyphicon glyphicon-star" data-toggle="modal" data-target="#modal-frecuente"></a>
+    </div>
+</div>
+<br>
+<div>
+    <form class="form-horizontal" action="" method="post" id="Reset-01">
+        <fieldset>
+            <div style="position:relative">
+                <ul class="nav nav-tabs pull-right" role="tablist" id="Simpli-comple">
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" data-toggle="dropdown" style="background-color: transparent !important;">
+                                <span class="glyphicon glyphicon-cog"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" style="min-width: 140px;" id="Densidad">
+                                <li><a href="#" id="Normal">Normal<span class="glyphicon glyphicon-ok"></span></a></li>
+                                <li><a href="#" id="Ligero">Compacta<span class="glyphicon glyphicon-ok hidden"></span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home" id="tab-li-home01">Informaci&oacute;n <br>General</a></li>
+                    <li><a data-toggle="tab" href="#menu1" id="tab-li-menu01">Detalle de <br>Declaraci&oacute;n</a></li>
+                    <li><a data-toggle="tab" href="#menu2" id="tab-li-menu02">Determinaci&oacute;n <br>de la Deuda</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div data-sample="n1" id="home" class="tab-pane fade in active">
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <fieldset class="linea-caja">
+                                    <legend>Per&iacute;odo Tributario</legend>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label" for="name">Per&iacute;odo:</label>
+                                                <div class="col-md-7">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">007</span>
+                                                        <input data-casilla="7" id="casilla7" name="name" type="text" placeholder="mm/aaaa" class="form-control  input-sm date-picker" readonly="readonly">
+                                                        <div class="input-group-btn">
+                                                            <button id="help7" type="button" class="btn btn-default btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                                <span class="glyphicon glyphicon-question-sign"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-6">
+                                <fieldset class="linea-caja">
+                                    <legend>Tipo de Declaración:</legend>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label" for="name" style="letter-spacing: -0.5px;">Declaración:</label>
+                                            <div class="col-md-7" style="padding-right:0px;">
+                                                <select id="lstTipoDeclaracion" data-casilla="895" class="form-control input-sm">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary btn-sm" id="Siguiente01">
+                                Siguiente
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div data-sample="n1" id="menu1" class="tab-pane fade" style="margin-top: 20px;">
+                        <fieldset class="linea-caja">
+                            <legend>Detalle</legend>
+                            <input type="hidden" id="saldofavor">
+                            <input type="hidden" id="tienelibros">
+                            <div id="ventas-00" class="tab-pane fade in active">
+                                <div class="row">
+                                    <div class="col-sm-6 aire-up">
+                                        Base Imponible:
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">502</span>
+                                            <input data-casilla="502" id="casilla502" name="" type="text" class="form-control input-sm Activar-Asistente casilla-align" placeholder="">
+                                            <div class="input-group-btn">
+                                                <button id="help502" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="Separador">
+                                <div class="row">
+                                    <div class="col-sm-6 aire-up">
+                                        Percepciones Efectuadas
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">401</span>
+                                            <input data-casilla="401" id="casilla401" name="" type="text" class="form-control input-sm Activar-Asistente casilla-align" placeholder="">
+                                            <div class="input-group-btn">
+                                                <button id="help401" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="Separador">
+                            </div>
+                            <button type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#inforetencion" id="Activar-Asistente">Ver Asistente</button>
+                        </fieldset>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default btn-sm" id="Anterior01">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                Anterior
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="Siguiente02">
+                                Siguiente
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div data-sample="n1" id="menu2" class="tab-pane fade">
+                        <fieldset class="linea-caja" style="margin-top: 20px;">
+                            <div id="ventas-00" class="tab-pane fade in active">
+                                <div class="row" style="margin-top: 8px;">
+                                    <div class="col-sm-6 aire-up">
+                                        Percepciones Efectuadas
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <!--<button type="button" class="hidden" id="click-modal402" data-toggle="modal" data-target="#modal402"></button>-->
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="visibility:hidden;">000</span>
+                                            <input id="inputRentenciones401" type="text" class="form-control input-sm" readonly="readonly" placeholder="" value="">
+                                            <div class="input-group-btn">
+                                                <button id="help000" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="Percepciones Efectuadas" data-original-title title>
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="Separador">
+
+
+                                <div class="row" style="margin-top: 8px;">
+                                    <div class="col-sm-6 aire-up">
+                                        Pagos Previos
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="button" class="hidden" id="click-modal402" data-toggle="modal" data-target="#modal402"></button>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">402</span>
+                                            <input data-casilla="402" id="casilla402" name="" type="text" class="Activar-Asistente form-control input-sm casilla-align" value="">
+                                            <div class="input-group-btn">
+                                                <button id="help402" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="Separador">
+                                <div class="row">
+                                    <div class="col-sm-6 aire-up">
+                                        Percepción a Pagar
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">403</span>
+                                            <input id="casilla403" data-casilla="403" name="" type="text" class="form-control input-sm casilla-align" placeholder="">
+                                            <div class="input-group-btn">
+                                                <button id="help403" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="Separador">
+                                <div class="row">
+                                    <div class="col-sm-6 aire-up">
+                                        Inter&eacute;s Moratorio
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">404</span>
+                                            <input id="casilla404" data-casilla="404" name="" type="text" class="form-control input-sm casilla-align" placeholder="">
+                                            <div class="input-group-btn">
+                                                <button id="help404" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="Separador">
+                                <div class="row">
+                                    <div class="col-sm-6 aire-up">
+                                        Total Deuda Tributaria
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">405</span>
+                                            <input id="casilla405" data-casilla="405" name="" type="text" class="form-control input-sm casilla-align" value="">
+                                            <div class="input-group-btn">
+                                                <button id="help405" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="Separador">
+                                <div class="row">
+                                    <div class="col-sm-6 aire-up">
+                                        Importe a Pagar
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">410</span>
+                                            <input id="casilla410" data-casilla="410" name="" type="text" class="form-control input-sm casilla-align" value="">
+                                            <div class="input-group-btn">
+                                                <button id="help410" type="button" class="btn btn-default btn-sm" aria-label="Help" data-container="body" data-toggle="popover" data-placement="top" data-content="">
+                                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <input id="casilla2" data-casilla="2" name="" type="hidden" value="">
+                        <input id="casilla13" data-casilla="13" name="" type="hidden" value="">
+                        <input id="casilla58" data-casilla="58" name="" type="hidden" value="">
+                        <input id="casilla5" data-casilla="5" name="" type="hidden" value="">
+                        <input id="casilla500" data-casilla="500" name="" type="text" class="hidden" value="01">
+                        <input id="casilla501" data-casilla="501" name="" type="text" class="hidden" value="">
+                        <input id="casilla511" data-casilla="511" name="" type="text" class="hidden" value="">
+                        <input id="casilla512" data-casilla="512" name="" type="text" class="hidden" value="">
+                        <input id="casilla513" data-casilla="513" name="" type="text" class="hidden" value="">
+                        <input id="casilla514" data-casilla="514" name="" type="text" class="hidden" value="">
+                        <input id="casilla515" data-casilla="515" name="" type="text" class="hidden" value="">
+                        <input id="casilla516" data-casilla="516" name="" type="text" class="hidden" value="">
+                        <input id="casilla517" data-casilla="517" name="" type="text" class="hidden" value="">
+                        <input id="casilla896" data-casilla="896" name="" type="text" class="hidden" value="01">
+                        <input id="casilla503" data-casilla="503" name="" type="text" class="hidden" value="">
+                        <input id="casilla871" data-casilla="871" name="" type="text" class="hidden" value="">
+                        <br>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default btn-sm" id="Anterior02">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                Anterior
+                            </button>
+                            <a href="#" class="btn barraBuscar02 btn-sm" style="color:white !important;margin-right: 15px;margin-left: 5px">
+                                <span class="glyphicon glyphicon-plus btn-right_"></span>Agregar a bandeja
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+        </fieldset>
+    </form>
+</div>
+
+<div id="inforetencion" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <table class="table table-bordered table-condensed">
+                    <div id="titulo-asistente">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title nombre-f" id="myModalLabel">Asistente Comprobantes de Percepción</h4>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th class="text-center"></th>
+                        <th class="text-center">Base Imponible</th>
+                        <th class="text-center">Percepciones Efectuadas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            Comprobante electrónico
+                        </td>
+                        <td>
+                            <input data-casilla="102" name="" type="text" class=" form-control input-sm" value="99">
+                        </td>
+                        <td>
+                            <input data-casilla="104" name="" type="text" class=" form-control input-sm" value="99">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Comprobante Impreso
+                        </td>
+                        <td>
+                            <input data-casilla="103" name="" type="text" class=" form-control input-sm" value="99">
+                        </td>
+                        <td>
+                            <input data-casilla="105" name="" type="text" class=" form-control input-sm" value="99">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer" style="border:0px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="detalleretension" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Detalle de la Percepción</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <fieldset class="linea-caja">
+                    <legend> Detalle de Percepción Emitida</legend>
+                    <div class="form-group">
+                        <label for="email">RUC:</label>
+                        <input type="number" class="form-control" id="" value="201111111112">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Serie:</label>
+                        <input type="text" class="form-control" id="" value="0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Número</label>
+                        <input type="text" class="form-control" id="" value="00000001">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Fecha Emision</label>
+                        <input id="name" name="name" type="text" placeholder="dd/mm/aaaa" class="form-control date-picker2 input-sm">
+                    </div>
+
+                </fieldset>
+                <fieldset class="linea-caja">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <THEAD>
+                            <tr>
+                                <th>Tipo Documento</th>
+                                <th>Serie</th>
+                                <th>Número</th>
+                                <th>Fec. Emisión</th>
+                                <th>Monto</th>
+                            </tr>
+                            </THEAD>
+                            <tbody>
+                            <tr>
+                                <td>FACTURA</td>
+                                <td>0001</td>
+                                <td>00000023</td>
+                                <td>05/03/2013</td>
+                                <td>1,000.00</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <p>1 Registro</p>
+                    </div>
+
+
+                    <fieldset class="" style="margin: 20px;float:right;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detallepago">Nuevo</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detallepago">Modificar</button>
+                        <button type="button" class="btn btn-primary">Eliminar</button>
+
+                    </fieldset>
+
+                </fieldset>
+
+            </div>
+            <div class="modal-footer" style="border:0px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">SALIR</button>
+                <button type="button" class="btn btn-primary">ACEPTAR</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="detallepago" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">0633-Detalle del Comprobante de Pago Involucrado</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form">
+                    <fieldset class="linea-caja">
+                        <legend> Detalle del Comprobante de Pago Involucrado</legend>
+                        <div class="form-group">
+                            <label for="email">Tipo doc:</label>
+                            <select>
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                            </select>
+                            <label for="email">FACTURA</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Serie:</label>
+                            <input type="text" class="form-control" id="" value="0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Nro. documento</label>
+                            <input type="text" class="form-control" id="" value="000000023">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Fecha Emision</label>
+                            <input id="name" name="name" type="text" placeholder="dd/mm/aaaa" class="form-control date-picker2 input-sm">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Valor Total del Comprobante de Pago:</label>
+                            <input type="text" class="form-control" id="" value="1000.00">
+                        </div>
+                    </fieldset>
+
+
+                </form>
+            </div>
+            <div class="modal-footer" style="border:0px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">SALIR</button>
+                <button type="button" class="btn btn-primary">ACEPTAR</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="Panel-Bandeja hidden" id="panel_errores">
+    <header class="Panel-Bandeja__Cabeza">
+        <span style="">Lista de Errores</span>
+        <label class="badge" style="margin:0"><span class="lista-errores-total"></span></label>
+        <span id="Panel-Bandeja-icono" class="pull-right glyphicon glyphicon-new-window"></span>
+    </header>
+    <div class="Panel-Bandeja__Cuerpo Show">
+        <ul id="lstErrores" class="list-group Lista-Pagos"></ul>
+    </div>
+</div>
+
+<!-- Modal Formulario Existente -->
+<div class="modal fade" id="modalFormularioExiste" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Validador de la Bandeja</h4>
+            </div>
+            <div class="modal-body">
+                Sr. Contribuyente, ya existe en la Bandeja de Pagos el formulario Agentes de Percepción Hidrocarburos con el mismo período tributario, debe efectuar el pago de dicho formulario o eliminarlo de la bandeja.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Formulario en bandeja execde limite permitido -->
+<div class="modal fade" id="modalFormularioExcede" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Validador de la Bandeja</h4>
+            </div>
+            <div class="modal-body">
+                Sr. Contribuyente, ya no se puede agregar mas formulario a la bandeja ha excedido el maximo permitido.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErrorSinServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Incovenientes para acceder a SUNAT</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td><span class="titleMensajeSinServicio">!Error. Señor contribuyente disculpe la molestia, se produjo error al acceder a los formularios</span><br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCeroRegistros" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validacion SUNAT</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td> Señor contribuyente no hay registros en lo solicitado.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalErrorIdCache" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.parent.location.href=comunLibreria.getUrlIniciarSesion()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Acceso no Autorizado</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" style="border: 1px solid #DDD;">
+                    <tr>
+                        <td>!Error. Señor contribuyente, su sesión de acceso no es válida. Por favor vuelva a Autenticarse.<br></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="window.parent.location.href=comunLibreria.getUrlIniciarSesion()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalSustitutoriaRectificatoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validación de Tipo Declaración</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped" style="border: 1px solid white;">
+                    <tr>
+                        <td>Usted cuenta con declaraciones juradas presentadas para este periodo tributario,
+                            <br>¿desea Sustituir o Rectificar su declaración?
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="buttonConfirmarSI" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button type="button" id="buttonConfirmarNO" class="btn btn-default" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-warning" role="alert" id="mensaje-validacion-vigencia" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="    margin-right: 25px;"><span aria-hidden="true"><span class="glyphicon glyphicon-ok"></span></span></button>
+    <div>
+        <span class="glyphicon glyphicon-alert"></span><h4 style="display:inline-block; padding-left:10px;">Validación de vigencia de Formulario</h4>
+        <p>Sr. Contribuyente, si desea presentar una declaración de período anterior <b id="perIniVig"></b> hasta <b id="perFinVig"></b> debe utilizar el PDT 626</p>
+    </div>
+</div>
+
+<!-- Modal Mensajes en General -->
+<div class="modal fade" id="modalMensajeGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span class="titleMensajeGeneral"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Mensajes Confirmacion de Presentar/Pagar -->
+<div class="modal fade" id="modalMensajePresentarPagar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span class="titleMensajeGeneral"></span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnPresentarPagar" type="button" class="btn btn-primary" data-dismiss="modal">SI</button>
+                <button id="btnCancelarPresentarPagar" type="button" class="btn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEsperaDatos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span>Cargando datos, espere un momento...</span>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Casilla 410 -->
+<div class="modal fade" id="modalValidacionCasilla410" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Validador del Formulario</h4>
+            </div>
+            <div class="modal-body">
+                <span class="titleMensajeGeneral"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnModalCasilla410">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sscript>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.min.js"></script>   
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/pdf/1.0.0/js/pdf.js"></script>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/moment/2.18.1/js/moment.min.js"></script>
+</sscript>
+
+<script>
+    $("#grabarFrecuente").click(function () {
+
+        var nombre=$("#txtnombreformulario").val();
+        var json = comunIntegrador.guardarFrecuente("0633",nombre);
+    });
+    $("#Siguiente01").click(function() {
+        $("#tab-li-menu01").trigger("click");
+    });
+    $("#Anterior01").click(function() {
+        $("#tab-li-home01").trigger("click");
+    });
+    $("#Siguiente02").click(function() {
+        $("#tab-li-menu02").trigger("click");
+    });
+    $("#Anterior02").click(function() {
+        $("#tab-li-menu01").trigger("click");
+    });
+    $('.date-picker').datepicker({
+        format: "mm/yyyy",
+        viewMode: "months",
+        minViewMode: "months",
+        endDate: "0D",
+        autoclose: true
+    });
+</script>
+
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/math/3.8.0/js/math.min.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/bowser/1.0.0/js/bowser.js"></script>
+<script type="text/javascript" src="../js/apps/pdt/libs/sha1.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.inputmask.bundle.min.js"></script>   
+
+<script type="text/javascript" src="../js/apps/comunes/comunLibreria.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunServicios.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunConstancia.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunIntegrador.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunMensajes.js"></script>
+<script type="text/javascript" src="../js/apps/formularios/formulario0633.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunBandeja.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.ajax-retry.min.js"></script>
+</body>
+</html>

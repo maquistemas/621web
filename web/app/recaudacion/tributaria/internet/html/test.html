@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario 0626</title>
+    <meta name="author" content="SUNAT - v1.0.0-01Feb2017">
+    <meta name="locality" content="Lima, Peru" />
+    <link rel="stylesheet" href="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/carousel.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/ie-emulation-modes-warning.js"></script>
+</head>
+<body>
+<button type="button" id="mostrarVentana" class="btn btn-primary">Mostrar Ventana</button>
+
+<div class="container">
+    <p> Transacción </p>
+    <p> Error en proceso VISA </p>
+    <p>TRANSACCI�N NO REALIZADA: Existen problemas de comunicaci&oacuten con VISA. Por favor reintente nuevamente</p>
+    <button id="btnAceptar" type="button" class="btn btn-primary" onClick="parent.postMessage('PAGO-VISA-ERROR', '*');">Aceptar</button>
+</div>
+
+
+
+<!-- Modal Mensajes en General -->
+<div class="modal fade" id="modalIngresosNetos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document"  style="width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Ingresos Netos Declarados</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblIngresosNetos" class="table table-bordered table-condensed" style="width: 350px">
+                    <tr><th style="text-align: center">Periodo</th><th style="text-align: center">Base Imponible</th></tr>
+                    <tr><td style="text-align: center;">201606</td><td style="text-align: right;">100.00</td></tr>
+                    <tr><td style="text-align: center;">201607</td><td style="text-align: right;">200.00</td></tr>
+                    <tr><td style="text-align: center;">201608</td><td style="text-align: right;">300.00</td></tr>
+                    <tr><td style="text-align: center;">201609</td><td style="text-align: right;">400.00</td></tr>
+                    <tr><td style="text-align: center;">201610</td><td style="text-align: right;">500.00</td></tr>
+                    <tr><td style="text-align: center;">201611</td><td style="text-align: right;">600.00</td></tr>
+                    <tr><td style="text-align: center;">201612</td><td style="text-align: right;">700.00</td></tr>
+                    <tr><td style="text-align: center;">201701</td><td style="text-align: right;">100.00</td></tr>
+                    <tr><td style="text-align: center;">201702</td><td style="text-align: right;">200.00</td></tr>
+                    <tr><td style="text-align: center;">201703</td><td style="text-align: right;">300.00</td></tr>
+                    <tr><td style="text-align: center;">201704</td><td style="text-align: right;">400.00</td></tr>
+                    <tr><td style="text-align: center;">201705</td><td style="text-align: right;">100.00</td></tr>
+                    <tr><th style="text-align: center;">TOTAL</th><th style="text-align: right;">10,210.00</th></tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sscript>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.min.js"></script>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/pdf/1.0.0/js/pdf.js"></script>
+    <script type="text/javascript" src="//jslibs1.sunat.gob.pe/moment/2.18.1/js/moment.min.js"></script>
+</sscript>
+
+<script>
+    $("#mostrarVentana").click(function () {
+        $('#modalIngresosNetos').modal('show');
+    });
+</script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/math/3.8.0/js/math.min.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/bowser/1.0.0/js/bowser.js"></script>
+<script type="text/javascript" src="../js/apps/pdt/libs/sha1.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.inputmask.bundle.min.js"></script>
+
+<script type="text/javascript" src="../js/apps/comunes/comunLibreria.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunServicios.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunConstancia.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunIntegrador.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunMensajes.js"></script>
+<script type="text/javascript" src="../js/apps/formularios/formulario0626.js"></script>
+<script type="text/javascript" src="../js/apps/comunes/comunBandeja.js"></script>
+<script type="text/javascript" src="//jslibs1.sunat.gob.pe/jquery/1.11.2/js/jquery.ajax-retry.js"></script>
+
+</body>
+</html>

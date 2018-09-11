@@ -1,0 +1,1560 @@
+<div style="padding: 20px !important; margin-top:0px;" >
+    <div class="alert alert-warning text-center ng-ocultar" role="alert" style="text-align:left;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button> 
+        <strong>"Sr. Contribuyente,</strong> esta consulta mostrar&aacute; informaci&oacute;n desde el xx/xx/xxxx.<br> Para consultas de fechas anteriores deber&aacute; ingresar a: <a href="https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm" target="_blank">https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm</a>"
+        <br>
+        Observaciones:
+        <ul>
+            <li>El asterisco(*) se&ntilde;ala a los formularios pagados con cheque que fue rechazado.</li>
+            <li>Considera declaraciones efectuadas en todos los medios de pago ( Aplicaciones en PC, Formularios Virtuales, PDT).</li>
+            <li>De existir alguna omisi&oacute;n o de no estar de acuerdo con la informaci&oacute;n detallada en la consulta, deber&aacute; comunicarse con los Centros de Atenci&oacute;n o las Areas de Servicios al Contribuyente de su dependencia.</li>
+        </ul>
+    </div>
+
+    <h4 class="nombre-f" style="margin:0">Consulta de Declaraciones y Pagos
+        <span class="glyphicon glyphicon-question-sign puntero" data-toggle="modal" data-target="#modal-deayuda"></span>
+    </h4>
+    <br>
+<div class="ng-ocultar">
+    <label>Criterios de b&uacute;squeda</label>
+    <select class="form-control input-sm" ng-model="consultaBean.criterio" ng-change="seleccionarCriterio()" style="display:inline-block;width: 155px;margin-left:10px" id="criterios">
+        <option value="G">General</option>
+        <option value="E">Espec&iacute;fico</option>
+    </select>
+    <hr style="margin-top:10px">
+
+    <!-- CRITERIOS DE BUSQUEDA GENERAL -->
+    <form id="general" ng-show="isGeneral">
+        <div class="row">
+            <div class="col-sm-4">
+                <label>N&uacute;mero de formulario</label><br>
+                <!--             <select id="numFormulario" ng-model="consultaBean.numerosFormularios" ng-options="parametriaFormulario.desParam for parametriaFormulario in parametriaFormularioEntity" > -->
+                <!--             </select> -->
+                <select id="numFormulario" class="form-control" multiple="multiple" >
+              <!--ng-model="consultaBean.numerosFormularios"
+                    <option ng-repeat="parametriaFormulario in parametroDetallePlataformaEntity" value="{{ parametriaFormulario.codFor }}">{{ parametriaFormulario.codFor != 'All' ? parametriaFormulario.codFor : ''}} {{ parametriaFormulario.codFor != 'All' ? '-' : ''}} {{parametriaFormulario.desFor}}</option>
+                     -->
+                </select>
+ 
+            </div>
+            <div class="col-sm-4">
+                <label>Rango de Fecha de presentaci&oacute;n</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!--                 <input type="text" class="form-control input-sm m-b-md date-picker2" placeholder="Inicio"> -->
+                        <p class="input-group">
+                            <input name="idFecIni" ng-blur="validarFechaVigenciaFechaPI()" ng-model="consultaBean.rangoDeFechaPresentacionInicio"  type="text" placeholder="dd/mm/aaaa" class="form-control input-md " uib-datepicker-popup="{{formato}}" show-button-bar="false" is-open="popup1.opened" datepicker-options="dateOptions"/>
+                            <span class="input-group-btn">
+     					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+   					</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--                 <input type="text" class="form-control input-sm m-b-md date-picker2" placeholder="Fin"> -->
+                        <p class="input-group">
+                            <input name="idFecFin" ng-blur="validarFechaFinal()" ng-model="consultaBean.rangoDeFechaPresentacionFin"  type="text" placeholder="dd/mm/aaaa" class="form-control input-md" uib-datepicker-popup="{{formato}}" show-button-bar="false" is-open="popup2.opened" datepicker-options="dateOptions2"/>
+                            <span class="input-group-btn">
+	       				<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+	     			</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label>Rango Per&iacute;odo tributario</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select ng-change="validarAnual()" style="width: 60%;" class="combo-rango input-sm form-control" id="periodo_tributario_1" ng-model="consultaBean.rangoPeriodoTributarioInicioMes">
+                                <option value="00" ng-selected="true">MES</option>
+                                <option value="01" >ENERO</option>
+                                <option value="02" >FEBRERO</option>
+                                <option value="03" >MARZO</option>
+                                <option value="04" >ABRIL</option>
+                                <option value="05" >MAYO</option>
+                                <option value="06" >JUNIO</option>
+                                <option value="07" >JULIO</option>
+                                <option value="08" >AGOSTO</option>
+                                <option value="09" >SETIEMBRE</option>
+                                <option value="10" >OCTUBRE</option>
+                                <option value="11" >NOVIEMBRE</option>
+                                <option value="12" >DICIEMBRE</option>
+                                <option value="13" >ANUAL</option>
+                            </select>
+                            <select ng-change="validarAnual()" style="width: 40%;" class="combo-rango input-sm form-control border-select" ng-model="consultaBean.rangoPeriodoTributarioInicioAnio" ng-options="anio for anio in anios">
+                            </select>
+                            <span  class="help-block">Inicio</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group double-input" style="width: 100%;">
+                            <select ng-disabled="perMFAFHabilitado" style="width: 60%;" class="combo-rango input-sm form-control" id="periodo_tributario_2" ng-model="consultaBean.rangoPeriodoTributarioFinMes">
+                                <option value="00" ng-selected="true">MES</option>
+                                <option value="01" >ENERO</option>
+                                <option value="02" >FEBRERO</option>
+                                <option value="03" >MARZO</option>
+                                <option value="04" >ABRIL</option>
+                                <option value="05" >MAYO</option>
+                                <option value="06" >JUNIO</option>
+                                <option value="07" >JULIO</option>
+                                <option value="08" >AGOSTO</option>
+                                <option value="09" >SETIEMBRE</option>
+                                <option value="10" >OCTUBRE</option>
+                                <option value="11" >NOVIEMBRE</option>
+                                <option value="12" >DICIEMBRE</option>
+                                <option value="13" disabled="disabled" >ANUAL</option>
+                            </select>
+                            <select ng-disabled="perMFAFHabilitado" style="width: 40%;" class="combo-rango input-sm form-control border-select" ng-model="consultaBean.rangoPeriodoTributarioFinAnio" ng-options="anio for anio in anios">
+                            </select>
+                            <span  class="help-block">Fin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label style="opacity:0">oculto</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary btn-block btn-sm" ng-click="buscarConstancia()"><span class="glyphicon glyphicon-search"></span>Buscar</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block btn-sm" ng-click="limpiar()"><span class="glyphicon glyphicon-refresh"></span>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- CRITERIOS DE BUSQUEDA ESPECIFICO -->
+    <form id="especifica" ng-show="isEspecifica">
+        <div class="row">
+            <div class="col-sm-4">
+                <label>N&uacute;mero de formulario</label>
+                <!-- <input type="text" class="form-control input-sm m-b-md" maxlength="4" placeholder="Escribir" id="country_v1-query" ng-model="consultaBean.numeroFormulario"> id="country_v1-query"
+                -->
+                <select id="country_v1-query" class="form-control" multiple="multiple" ng-model="consultaBean.numeroFormulario">
+                    <option ng-if="parametriaFormulario.codFor !='Todos'" ng-repeat="parametriaFormulario in parametroDetallePlataformaEntity" value="{{ parametriaFormulario.codFor }}">{{ parametriaFormulario.codFor }}-{{parametriaFormulario.desFor}}</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label>N&uacute;mero de orden</label>
+                <input ng-disabled="numOrdenEnabled" type="text" class="form-control input-sm m-b-md" maxlength="19" placeholder="Escribir" ng-model="consultaBean.numeroOrden" ng-blur="validarExcluyeNumOrden()">
+            </div>
+            <div class="col-sm-4">
+                <label>N&uacute;mero de operaci&oacute;n bancaria</label>
+                <input ng-disabled="numOperaEnabled" type="text" class="form-control input-sm m-b-md" maxlength="25" placeholder="Escribir" ng-model="consultaBean.numeroOperacionBancaria" ng-blur="validarExcluyeNumOpera()">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <label style="opacity:0">oculto</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button id="buscar-resultado2" class="btn btn-primary btn-block btn-sm" ng-click="buscarConstanciaEspecifica()"><span class="glyphicon glyphicon-search"></span>Buscar</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block btn-sm" ng-click="limpiar()"><span class="glyphicon glyphicon-refresh"></span>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <br>
+    <div id="sin-resultados" ng-show="validaGeneral">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;" >
+            "<strong>Sr. Contribuyente </strong> la consulta s&oacute;lo mostrara informaci&oacute;n de un a&ntilde;o, por favor modifique <span id="tipoRango"> </span>"
+        </div>
+    </div>
+    <div id="sin-resultados" ng-show="sinResultado">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;">
+            "<strong>Sr. Contribuyente,</strong> no existe formulario con la informaci&oacute;n ingresada"
+        </div>
+    </div>
+    <div id="sin-resultados" ng-show="resultadoExceso">
+        <div class="alert alert-warning text-center" role="alert" style="margin-top:0px;">
+            "<strong>Sr. Contribuyente,</strong> la relaci&oacute;n de sus formularios es mayor a 300 por lo que el resultado de su consulta se encuentra contenido en el archivo: Consulta de Declaraci&oacute;n. Por favor realizar la exportaci&oacute;n con los siguientes botones:"
+        </div>
+    </div>
+    <br>
+
+
+    <ul class="nav navbar-nav navbar-right" ng-show="resultadoOpcion">
+        <li>
+            <div class="btn-group">
+                <button  class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="generarReportePdf()"  data-toggle="tooltip" data-placement="bottom" title="Exportar a PDF"><span class="glyphicon glyphicon-save-file"></span>PDF</button>
+                <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="generarReporteExcel()"  data-toggle="tooltip" data-placement="bottom" title="Exportar a EXCEL"><span class="glyphicon glyphicon-save-file"></span>EXCEL</button>
+                <button ng-disabled="imprimirHabilitado" class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="listaResultado"><span class="glyphicon glyphicon-print"></span>Imprimir</button>
+                <button  ng-disabled="correoHabilitado" class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" title="Enviar a Correo" ng-click="enviarCorreo()" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+            </div>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" ng-show="resultadoEspecifico">
+        <li>
+            <div class="btn-group">
+                <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="generarReportePdf()"  data-toggle="tooltip" data-placement="bottom" title="Exportar a PDF"><span class="glyphicon glyphicon-save-file"></span>PDF</button>
+                <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="generarReporteExcel()"  data-toggle="tooltip" data-placement="bottom" title="Exportar a EXCEL"><span class="glyphicon glyphicon-save-file"></span>EXCEL</button>
+                <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="listaResultado"><span class="glyphicon glyphicon-print"></span>Imprimir</button>
+                <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="enviarCorreo()" title="Enviar a Correo" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+            </div>
+        </li>
+    </ul>
+
+    </div> <!-- Ocultar Print-->
+    <div id="listaResultado">
+        <div class="clearfix"></div>
+        <br>
+        <div ng-show="resumenGeneral">
+            <fieldset class="linea-caja" style="margin:0;" >
+                <legend style="    color: #337AB7;">Detalle de Declaraci&oacute;n y Pagos:</legend>
+                <div>
+                <strong>RUC:</strong> {{resultadoConsulta.ruc}}
+                </div>
+                <div>
+                <strong>Nombre o raz&oacute;n social:</strong> {{resultadoConsulta.razonSocial}}
+                </div>
+                <div>
+                <strong>Fecha de consulta: </strong>{{fechaActual}}
+                </div>
+                <div ng-show="mostrarPresentacion">
+                <strong>Fecha</strong><br>
+                <strong>Desde:</strong> {{fechaPresentacionInicio}} <strong>Hasta:</strong> {{fechaPresentacionFin}}
+                </div>
+                <div ng-show="mostrarPeriodo">
+                <strong>Per&iacute;odo</strong><br>
+                <strong>Desde:</strong> {{periodoTributarioInicio}} <strong>Hasta:</strong> {{periodoTributarioFin}}
+                </div>
+                <div>
+                <strong>Formulario:</strong> {{formulario}}
+                </div>
+            </fieldset>
+        </div>
+        <fieldset class="linea-caja" style="margin:0;" ng-show="resumenEspecifica">
+            <legend style="    color: #337AB7;">Detalle de Declaraci&oacute;n y Pagos:</legend>
+            <strong>RUC:</strong> {{resultadoConsulta.ruc}}
+            <br/>
+            <strong>Nombre o raz&oacute;n social:</strong> {{resultadoConsulta.razonSocial}}
+            <br/>
+            <div class="pull-left"><strong>Fecha de consulta:</strong>{{fechaActual}}</div>
+            <br/>
+            <strong>N&uacute;mero de orden: </strong>{{resultadoConsulta.numOrd}}
+            <br/>
+            <strong>N&uacute;mero de operaci&oacute;n bancaria:</strong> {{resultadoConsulta.numOpebco}}
+            <br/>
+            <strong>Formulario:</strong> {{formulario}}
+        </fieldset>
+        <br>
+
+        <div class="panel panel-default" ng-show="resultado">
+            <div class="table-responsive">
+                <table class="table" style="font-size: 13px;">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Per&iacute;odo</th>
+                        <th>Nro Formulario</th>
+                        <th>Descripci&oacute;n</th>
+                        <th>Nro Orden</th>
+                        <th>Fecha de presentaci&oacute;n</th>
+                        <th>Banco</th>
+                        <th>Importe Pagado</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="pageBreak" ng-repeat="constancia in constancias | startFrom: currentPage*pageSize | limitTo: pageSize" ng-init="rowIndex=$index" ng-click="jsAddClassRow(rowIndex, rowIndex)"
+                        ng-class="rowIndex==selectedGroup && rowIndex==selectedRow?'Seleccionado':''">
+                        <td>{{$index+1+currentPage*pageSize}}</td>
+                        <td>{{constancia.strPerTri}}</td>
+                        <td>{{constancia.parametriaFormulario.codFor}}</td>
+                        <td>{{constancia.parametriaFormulario.desFor}}</td>
+                        <td>{{constancia.numOrd}}</td>
+                        <td>{{constancia.strFecPres}}</td>
+                        <td>{{constancia.nomEntFin}}</td>
+                        <td style="width: 130px;" class="text-right">{{formatearPago(constancia.mtoPag)}}</td>
+                        <td>
+            	<span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Detalle" style="margin: 0">
+                   <a ng-if="constancia.parametriaFormulario.codFor !='1662' && constancia.tipoForm != '12' "  href="javascript:void(0)" ng-click="mostrarDetalle(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-list-alt"></span>
+                   </a>
+                </span>
+                        </td>
+                        <td>
+              	<span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Constancia" style="margin: 0">
+                   <a ng-if="constancia.parametriaFormulario.codFor!=1662" href="javascript:void(0)" ng-click="mostrarConstancia(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                   </a>
+                   <a ng-if="constancia.parametriaFormulario.codFor==1662" href="javascript:void(0)" ng-click="mostrarConstanciaBoleta(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                   </a>
+                </span>
+                        </td>
+                        <td>
+              	<span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Enviar a Correo" style="margin: 0">
+                   <a  href="javascript:void(0)" ng-click="enviarCorreoCompuestoGrilla(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-envelope"></span>
+                   </a>
+                </span>
+                        </td>
+                        <td>
+                  <span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Descargar anexas" style="margin: 0">
+                    <a ng-if="constancia.parametriaFormulario.codFor!=1662" id="a" href="#" data-toggle="modal" ng-click="DescargarAnexas(constancia);">
+                                    <span style="margin:0" class="glyphicon glyphicon-arrow-down"></span>
+                    </a>
+                  </span>
+                </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default" ng-show="resultadoEspecifico">
+            <div class="table-responsive">
+                <table class="table" style="font-size: 13px;">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Per&iacute;odo</th>
+                        <th>Nro Formulario</th>
+                        <th>Descripci&oacute;n</th>
+                        <th>Nro Orden</th>
+                        <th>Fecha de presentaci&oacute;n</th>
+                        <th>Banco</th>
+                        <th>Importe Pagado</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="constancia in constancias | startFrom: currentPage*pageSize | limitTo: pageSize" ng-init="rowIndex=$index" ng-click="jsAddClassRow(rowIndex, rowIndex)"
+                        ng-class="rowIndex==selectedGroup && rowIndex==selectedRow?'Seleccionado':''">
+                        <td>{{$index+1}}</td>
+                        <td>{{constancia.strPerTri}}</td>
+                        <td>{{constancia.parametriaFormulario.codFor}}</td>
+                        <td>{{constancia.parametriaFormulario.desFor}}</td>
+                        <td>{{constancia.numOrd}}</td>
+                        <td>{{constancia.strFecPres}}</td>
+                        <td>{{constancia.nomEntFin}}</td>
+                        <td class="text-right">{{formatearPago(constancia.mtoPag)}}</td>
+                        <td>
+            	<span  class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Detalle" style="margin: 0">
+                   <a ng-if="constancia.parametriaFormulario.codFor!=1662 && constancia.tipoForm != '12'" href="javascript:void(0)" ng-click="mostrarDetalleEspecifico(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-list-alt"></span>
+                   </a>
+                </span>
+                        </td>
+                        <td>
+              	<span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Constancia" style="margin: 0">
+                   <a ng-if="constancia.parametriaFormulario.codFor!=1662" href="javascript:void(0)" ng-click="mostrarConstancia(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                   </a>
+                   <a ng-if="constancia.parametriaFormulario.codFor==1662" href="javascript:void(0)" ng-click="mostrarConstanciaBoleta(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-copy"></span>
+                   </a>
+                </span>
+                        </td>
+                        <td>
+              	<span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Enviar a Correo" style="margin: 0">
+                   <a  href="javascript:void(0)" ng-click="enviarCorreoCompuestoGrilla(constancia);">
+                       <span style="margin:0" class="glyphicon glyphicon-envelope"></span>
+                   </a>
+                </span>
+                        </td>
+                         <td>
+                  <span class="detalles-modal ng-ocultar" data-toggle="tooltip" data-placement="left" title="Descargar anexas" style="margin: 0">
+                    <a id="a" ng-if="constancia.parametriaFormulario.codFor!=1662" href="#" data-toggle="modal" ng-click="DescargarAnexas(constancia);">
+                                    <span style="margin:0" class="glyphicon glyphicon-arrow-down"></span>
+                    </a>
+                                 <!-- <input type="file" name="" id="file" class="hidden">-->
+                               
+                            </span>
+                           <!--  <input type="BUTTON" name="boton_guarda" value="Guardar en disco" ng-click="DescargarAnexas(constancia);" class="hidden"> -->
+                </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- botones de paginacion -->
+        <div class='btn-group pull-right ng-ocultar' ng-show="resultado">
+        <!--
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+        -->
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == (page.no - 1)' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+          <!--  <button type='button' class='btn btn-default' ng-disabled='currentPage >= constancias.length/pageSize - 1' , ng-click='currentPage = currentPage + 1'>&raquo;</button>
+          -->
+        </div>
+        <div class='btn-group pull-right ng-ocultar' ng-show="resultadoEspecifico">
+        <!--
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+        -->
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == (page.no - 1)' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+        <!--
+            <button type='button' class='btn btn-default' ng-disabled='currentPage >= constancias.length/pageSize - 1' , ng-click='currentPage = currentPage + 1'>&raquo;</button>
+        -->
+        </div>
+        <br>
+    </div>
+    <script>
+
+        $("#numFormulario").select2({
+            closeOnSelect:false
+        });
+        $("#country_v1-query").select2({
+            maximumSelectionSize: 1,
+            formatSelectionTooBig: function (limit) {
+                return 'Sólo puede seleccionar un formulario';
+            },
+            placeholder: "Escribir"
+
+        });
+
+    </script>
+
+    <script type="text/ng-template" id="modalEMailInternet.html">
+        <div class="modal-body">
+            <div class="alert alert-warning text-center" role="alert" style="text-align:left;margin-top:0px;">
+                "<strong>Sr. Contribuyente,</strong> al presionar el bot&oacute;n Enviar se enviar&aacute; al correo electr&oacute;nico la Constancia de presentaci&oacute;n, el Reporte del formulario y archivos anexos de corresponder."
+            </div>
+
+            <form class="form-horizontal" name="frmEmail" novalidate>
+                <div role="alert">
+                <!--
+      			<span class="error row" ng-show="frmEmail.input.$error.required">
+					<div class="alert alert-warning">
+						<span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+						<strong>S&#241;r. Contribuyente</strong> ingrese un correo por favor
+					</div>
+				</span>
+                -->
+                    <span class="error" ng-show="isEmailError">
+        			<div class="alert alert-danger">
+						<span class="glyphicon glyphicon-warning-sign icono-distancia"></span>
+						<strong>Sr. Contribuyente</strong> el correo proporcionado no es una cuenta v&aacute;lida
+					</div>
+				</span>
+                </div>
+                <section>
+                    <input type="text"  ng-keyup="validarCorreo()" name="input"  class="form-control add" ng-model="correo" placeholder="Escribir correo" required>
+<!--ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/"  type="email"-->
+
+                </section>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="closeModal()">Cancelar</button>
+            <button type="button" title="Enviar a Correo" class="btn btn-primary"  ng-click="enviarDatosAdjuntos()" id="enviar-correo-1">Enviar</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="modalDetalleInternet.html">
+        <!--<div id="detalle">-->
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="guardarDeclaracion()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                    <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="detalle"><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                    <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" id="detalle" ng-click="printDetalleBoleta('detalle')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <button  class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" title="Enviar a Correo" ng-click="enviarCorreo()" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                </div>
+
+            </div>
+            <div id="detalle">
+            <div class="modal-body">             
+                <!-- FIN PRELIMINAR HTML -->
+                <table class="table table-bordered tablas-font">
+                    <tr>
+                        <td rowspan="4" style="width: 15%;" class="text-center">
+                            <h2><strong>SUNAT</strong></h2>
+                            <h6>DECLARACIÓN PAGO</h6>
+                            <h4><strong>621</strong></h4>
+                        </td>
+                        <td colspan="4" class="text-center">
+                            <h5><strong>IGV Renta Mensual</strong></h5>
+                        </td>
+                        <td style="width: 20%;">
+                            <h6>Copia para el Contribuyente (Pag. 1)</h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;">
+                            RUC
+                        </td>
+                        <td colspan="3" >
+                            <strong>{{formulario.numRuc}}</strong>
+                        </td>
+                        <td rowspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Raz&oacute;n Social
+                        </td>
+                        <td>
+                            <strong>{{formulario.strNumRuc}}</strong>
+                        </td>
+                        <td>Per&iacute;odo</td>
+                        <td>
+                            <strong>{{formulario.perTri}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            N&uacute;mero de Orden
+                        </td>
+                        <td>
+                            <strong>{{formulario.numOrd}}</strong>
+                        </td>
+                        <td>Fecha de Presentaci&oacute;n</td>
+                        <td>
+                            <strong>{{formulario.strFecPres}}</strong>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="formu621">
+                    <br>
+                    <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="2" rowspan="2"> <h4><strong>IGV VENTAS</strong></h4> </td>
+                                <td colspan="4" class="text-center"> IGV    CUENTA PROPIA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">BASE</td>
+                                <td colspan="2" class="text-center">TRIBUTO</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="8" class="text-center" style="vertical-align: middle;">G<br>R<br>A<br>B<br>A<br>D<br>A<br>S</td>
+                                <td>Ventas Netas</td>
+                                <td>100</td>
+                                <td class="text-right">{{casilla.C100}}</td>
+                                <td>101</td>
+                                <td class="text-right">{{casilla.C101}}</td>
+                            </tr>
+                            <tr>
+                                <td>Descuentos concedidos y/o devoluciones de ventas</td>
+                                <td>102</td>
+                                <td class="text-right">{{casilla.C102}}</td>
+                                <td>103</td>
+                                <td class="text-right">{{casilla.C103}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ventas asumidas por el estado</td>
+                                <td>124</td>
+                                <td class="text-right">{{casilla.C124}}</td>
+                                <td>125</td>
+                                <td class="text-right">{{casilla.C125}}</td>
+                            </tr>
+                            <tr>
+                                <td>Desc. Concedidos y/o Dev. Ventas (Vta. asumidas por estado)</td>
+                                <td>126</td>
+                                <td class="text-right">{{casilla.C126}}</td>
+                                <td>128</td>
+                                <td class="text-right">{{casilla.C128}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ventas de bienes (Ley 27037 inc. 11.1, 11.2, 12.3 y 12.4)</td>
+                                <td>160</td>
+                                <td class="text-right">{{casilla.C160}}</td>
+                                <td>161</td>
+                                <td class="text-right">{{casilla.C160}}</td>
+                            </tr>
+                            <tr>
+                                <td>Descuentos y Devoluciones (Ley 27037)</td>
+                                <td>162</td>
+                                <td class="text-right">{{casilla.C162}}</td>
+                                <td>163</td>
+                                <td class="text-right">{{casilla.C163}}</td>
+                            </tr>
+                            <tr>
+                                <td>Exportaciones Facturadas en el período</td>
+                                <td>106</td>
+                                <td class="text-right">{{casilla.C106}}</td>
+                                <td colspan="2" rowspan="5"></td>
+                            </tr>
+                            <tr>
+                                <td>Exportaciones Embarcadas en el período</td>
+                                <td>127</td>
+                                <td class="text-right">{{casilla.C127}}</td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Ventas no Gravadas (Sin considerar exportaciones)</td>
+                                <td>105</td>
+                                <td class="text-right">{{casilla.C105}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Ventas no Gravadas (Sin efecto en ratio)</td>
+                                <td>109</td>
+                                <td class="text-right">{{casilla.C109}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Otras ventas (inciso ii), numeral 6.2, - art. 6 del Reglamento</td>
+                                <td>112</td>
+                                <td class="text-right">{{casilla.C112}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Total</td>
+                                <td>131</td>
+                                <td class="text-right">{{casilla.C131}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="3" rowspan="2"> <h4><strong>IGV COMPRAS</strong></h4> </td>
+                                <td colspan="5" class="text-center"> IGV    CUENTA PROPIA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">BASE</td>
+                                <td colspan="2" class="text-center">TRIBUTO</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" class="text-center" style="vertical-align: middle;">N<br>A<br>C<br>I<br>O<br>N<br>A<br>L<br>E<br>S</td>
+                                <td style="width: 50%;">Destinadas a ventas gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>107</td>
+                                <td class="text-right">{{casilla.C107}}</td>
+                                <td>108</td>
+                                <td class="text-right">{{casilla.C108}}</td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas gravadas y no gravadas</td>
+                                <td>Compras Netas</td>
+                                <td>110</td>
+                                <td class="text-right">{{casilla.C110}}</td>
+                                <td>111</td>
+                                <td class="text-right">{{casilla.C111}}</td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas no gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>113</td>
+                                <td class="text-right">{{casilla.C113}}</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" class="text-center" style="vertical-align: middle;">I<br>M<br>P<br>O<br>R<br>T<br>A<br>D<br>A<br>S</td>
+                                <td style="width: 50%;">Destinadas a ventas gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>114</td>
+                                <td class="text-right">{{casilla.C114}}</td>
+                                <td>115</td>
+                                <td class="text-right">{{casilla.C115}}</td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas gravadas y no gravadas</td>
+                                <td>Compras Netas</td>
+                                <td>116</td>
+                                <td class="text-right">{{casilla.C116}}</td>
+                                <td>117</td>
+                                <td class="text-right">{{casilla.C117}}</td>
+                            </tr>
+                            <tr>
+                                <td>Destinadas a ventas no gravadas exclusivamente</td>
+                                <td>Compras Netas</td>
+                                <td>119</td>
+                                <td class="text-right">{{casilla.C119}}</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>No Gravadas Internas</td>
+                                <td>Compras Netas</td>
+                                <td>120</td>
+                                <td class="text-right">{{casilla.C120}}</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>No Gravadas Importadas</td>
+                                <td>Compras Netas</td>
+                                <td>122</td>
+                                <td class="text-right">{{casilla.C122}}</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">Total</td>
+                                <td>178</td>
+                                <td class="text-right">{{casilla.C178}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">CREDITO FISCAL ESPECIAL</td>
+                                <td>172</td>
+                                <td class="text-right">{{casilla.C172}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">OTROS CREDITOS</td>
+                                <td>169</td>
+                                <td class="text-right">{{casilla.C169}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">COEFICIENTE</td>
+                                <td>173</td>
+                                <td class="text-right">{{casilla.C173}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br>
+                    <table class="table table-bordered tablas-font">
+                        <tr>
+                            <td colspan="2" rowspan="2"> <h4><strong>IVAP</strong></h4> </td>
+                            <td colspan="4" class="text-center"> IVAP</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center">BASE</td>
+                            <td colspan="2" class="text-center">TRIBUTO</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p style="min-width: 325px">Ventas Gravadas</p></td>
+                            <td>340</td>
+                            <td class="text-right">{{casilla.C340}}</td>
+                            <td>341</td>
+                            <td class="text-right">{{casilla.C341}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Otros Cr&eacute;ditos IVAP</td>
+                            <td>182</td>
+                            <td class="text-right">{{casilla.C182}}</td>
+                        </tr>
+
+
+                    </table>
+                    <br>
+                       <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="2" rowspan="2"> <h4><strong>RENTA</strong></h4> </td>
+                                <td colspan="4" class="text-center">RENTA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">BASE</td>
+                                <td colspan="2" class="text-center">TRIBUTO</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><p style="min-width: 415px">Ingresos Netos</p></td>
+                                <td>301</td>
+                                <td class="text-right">{{casilla.C301}}</td>
+                                <td>312</td>
+                                <td class="text-right">{{casilla.C312}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Coeficiente</td>
+                                <td>380</td>
+                                <td class="text-right">{{casilla.C380}}</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Porcentaje</td>
+                                <td>315</td>
+                                <td class="text-right">{{casilla.C315}}</td>
+                                <td colspan="2"></td>
+                            </tr>
+
+                        </table>
+                       </div>
+                    <br>
+
+                    <div style="position:relative;">
+                        <table class="table table-bordered tablas-font">
+                            <tr>
+                                <td colspan="2" rowspan="2"> <h4><strong>DETERMINACION DE LA DEUDA</strong></h4> </td>
+                                <td colspan="6" class="text-center">DETERMINACION DE LA DEUDA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">IGV</td>
+                                <td colspan="2" class="text-center">IVAP</td>
+                                <td colspan="2" class="text-center">RENTA</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Impuesto Resultante o Saldo a Favor</td>
+                                <td>140</td>
+                                <td class="text-right">{{casilla.C140}}</td>
+                                <td>353</td>
+                                <td class="text-right">{{casilla.C353}}</td>
+                                <td>302</td>
+                                <td class="text-right">{{casilla.C302}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo a Favor del Per&iacute;odo anterior</td>
+                                <td>145</td>
+                                <td class="text-right">{{casilla.C145}}</td>
+                                <td>351</td>
+                                <td class="text-right">{{casilla.C351}}</td>
+                                <td>303</td>
+                                <td class="text-right">{{casilla.C303}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tributo a Pagar o Saldo a Favor</td>
+                                <td>184</td>
+                                <td class="text-right">{{casilla.C184}}</td>
+                                <td>352</td>
+                                <td class="text-right">{{casilla.C352}}</td>
+                                <td>304</td>
+                                <td class="text-right">{{casilla.C304}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Percepciones declaradas en el per&oacute;odo</td>
+                                <td>171</td>
+                                <td class="text-right">{{casilla.C171}}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de percepciones de periodos anteriores</td>
+                                <td>168</td>
+                                <td class="text-right">{{casilla.C168}}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de Percepciones no aplicadas </td>
+                                <td>164</td>
+                                <td class="text-right">{{casilla.C164}}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Retenciones  declaradas en el  per&iacute;odo</td>
+                                <td>179</td>
+                                <td class="text-right">{{casilla.C179}}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de retenciones de periodos anteriores</td>
+                                <td>176</td>
+                                <td class="text-right">{{casilla.C176}}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Saldo de Retenciones no aplicadas</td>
+                                <td>165</td>
+                                <td class="text-right" id="txt_constancia_165">{{casilla.C165}}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Retenciones de tercera declaradas en el per&iacute;odo</td>
+                                <td colspan="4"></td>
+                                <td>326</td>
+                                <td class="text-right" id="txt_constancia_326">{{casilla.C326}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Retenciones de tercera declaradas en per&iacute;odos anteriores</td>
+                                <td colspan="4"></td>
+                                <td>327</td>
+                                <td class="text-right">{{casilla.C327}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Compensaci&oacute;n Saldo a Favor del Exportador</td>
+                                <td colspan="2"></td>
+                                <td>347</td>
+                                <td class="text-right">{{casilla.C347}}</td>
+                                <td>305</td>
+                                <td class="text-right">{{casilla.C305}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Impuesto Temporal a los Activos Netos</td>
+                                <td colspan="4"></td>
+                                <td>328</td>
+                                <td class="text-right">{{casilla.C328}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Otros Cr&eacute;ditos permitidos por Ley</td>
+                                <td colspan="4"></td>
+                                <td>306</td>
+                                <td class="text-right" id="txt_constancia_306">{{casilla.C306}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Sub Total</td>
+                                <td colspan="6"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Pagos previos</td>
+                                <td>185</td>
+                                <td class="text-right">{{casilla.C185}}</td>
+                                <td>342</td>
+                                <td class="text-right">{{casilla.C342}}</td>
+                                <td>317</td>
+                                <td class="text-right">{{casilla.C317}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Inter&eacute;s moratorio</td>
+                                <td>187</td>
+                                <td class="text-right">{{casilla.C187}}</td>
+                                <td>343</td>
+                                <td class="text-right">{{casilla.C343}}</td>
+                                <td>319</td>
+                                <td class="text-right">{{casilla.C319}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Total deuda tributaria</td>
+                                <td>188</td>
+                                <td class="text-right">{{casilla.C188}}</td>
+                                <td>344</td>
+                                <td class="text-right">{{casilla.C344}}</td>
+                                <td>324</td>
+                                <td class="text-right">{{casilla.C324}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7"> &iquest;Deseo acorgerme a la pr&oacute;rroga del pago del IGV (IGV Justo)  (Si/No)?</td>
+                                <td class="text-right"><td class="text-right">{{ casilla.C391=='1' ? 'Si' : 'No'}}</td></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="text-center">
+                        <strong>{{formulario.plataforma}}</strong>    
+                    </div>
+
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!--</div>-->
+    </script>
+
+
+    <script type="text/ng-template" id="modalDetallePlantilla0626.html">
+
+            <!-- <div class="modal-content modal-constancia-large"> -->
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="guardarDeclaracion()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                    <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="detalle"><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                    <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" id="detalle" ng-click="printDetalleBoleta('detalle')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" title="Enviar a Correo" ng-click="enviarCorreo()" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                </div>
+
+            </div>
+        <div id="detalle">
+            <div class="modal-body">
+                <!-- PRELIMINAR HTML -->
+                <table class="table table-bordered tablas-font">
+                    <tr>
+                        <td rowspan="4" style="width: 15%;" class="text-center">
+                            <h2><strong>SUNAT</strong></h2>
+                            <h6>DECLARACI&Oacute;N PAGO</h6>
+                            <h4><strong>626</strong></h4>
+                        </td>
+                        <td colspan="4" class="text-center">
+                            <h5 align="center"><strong>AGENTES DE RETENCI&Oacute;N</strong></h5>
+
+                        </td>
+                        <td style="width: 20%;">
+                            <h6>Copia para el contribuyente (Pag. 1)</h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;">
+                            RUC
+                        </td>
+                        <td colspan="3">
+                           <strong> {{formulario.numRuc}}</strong>
+                        </td>
+                        <td rowspan="3">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Raz&oacute;n Social
+                        </td>
+                        <td>
+                            <strong>{{formulario.strNumRuc}}</strong>
+                        </td>
+                        <td>Periodo</td>
+                        <td>
+                            <strong>{{formulario.perTri}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            N&uacute;mero de Orden
+                        </td>
+                        <td>
+                            <strong>{{formulario.numOrd}}</strong>
+                        </td>
+                        <td>Fecha de Presentaci&oacute;n</td>
+                        <td>
+                            <strong>{{formulario.strFecPres}}</strong>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <table width="917" class="table table-bordered tablas-font">
+                    <tr>
+                        <td colspan="3" rowspan="2"> <h4><strong>DETERMINACI&Oacute;N DE LA DEUDA TRIBUTARIA</strong></h4> </td>
+                        <td colspan="4" rowspan="2" class="text-center"> RETENCI&Oacute;N</td>
+                    </tr>
+                    <tr>
+
+
+                    </tr>
+                    <tr>
+
+                        <td colspan="3">RETENCIONES EFECTUADAS</td>
+
+
+                        <td>401</td>
+                        <td class="text-right">{{casilla.C401}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Pagos previos(Efectivo,cheque, o doc,val)</td>
+
+
+                        <td>402</td>
+                        <td class="text-right">{{casilla.C402}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">RETENCI&Oacute;N A PAGAR</td>
+                        <td>403</td>
+
+                        <td class="text-right">{{casilla.C403}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Inter&eacute;s moratorio</td>
+                        <td>404</td>
+                        <td class="text-right">{{casilla.C404}}</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="3">TOTAL DEUDA TRIBUTARIA</td>
+                        <td>405</td>
+                        <td class="text-right">{{casilla.C405}}</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>IMPORTE A PAGAR</strong></td>
+                        <td>410</td>
+                        <td class="text-right">{{casilla.C410}}</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="1" rowspan="2">RECTIFICA</td>
+
+                        <td rowspan="2" class="text-center">{{ (casilla.C895=='1' || casilla.C895=='2')? 'X' : ''}}</td>
+                        <td rowspan="2">SI</td>
+                        <td rowspan="2" class="text-center">{{ (casilla.C895!='1' && casilla.C895!='2')? 'X' : ''}}</td>
+                        <td rowspan="2" >NO</td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <td colspan="1" rowspan="2">FORMA DE PAGO</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2">EFECTIVO</td>
+                    <td rowspan="2"></td>
+                    <td rowspan="2" >CHEQUE</td>
+                    
+                    <tr>
+                    </tr>
+                    <td colspan="3" rowspan="2">NRO DE CHEQUE</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2"></td>
+                    <tr>
+                    </tr>
+                    <td colspan="3" rowspan="2">C&Oacute;DIGO DE BANCO</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2"></td>
+                    
+                </table>
+                <!-- FIN PRELIMINAR HTML -->
+                <div class="text-center">
+                    <strong>{{formulario.plataforma}}</strong>    
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!--</div>-->
+
+    </script>
+
+    <script type="text/ng-template" id="modalDetalle0633plantilla.html">
+        
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="guardarDeclaracion()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                    <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="detalle"><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                    <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" id="detalle" ng-click="printDetalleBoleta('detalle')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" title="Enviar a Correo" ng-click="enviarCorreo()" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                </div>
+
+            </div>
+        <div id="detalle">
+            <div class="modal-body">
+                <!-- PRELIMINAR HTML -->
+                <table class="table table-bordered tablas-font">
+                    <tr>
+                        <td rowspan="4" style="width: 15%;" class="text-center">
+                            <h2><strong>SUNAT</strong></h2>
+                            <h6>DECLARACI&Oacute;N PAGO</h6>
+                            <h4><strong>633</strong></h4>
+                        </td>
+                        <td colspan="4" class="text-center">
+                            <h5 align="center"><strong>AGENTES DE PERCEPCI&Oacute;N</strong></h5>
+
+                        </td>
+                        <td style="width: 20%;">
+                            <h6>Copia para el contribuyente (Pag. 1)</h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;">
+                            RUC
+                        </td>
+                        <td colspan="3">
+                            <strong>{{formulario.numRuc}}</strong>
+                        </td>
+                        <td rowspan="3">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Raz&oacute;n Social
+                        </td>
+                        <td>
+                            <strong>{{formulario.strNumRuc}}</strong>
+                        </td>
+                        <td>Periodo</td>
+                        <td>
+                            <strong>{{formulario.perTri}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            N&uacute;mero de Orden
+                        </td>
+                        <td>
+                            <strong>{{formulario.numOrd}}</strong>
+                        </td>
+                        <td>Fecha de Presentaci&oacute;n</td>
+                        <td>
+                            <strong>{{formulario.strFecPres}}</strong>
+                        </td>
+                    </tr>
+                </table>
+                <br>                
+                <table width="917" class="table table-bordered tablas-font">
+                    <tr>
+                        <td colspan="3"><strong>DETERMINACI&Oacute;N DE LA DEUDA TRIBUTARIA</strong></td>
+                        <td colspan="2">PERCEPCI&Oacute;N</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">PERCEPCIONES EFECTUADAS</td>
+                        <td width="42">401</td>
+                        <td width="153" align="right"> {{casilla.C401}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Pagos previos(Efectivo,cheque, o doc,val)</td>
+                        <td width="42">402</td>
+                        <td width="153" align="right">{{casilla.C402}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">PERCEPCI&Oacute;N A PAGAR</td>
+                        <td width="42">403</td>
+                        <td width="153" align="right">{{casilla.C403}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Inter&eacute;s moratorio</td>
+                        <td width="42">404</td>
+                        <td width="153" align="right">{{casilla.C404}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">TOTAL DEUDA TRIBUTARIA</td>
+                        <td width="42">405</td>
+                        <td width="153" align="right">{{casilla.C405}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>IMPORTE A PAGAR</strong></td>
+                        <td width="42">410</td>
+                        <td width="153" align="right">{{casilla.C410}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" rowspan="2">RECTIFICA</td>
+                        <td rowspan="2" class="text-center">{{ (casilla.C895=='1' || casilla.C895=='2')? 'X' : ''}}</td>
+                        <td rowspan="2">SI</td>
+                        <td rowspan="2" class="text-center">{{ (casilla.C895!='1' && casilla.C895!='2')? 'X' : ''}}</td>
+                        <td rowspan="2" >NO</td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <td colspan="1" rowspan="2">FORMA DE PAGO</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2">EFECTIVO</td>
+                    <td rowspan="2"></td>
+                    <td rowspan="2" >CHEQUE</td>
+                    
+                    <tr>
+                    </tr>
+                    <td colspan="3" rowspan="2">NRO DE CHEQUE</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2"></td>
+                    <tr>
+                    </tr>
+                    <td colspan="3" rowspan="2">C&Oacute;DIGO DE BANCO</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2"></td>
+                    
+
+                </table>
+                <!-- FIN PRELIMINAR HTML -->
+                <div class="text-center">
+                    <strong>{{formulario.plataforma}}</strong>    
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+
+
+
+    </script>
+
+    <script type="text/ng-template" id="modalDetalle0697plantilla.html">
+
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="guardarDeclaracion()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                    <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="detalle"><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                    <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" id="detalle" ng-click="printDetalleBoleta('detalle')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <button class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" title="Enviar a Correo" ng-click="enviarCorreo()" data-toggle="modal" data-target="#enviarcorreo"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                </div>
+
+            </div>
+        <div id="detalle">
+            <div class="modal-body">
+                <!-- PRELIMINAR HTML -->
+                <table class="table table-bordered tablas-font">
+                    <tr>
+                        <td rowspan="4" style="width: 15%;" class="text-center">
+                            <h2><strong>SUNAT</strong></h2>
+                            <h6>DECLARACI&Oacute;N PAGO</h6>
+                            <h4><strong>697</strong></h4>
+                        </td>
+                        <td colspan="4" class="text-center">
+                            <h5 align="center"><strong>AGENTES DE PERCEPCI&Oacute;N VENTAS INTERNAS</strong></h5>
+
+                        </td>
+                        <td style="width: 20%;">
+                            <h6>Copia para el contribuyente (Pag 1.)</h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%;">
+                            RUC
+                        </td>
+                        <td colspan="3">
+                            <strong>{{formulario.numRuc}}</strong>
+                        </td>
+                        <td rowspan="3">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Raz&oacute;n Social
+                        </td>
+                        <td>
+                            <strong>{{formulario.strNumRuc}}</strong>
+                        </td>
+                        <td>Periodo</td>
+                        <td>
+                            <strong>{{formulario.perTri}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            N&uacute;mero de Orden
+                        </td>
+                        <td>
+                            <strong>{{formulario.numOrd}}</strong>
+                        </td>
+                        <td>Fecha de Presentaci&oacute;n</td>
+                        <td>
+                            <strong>{{formulario.strFecPres}}</strong>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <table width="917" class="table table-bordered tablas-font">
+                    <tr>
+                        <td colspan="3" rowspan="2"><strong>DETERMINACI&Oacute;N DE LA DEUDA TRIBUTARIA</strong></td>
+                        <td colspan="4" rowspan="2">PERCEPCI&Oacute;N</td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td colspan="3">PERCEPCIONES EFECTUADAS</td>
+                        <td >401</td>
+                        <td  class="text-right"> {{casilla.C401}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Pagos previos(Efectivo,cheque, o doc,val)</td>
+                        <td >402</td>
+                        <td class="text-right">{{casilla.C402}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">PERCEPCI&Oacute;N A PAGAR</td>
+                        <td>403</td>
+                        <td class="text-right">{{casilla.C403}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Inter&eacute;s moratorio</td>
+                        <td>404</td>
+                        <td class="text-right">{{casilla.C404}}</td>
+                    </tr>
+     
+                    <tr>
+                        <td colspan="3">TOTAL DEUDA TRIBUTARIA</td>
+                        <td>405</td>
+                        <td class="text-right">{{casilla.C405}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>IMPORTE A PAGAR</strong></td>
+                        <td>410</td>
+                        <td class="text-right">{{casilla.C410}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="1" rowspan="2">RECTIFICA</td>
+                        <td rowspan="2" class="text-center">{{ (casilla.C895=='1' || casilla.C895=='2')? 'X' : ''}}</td>
+                        <td rowspan="2">SI</td>
+                        <td rowspan="2" class="text-center">{{ (casilla.C895!='1' && casilla.C895!='2')? 'X' : ''}}</td>
+                        <td rowspan="2" >NO</td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <td colspan="1" rowspan="2">FORMA DE PAGO</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2">EFECTIVO</td>
+                    <td rowspan="2"></td>
+                    <td rowspan="2" >CHEQUE</td>
+                    
+                    <tr>
+                    </tr>
+                    <td colspan="3" rowspan="2">NRO DE CHEQUE</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2"></td>
+                    <tr>
+                    </tr>
+                    <td colspan="3" rowspan="2">C&Oacute;DIGO DE BANCO</td>
+
+                    <td rowspan="2"></td>
+                    <td rowspan="2"></td>
+
+                </table>
+                <!-- FIN PRELIMINAR HTML -->
+                <div class="text-center">
+                    <strong>{{formulario.plataforma}}</strong>    
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+      </div>   
+    </script>
+
+    <script type="text/ng-template" id="modalConstanciaInternet.html">
+        
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                    <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="exportarConstancia()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                    <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="constancia" ><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                    <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" id="constancia" ng-click="printDetalleConstancia('constancia')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                    <button type="button" class="btn btn-primary btn-sm aire-next" title="Enviar a Correo" ng-click="enviarCorreoCompuesto()" data-toggle="modal" data-target="#enviarCorreoCompuesto"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                </div>
+            </div>
+        <div id="constancia">
+            <div class="modal-body">
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                    <strong>N&uacute;mero de Formulario:</strong>{{formulario.parametriaFormulario.codFor}}<br>
+                    <strong>N&uacute;mero de Orden:</strong>{{formulario.numOrd}}<br>
+                    <strong>Fecha:</strong> {{formulario.strFecPres}}<br>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Datos de la Declaraci&oacute;n:</legend>
+                    <strong>RUC:</strong> {{formulario.numRuc}}
+                    <br>
+                    <strong>Nombre o Raz&oacute;n Social:</strong> {{formulario.strNumRuc}}
+                    <br>
+                    <strong>Per&iacute;odo:</strong> {{formulario.perTri}}
+                    <br>
+                    <strong>Semana:</strong> {{formulario.semFor}}
+
+                    <br>
+                    <strong>Tipo de Declaraci&oacute;n:</strong> {{formulario.codIndrec}}
+                    <br>
+                    <div ng-show="formulario.form0601 == true">
+                     <strong>N&uacute;mero de Trabajadores:</strong>{{formulario.trabajadores}}
+                     <br>
+                     <strong>N&uacute;mero de Pensionistas:</strong>{{formulario.pensionistas}}   
+                     <br>
+                     <strong>Personal Cuarta Categor&iacute;a:</strong>{{formulario.personalCuarta}}
+                     <br>
+                     <strong>Personal Modalidad Formativa:</strong> {{formulario.modalidadForm}}
+                     <br>
+                     <strong>Terceros:</strong>{{formulario.terceros}}
+                     <br>
+                     <strong>Reg&iacute;menes Especiales:</strong>{{formulario.normasEspeciales}}
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Detalle de Tributos:</legend>
+                    <div class="table-responsive">
+                        <table class="table table-striped"  ng-init="tributos.total = {}">
+                            <THEAD>
+                            <tr>
+                                <th>Tributos</th>
+                                <th>Total Deuda</th>
+                                <th>Monto Pago</th>
+                            </tr>
+                            </THEAD>
+                            <tbody>
+                            <tr ng-repeat="tributo in tributos">
+                                <td>{{tributo.codTri}} - {{tributo.descCodTri}}</td>
+                                <td ng-init="tributos.total.totalTotDeu = tributos.total.totalTotDeu + tributo.mtoTotDeu">{{formatearPago(tributo.mtoTotDeu)}}</td>
+                                <td ng-init="tributos.total.totalPagTot = tributos.total.totalPagTot + tributo.mtoPagtot">{{formatearPago(tributo.mtoPagtot)}}</td>
+                            </tr>
+                             <tr ng-if="tributos.length>0">
+                                <td>Total a pagar</td>
+                                <td>{{formatearPago(tributos.total.totalTotDeu)}}</td>
+                                <td>{{formatearPago(tributos.total.totalPagTot)}}</td>
+                              </tr>    
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;">
+                    <legend style="color: #0063AE;">Detalle de Pago:</legend>
+                    <strong>Banco:</strong> {{formulario.nomEntFin}}<br>
+                    <strong>N&uacute;mero de Operaci&oacute;n:</strong> {{formulario.numOpebco}}<br>
+                    <strong>Medio de Pago:</strong> {{formulario.descMedpag}} <br>
+                    <strong>Fecha de Pago:</strong> {{formulario.strfecPago}} <br>
+                    <div ng-show="mostrarRectificatoria">
+                        <strong>
+                        Sr. Contribuyente para su declaraci&oacute;n jurada rectificatoria, de acuerdo al art&iacute;culo 88 del C&oacute;digo Tributario, si disminuye deuda o aumenta saldo a favor, quedar&aacute; pendiente de veredicto
+                        </strong>
+                    </div>
+                </fieldset>
+                <fieldset class="linea-caja" style="margin:10;" ng-show="tributoDeuda">
+                    <br>
+                    <strong>Usted no ha realizado el pago de la deuda, recuerde que deber&aacute; cancelar el saldo deudor de la declaraci&oacute;n presentada consignando los siguientes datos:
+                    </strong>
+                    <br>
+                    <div class="table-responsive" style="margin-top: 25px;">
+                        <table class="table table-striped">
+                            <THEAD>
+                            <tr>
+                                <th>Periodo</th>
+                                <th>Tributos</th>
+                                <th>Deuda</th>
+                            </tr>
+                            </THEAD>
+                            <tbody>
+                            <tr ng-if="tributo.mtoResPag > 0" ng-repeat="tributo in tributos">
+                                <td>{{tributo.perTri}}</td>
+                                <td>{{tributo.codTri}} - {{tributo.descCodTri}}</td>
+                                <td>{{formatearPago(tributo.mtoResPag)}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+                <div class="text-center">
+                    <strong>{{formulario.plataforma}}</strong>    
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </script>
+
+<script type="text/ng-template" id="modalBoletaInternet.html">
+        
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="Btns" style="border: 0;background-color:white;color: black;margin-right:10px;">
+                            <button type="button" class="btn btn-primary btn-sm aire-next" ng-click="exportarConstancia()"><span class="glyphicon glyphicon-save-file"></span>Guardar</button>
+                            <!--<a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-print print-element-id="modalBoleta" ><span class="glyphicon glyphicon-print"></span>Imprimir</a>-->
+                            <a class="btn btn-primary btn-sm aire-next" href="javascript:void(0)" ng-click="printDetalleConstancia('modalBoleta')"><span class="glyphicon glyphicon-print"></span>Imprimir</a>
+                            <button type="button" class="btn btn-primary btn-sm aire-next" title="Enviar a Correo"  ng-click="enviarCorreoCompuesto()" data-toggle="modal" data-target="#enviarCorreoCompuesto"><span class="glyphicon glyphicon-envelope"></span>Enviar</button>
+                        </div>
+                    </div>
+        <div id="modalBoleta">
+                    <div class="modal-body">
+                        <fieldset class="linea-caja" style="margin:10;">
+                            <legend>Identificaci&oacute;n de la Transacci&oacute;n:</legend>
+                            <strong>Número de Formulario:</strong> <span>{{formulario.parametriaFormulario.codFor}}</span>
+                            <br>
+                            <strong>N&uacute;mero de Orden:</strong> <span>{{formulario.numOrd}}</span>
+                            <br>
+                        </fieldset>
+                        <fieldset class="linea-caja" style="margin:10;">
+                            <legend>Datos Generales:</legend>
+                            <strong>RUC:</strong> <span>{{formulario.numRuc}}</span>
+                            <br>
+                            <strong>Nombre o Razón Social:</strong> <span>{{formulario.strNumRuc}}</span>
+                            <br>
+                            <strong>Per&iacute;odo:</strong> <span>{{formulario.strPerTri}}</span>
+                            <br>
+                            <strong>Tributo:</strong> <span>{{boleta.tributo}}</span>
+                            <br>
+                            <strong>C&oacute;digo de Declaraci&oacute;n Jurada Asociada:</strong> <span>{{boleta.codFor}}</span>
+                            <br>
+                            <strong>N&uacute;mero de Orden de la Declaraci&oacute;n Jurada Asociada:</strong> <span>{{formulario.numOrdOri}}</span>
+                            <br>
+                            <strong>Importe Pagado: </strong> <span>{{formatearPago(formulario.mtoPag)}}</span>
+                            <br>
+                        </fieldset>
+
+                        <fieldset class="linea-caja" style="margin:10px;">
+                            <legend>Detalle de Pago:</legend>
+                            <strong>N&uacute;mero de Operaci&oacute;n SUNAT:</strong> <span>{{formulario.numeroOperacionSunat}}</span>
+                            <br>
+                            <strong>Medio de Pago:</strong> <span>{{formulario.descMedpag}}</span>
+                            <br>
+                            <strong>Banco:</strong> <span>{{formulario.nomEntFin}}</span>
+                            <br>
+                            <strong>N&uacute;mero de Operaci&oacute;n:</strong> <span>{{formulario.numOpebco}}</span>
+                            <br> 
+                            <strong>Fecha de Pago:</strong> <span>{{formulario.strfecPago}}</span>
+                            <br>
+                        </fieldset>
+                        <div class="text-center">
+                            <strong>{{formulario.plataforma}}</strong>    
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+        </div>
+    </script>
